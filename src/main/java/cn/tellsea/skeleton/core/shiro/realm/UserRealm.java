@@ -1,14 +1,20 @@
 package cn.tellsea.skeleton.core.shiro.realm;
 
+import cn.tellsea.skeleton.business.entity.Resource;
+import cn.tellsea.skeleton.business.entity.Role;
 import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.business.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * 认证授权验证域
@@ -25,16 +31,22 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("授权用户：");
-        return null;
+        User user = (User) principalCollection.getPrimaryPrincipal();
+        // 查找角色和权限
+        List<Role> roleList = userService.listUserRole(user.getId());
+        List<Resource> resourceList = userService.listUserResource(user.getId());
+        // 授权
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        roleList.forEach(role -> info.addRole(role.getName()));
+        resourceList.forEach(resource -> info.addStringPermission(resource.getName()));
+        return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();
         log.info("认证用户：" + username);
-        User condition = new User();
-        condition.setUsername(username);
-        User user = userService.selectOne(condition);
+        User user = userService.getUserByUsername(username);
         if (user == null) {
             throw new UnknownAccountException();
         }

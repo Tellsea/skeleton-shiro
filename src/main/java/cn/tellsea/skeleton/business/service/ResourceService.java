@@ -3,8 +3,6 @@ package cn.tellsea.skeleton.business.service;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.business.entity.Resource;
 
-import java.util.List;
-
 /**
  * Resource 接口
  *
@@ -13,11 +11,4 @@ import java.util.List;
  */
 public interface ResourceService extends BaseService<Resource> {
 
-    /**
-     * 根据id查询所有资源
-     *
-     * @param id
-     * @return
-     */
-    List<Resource> listUserResource(Long id);
 }

@@ -1,9 +1,8 @@
 package cn.tellsea.skeleton.business.controller;
 
 import cn.tellsea.skeleton.business.entity.UserRole;
-import cn.tellsea.skeleton.business.service.ResourceService;
-import cn.tellsea.skeleton.business.service.RoleService;
 import cn.tellsea.skeleton.business.service.UserRoleService;
+import cn.tellsea.skeleton.business.service.UserService;
 import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.core.common.dto.ResponseResult;
@@ -25,12 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController extends BaseController<User> {
 
     @Autowired
-    private RoleService roleService;
+    private UserService userService;
     @Autowired
     private UserRoleService userRoleService;
-    @Autowired
-    private ResourceService resourceService;
-
     /**
      * 新增用户角色
      *
@@ -53,6 +49,6 @@ public class UserController extends BaseController<User> {
     @GetMapping("/listUserRole/{id}")
     @ResponseBody
     public ResponseResult listUserRole(@PathVariable Long id) {
-        return ResponseResult.success(roleService.listUserRole(id));
+        return ResponseResult.success(userService.listUserRole(id));
     }
 }

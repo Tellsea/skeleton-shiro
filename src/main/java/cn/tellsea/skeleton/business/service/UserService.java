@@ -1,7 +1,11 @@
 package cn.tellsea.skeleton.business.service;
 
+import cn.tellsea.skeleton.business.entity.Resource;
+import cn.tellsea.skeleton.business.entity.Role;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.business.entity.User;
+
+import java.util.List;
 
 /**
  * User 接口
@@ -18,4 +22,20 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     User getUserByUsername(String username);
+
+    /**
+     * 根据id查询用户角色
+     *
+     * @param id
+     * @return
+     */
+    List<Role> listUserRole(Long id);
+
+    /**
+     * 根据id查询所有资源
+     *
+     * @param id
+     * @return
+     */
+    List<Resource> listUserResource(Long id);
 }
