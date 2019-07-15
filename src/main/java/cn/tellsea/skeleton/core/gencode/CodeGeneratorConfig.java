@@ -63,10 +63,15 @@ public class CodeGeneratorConfig {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
 
 
+    /**
+     * 生成控制层
+     *
+     * @param tableName
+     */
     public static void genController(String tableName) {
         try {
             freemarker.template.Configuration cfg = getConfiguration();
-            Map<String, Object> data = new HashMap<>();
+            Map<String, Object> data = new HashMap<>(16);
             data.put("date", DATE);
             data.put("author", AUTHOR);
             String modelNameUpperCamel = tableNameConvertUpperCamel(tableName);
@@ -92,10 +97,15 @@ public class CodeGeneratorConfig {
         }
     }
 
+    /**
+     * 生成service接口
+     *
+     * @param tableName
+     */
     public static void genService(String tableName) {
         try {
             freemarker.template.Configuration cfg = getConfiguration();
-            Map<String, Object> data = new HashMap<>();
+            Map<String, Object> data = new HashMap<>(16);
             data.put("date", DATE);
             data.put("author", AUTHOR);
             String modelNameUpperCamel = tableNameConvertUpperCamel(tableName);
@@ -127,10 +137,15 @@ public class CodeGeneratorConfig {
         }
     }
 
+    /**
+     * 生成Model和Mapper接口
+     *
+     * @param tableName
+     */
     public static void genModelAndMapper(String tableName) {
         Context context = getContext();
 
-        JDBCConnectionConfiguration jdbcConnectionConfiguration = getJDBCConnectionConfiguration();
+        JDBCConnectionConfiguration jdbcConnectionConfiguration = getJdbcConnectionConfiguration();
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
         context.addPluginConfiguration(getPluginConfiguration());
         context.addPluginConfiguration(getLombokPluginConfiguration());
@@ -175,7 +190,7 @@ public class CodeGeneratorConfig {
         return context;
     }
 
-    private static JDBCConnectionConfiguration getJDBCConnectionConfiguration() {
+    private static JDBCConnectionConfiguration getJdbcConnectionConfiguration() {
         JDBCConnectionConfiguration jdbcConnectionConfiguration = new JDBCConnectionConfiguration();
         jdbcConnectionConfiguration.setConnectionURL(JDBC_URL);
         jdbcConnectionConfiguration.setUserId(JDBC_USERNAME);

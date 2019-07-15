@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.core.shiro.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import cn.tellsea.skeleton.core.shiro.filter.KickoutSessionControlFilter;
 import cn.tellsea.skeleton.core.shiro.listener.ShiroSessionListener;
 import cn.tellsea.skeleton.core.shiro.realm.UserRealm;
@@ -332,6 +333,16 @@ public class ShiroConfig {
         hashedCredentialsMatcher.setHashAlgorithmName("MD5");
         hashedCredentialsMatcher.setHashIterations(2);
         return hashedCredentialsMatcher;
+    }
+
+    /**
+     * 用于thymeleaf模板使用shiro标签
+     *
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
     }
 
     /**

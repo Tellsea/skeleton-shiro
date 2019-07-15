@@ -35,11 +35,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         if (id == 0) {
             throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
         }
-        return userMapper.listUserRole(id);
+        List<Role> list = userMapper.listUserRole(id);
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+        return list;
     }
 
     @Override
     public List<Resource> listUserResource(Long id) {
-        return userMapper.listUserResource(id);
+        List<Resource> list = userMapper.listUserResource(id);
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+        return list;
     }
 }

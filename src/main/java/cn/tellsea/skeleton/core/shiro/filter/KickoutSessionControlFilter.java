@@ -40,6 +40,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     private int maxSession = 1;
     private SessionManager sessionManager;
     private Cache<String, Deque<Serializable>> cache;
+    private String kickout = "kickout";
 
     public void setKickoutUrl(String kickoutUrl) {
         this.kickoutUrl = kickoutUrl;
@@ -94,7 +95,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
 
         // 如果队列里没有此sessionId，且用户没有被踢出；放入队列
-        if (!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
+        if (!deque.contains(sessionId) && session.getAttribute(kickout) == null) {
             deque.push(sessionId);
         }
 
@@ -112,7 +113,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
                 Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
                 if (kickoutSession != null) {
                     // 设置会话的kickout属性表示踢出了
-                    kickoutSession.setAttribute("kickout", true);
+                    kickoutSession.setAttribute(kickout, true);
                 }
             } catch (Exception e) {//ignore exception
                 e.printStackTrace();
@@ -120,7 +121,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
 
         // 如果被踢出了，直接退出，重定向到踢出后的地址
-        if (session.getAttribute("kickout") != null) {
+        if (session.getAttribute(kickout) != null) {
             // 会话被踢出了
             try {
                 subject.logout();

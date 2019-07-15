@@ -79,11 +79,12 @@ public class CaptchaUtils {
      * @return
      */
     private Color getRandColor(int fc, int bc) {
-        if (fc > 255) {
-            fc = 255;
+        int colorNum = 255;
+        if (fc > colorNum) {
+            fc = colorNum;
         }
-        if (bc > 255) {
-            bc = 255;
+        if (bc > colorNum) {
+            bc = colorNum;
         }
         int r = fc + random.nextInt(bc - fc);
         int g = fc + random.nextInt(bc - fc);
