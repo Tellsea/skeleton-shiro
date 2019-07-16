@@ -7,7 +7,7 @@ import cn.tellsea.skeleton.business.entity.UserRole;
  * UserRole 接口
  *
  * @author Tellsea
- * @Description Created on 2019/07/13
+ * @Description Created on 2019/07/16
  */
 public interface UserRoleService extends BaseService<UserRole> {
 

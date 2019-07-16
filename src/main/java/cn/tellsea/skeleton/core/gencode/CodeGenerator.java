@@ -9,9 +9,14 @@ package cn.tellsea.skeleton.core.gencode;
 public class CodeGenerator {
 
     public static void main(String[] args) {
-//        genCodeByAll();
-//        genCodeByOne("dept");
-        genCodeByMore("user_role", "role_resource");
+        // 单表生成
+         genCodeByOne("login_log");
+
+        // 指定多个表名生成
+        // genCodeByMore("user", "user_role", "role", "role_resource", "resource");
+
+        // 根据所有表生成
+        // genCodeByAll();
     }
 
     /**

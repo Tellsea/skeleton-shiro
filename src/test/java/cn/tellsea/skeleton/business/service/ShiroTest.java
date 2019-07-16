@@ -8,6 +8,10 @@ public class ShiroTest extends SkeletonApplicationTests {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private ResourceService resourceService;
 
     /**
      * 根据用户名查询用户
@@ -22,7 +26,7 @@ public class ShiroTest extends SkeletonApplicationTests {
      */
     @Test
     public void listUserRole() {
-        userService.listUserRole(1L).forEach(role -> System.out.println(role.getName()));
+        roleService.listRoleByUserId(1L).forEach(role -> System.out.println(role.getName()));
     }
 
     /**
@@ -30,6 +34,6 @@ public class ShiroTest extends SkeletonApplicationTests {
      */
     @Test
     public void listUserResource() {
-        userService.listUserResource(1L).forEach(resource -> System.out.println(resource.getName()));
+        resourceService.listResourceByUserId(1L).forEach(resource -> System.out.println(resource.getName()));
     }
 }

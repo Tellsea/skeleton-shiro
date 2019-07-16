@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 
 /**
  * 实体类
- *
+ * 
  * @author Tellsea
- * @Description Created on 2019/07/13
+ * @Description Created on 2019/07/16
  */
 @Table(name = "role_resource")
 @Data
@@ -27,6 +27,7 @@ public class RoleResource implements Serializable {
     /**
      * 菜单/按钮ID
      */
+    @Id
     @Column(name = "resource_id")
     private Long resourceId;
 }

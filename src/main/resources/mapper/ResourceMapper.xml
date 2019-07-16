@@ -17,4 +17,13 @@
     <result column="perms" jdbcType="LONGVARCHAR" property="perms" />
   </resultMap>
 
+  <select id="listResourceByUserId" resultMap="BaseResultMap">
+    SELECT DISTINCT res.`name` FROM `user` u
+    LEFT JOIN user_role ur ON u.id = ur.user_id
+    LEFT JOIN role r ON ur.role_id = r.id
+    LEFT JOIN role_resource rr ON r.id = rr.role_id
+    LEFT JOIN resource res ON rr.resource_id = res.id
+    WHERE u.id = #{id}
+    AND res.`name` IS NOT NULL
+  </select>
 </mapper>

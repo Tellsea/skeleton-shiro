@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * UserRole 接口实现类
  *
  * @author Tellsea
- * @Description Created on 2019/07/13
+ * @Description Created on 2019/07/16
  */
 @Service
 public class UserRoleServiceImpl extends BaseServiceImpl<UserRole> implements UserRoleService {

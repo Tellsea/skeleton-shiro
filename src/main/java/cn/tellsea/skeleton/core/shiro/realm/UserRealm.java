@@ -3,10 +3,10 @@ package cn.tellsea.skeleton.core.shiro.realm;
 import cn.tellsea.skeleton.business.entity.Resource;
 import cn.tellsea.skeleton.business.entity.Role;
 import cn.tellsea.skeleton.business.entity.User;
+import cn.tellsea.skeleton.business.service.ResourceService;
+import cn.tellsea.skeleton.business.service.RoleService;
 import cn.tellsea.skeleton.business.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -20,22 +20,26 @@ import java.util.List;
 /**
  * 认证授权验证域
  *
- * @author tellsea
- * @date 2019/7/13
+ * @author Tellsea
+ * @Description Created on 2019/7/13
  */
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private ResourceService resourceService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("授权用户：");
         User user = (User) principalCollection.getPrimaryPrincipal();
         // 查找角色和权限
-        List<Role> roleList = userService.listUserRole(user.getId());
-        List<Resource> resourceList = userService.listUserResource(user.getId());
+        List<Role> roleList = roleService.listRoleByUserId(user.getId());
+        List<Resource> resourceList = resourceService.listResourceByUserId(user.getId());
         // 授权
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         if (null == roleList || roleList.size() == 0) {

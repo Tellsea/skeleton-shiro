@@ -1,23 +1,17 @@
 package cn.tellsea.skeleton.business.service.impl;
 
-import cn.tellsea.skeleton.business.entity.Resource;
-import cn.tellsea.skeleton.business.entity.Role;
 import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.business.mapper.UserMapper;
-import cn.tellsea.skeleton.business.service.UserService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
-import cn.tellsea.skeleton.core.common.enums.StatusEnums;
-import cn.tellsea.skeleton.core.common.exception.SkeletonException;
+import cn.tellsea.skeleton.business.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * User 接口实现类
  *
  * @author Tellsea
- * @Description Created on 2019/07/13
+ * @Description Created on 2019/07/16
  */
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
@@ -28,26 +22,5 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
-    }
-
-    @Override
-    public List<Role> listUserRole(Long id) {
-        if (id == 0) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
-        }
-        List<Role> list = userMapper.listUserRole(id);
-        if (list == null || list.isEmpty()) {
-            return null;
-        }
-        return list;
-    }
-
-    @Override
-    public List<Resource> listUserResource(Long id) {
-        List<Resource> list = userMapper.listUserResource(id);
-        if (list == null || list.isEmpty()) {
-            return null;
-        }
-        return list;
     }
 }

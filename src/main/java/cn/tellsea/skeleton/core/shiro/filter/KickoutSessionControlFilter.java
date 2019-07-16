@@ -20,7 +20,7 @@ import java.util.LinkedList;
  * 限制访问人数过滤器
  *
  * @author tellsea
- * @date 2019/7/13
+ * @Description Created on 2019/7/13
  */
 public class KickoutSessionControlFilter extends AccessControlFilter {
 

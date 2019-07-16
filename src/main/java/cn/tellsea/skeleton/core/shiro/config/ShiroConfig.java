@@ -38,8 +38,8 @@ import java.util.Map;
 /**
  * shiro 权限配置
  *
- * @author tellsea
- * @date 2019/7/13
+ * @author Tellsea
+ * @Description Created on 2019/7/13
  */
 @Slf4j
 @Configuration

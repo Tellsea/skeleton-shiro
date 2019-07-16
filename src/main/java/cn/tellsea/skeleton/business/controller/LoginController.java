@@ -70,8 +70,7 @@ public class LoginController {
                                 @RequestParam("rememberMe") boolean rememberMe,
                                 @RequestParam("captcha") String captcha,
                                 HttpServletRequest request) {
-        //校验验证码
-        //session中的验证码
+        // 校验验证码
         String sessionCaptcha = (String) SecurityUtils.getSubject().getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
         if (null == captcha || !captcha.equalsIgnoreCase(sessionCaptcha)) {
             return ResponseResult.error(StatusEnums.CAPTCHA_ERROR);

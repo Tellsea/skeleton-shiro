@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * shiro session 监听器
  *
  * @author tellsea
- * @date 2019/7/13
+ * @Description Created on 2019/7/13
  */
 public class ShiroSessionListener implements SessionListener {
 
