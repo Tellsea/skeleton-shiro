@@ -13,30 +13,27 @@
 
 <div class="content-wrap">
     <div class="main">
-        <iframe src="/console/data" id="main-iframe" name="main-iframe" width="100%" height="100%" frameborder="0" scrolling="no"
-                onload="resetIframe()"></iframe>
+        <iframe src="/console/data" id="mainIframe" name="main-iframe" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 
 </body>
 <div th:replace="/common/js"></div>
-<script>
-    function resetIframe() {
-        // session 空，则刷新父页面
-        // var activeUser = [[${session.a}]];
+<script src="/assets/js/lib/detect-element-resize.js"></script>
+<script type="text/javascript">
+    //iframe 页面代码 https://www.cnblogs.com/gxsyj/p/9860807.html
+    window.onload = function () {
+        setParentIframeHeight('mainIframe');
+        addResizeListener(document.getElementsByTagName("body")[0], detectCallback);
+    };
 
-        // 重置高度
-        var iframe = document.getElementById("main-iframe");
-        iframe.height = 0; // 只有先设置原来的iframe高度为0，之前的iframe高度才不会对现在的设置有影响
-        var bHeight = iframe.contentWindow.document.body.scrollHeight;
-        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-        var height = Math.max(bHeight, dHeight);
-        var screenHeight = screen.availHeight; // 屏幕高度
-        iframe.height = height > screenHeight ? height : (screenHeight - 185);
+    var detectCallback = function () {
+        setParentIframeHeight('mainIframe');
+    };
 
-        // 清除背景颜色
-        var body = iframe.contentWindow.document.body;
-        body.style.background = "none";
+    function setParentIframeHeight(id) {
+        var parentIframe = parent.document.getElementById(id);
+        parentIframe.height = document.body.scrollHeight;
     }
 </script>
 </html>

@@ -41,14 +41,4 @@ public class SiteController {
     public String consolePermission() {
         return "page/console/permission";
     }
-
-    /**
-     * 接口文档
-     *
-     * @return
-     */
-    @GetMapping("/swagger")
-    public String swagger() {
-        return "page/other/swagger";
-    }
 }

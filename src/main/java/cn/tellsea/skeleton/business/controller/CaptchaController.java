@@ -2,7 +2,7 @@ package cn.tellsea.skeleton.business.controller;
 
 import cn.tellsea.skeleton.core.util.CaptchaUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -31,7 +31,7 @@ public class CaptchaController {
      * @throws ServletException
      * @throws IOException
      */
-    @RequestMapping("/Captcha.jpg")
+    @GetMapping("/Captcha.jpg")
     public void getCaptcha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 设置相应类型,告诉浏览器输出的内容为图片
         response.setContentType("image/jpeg");
