@@ -3,6 +3,8 @@ package cn.tellsea.skeleton.business.service;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.business.entity.User;
 
+import java.util.List;
+
 /**
  * User 接口
  *
@@ -18,4 +20,11 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     User getUserByUsername(String username);
+
+    /**
+     * 用户列表
+     *
+     * @return
+     */
+    List<User> listUser();
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 实体类
- * 
+ *
  * @author Tellsea
  * @Description Created on 2019/07/16
  */
@@ -48,6 +48,11 @@ public class User implements Serializable {
      */
     @Column(name = "dept_id")
     private Long deptId;
+
+    /**
+     * 部门名称
+     */
+    private String deptName;
 
     /**
      * 创建时间

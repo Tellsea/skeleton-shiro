@@ -7,6 +7,8 @@ import cn.tellsea.skeleton.business.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * User 接口实现类
  *
@@ -22,5 +24,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
+    }
+
+    @Override
+    public List<User> listUser() {
+        return userMapper.listUser();
     }
 }

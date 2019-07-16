@@ -46,6 +46,7 @@
 </body>
 <script src="assets/js/lib/jquery.min.js"></script>
 <script src="assets/js/lib/toastr.min.js"></script>
+<script src="assets/js/tellsea.utils.js"></script>
 <script th:inline="javascript">
     $(function () {
         /*var href=location.href;
@@ -53,7 +54,6 @@
             alert("您的账号在另一台设备上登录,如非本人操作，请立即修改密码！");
         }*/
         var kickout = [[${kickout}]];
-        console.log(kickout);
         if (kickout > 0) {
             if (confirm("您的账号在另一台设备上登录,如非本人操作，请立即修改密码！")) {
 
@@ -73,15 +73,15 @@
         var password = $("input[name='password']").val();
         var rememberMe = $("input[name='rememberMe']").prop("checked");
         var captcha = $("input[name='captcha']").val();
-        if (username == null || username.length == 0) {
+        if (validator.isEmpty(username)) {
             toastr.error("账户不能为空");
             return;
         }
-        if (password == null || password.length == 0) {
+        if (validator.isEmpty(password)) {
             toastr.error("密码不能为空");
             return;
         }
-        if (captcha == null || captcha.length == 0) {
+        if (validator.isEmpty(captcha)) {
             toastr.error("验证码不能为空");
             return;
         }
@@ -96,7 +96,6 @@
             },
             dataType: "json",
             success: function (data) {
-                console.log(data);
                 if (data.code == 200) {
                     window.location.href = "/";
                 } else {
@@ -104,7 +103,8 @@
                     toastr.error(data.message);
                 }
             },
-            error: function () {
+            error: function (e) {
+                console.log(e);
                 toastr.warning("网络连接异常，请检查网络是否稳定");
             }
         });

@@ -70,10 +70,10 @@ public class ShiroConfig {
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //  静态资源
-        filterChainDefinitionMap.put("/assets/**", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/login", "kickout,anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
+        filterChainDefinitionMap.put("/assets/**", "anon");
         filterChainDefinitionMap.put("/**", "kickout,user");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
@@ -142,13 +142,13 @@ public class ShiroConfig {
      *
      * @return
      */
-    @Bean
+    /*@Bean
     public FormAuthenticationFilter formAuthenticationFilter() {
         FormAuthenticationFilter formAuthenticationFilter = new FormAuthenticationFilter();
         // 对应前端的checkbox的name = rememberMe
         formAuthenticationFilter.setRememberMeParam("rememberMe");
         return formAuthenticationFilter;
-    }
+    }*/
 
 
     /** =====================================================================================================以下 session 的配置 */

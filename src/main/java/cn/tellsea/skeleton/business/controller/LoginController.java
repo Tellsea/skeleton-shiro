@@ -63,8 +63,8 @@ public class LoginController {
      * @param request
      * @return
      */
-    @ResponseBody
     @PostMapping("/login")
+    @ResponseBody
     public ResponseResult login(@RequestParam("username") String username,
                                 @RequestParam("password") String password,
                                 @RequestParam("rememberMe") boolean rememberMe,

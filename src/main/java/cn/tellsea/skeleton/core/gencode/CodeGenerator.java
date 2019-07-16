@@ -10,7 +10,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
         // 单表生成
-         genCodeByOne("login_log");
+         genCodeByOne("dept");
 
         // 指定多个表名生成
         // genCodeByMore("user", "user_role", "role", "role_resource", "resource");

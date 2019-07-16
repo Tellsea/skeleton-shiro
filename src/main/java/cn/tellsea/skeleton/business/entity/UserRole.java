@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 实体类
- * 
+ *
  * @author Tellsea
  * @Description Created on 2019/07/16
  */
@@ -27,7 +27,6 @@ public class UserRole implements Serializable {
     /**
      * 角色ID
      */
-    @Id
     @Column(name = "role_id")
     private Long roleId;
 }
