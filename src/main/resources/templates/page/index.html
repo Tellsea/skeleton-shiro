@@ -13,27 +13,25 @@
 
 <div class="content-wrap">
     <div class="main">
-        <iframe src="/console/data" id="mainIframe" name="main-iframe" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+        <iframe src="/console/data" id="mainIframe" name="main-iframe" width="100%" frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
     </div>
 </div>
 
 </body>
 <div th:replace="/common/js"></div>
-<script src="/assets/js/lib/detect-element-resize.js"></script>
 <script type="text/javascript">
-    //iframe 页面代码 https://www.cnblogs.com/gxsyj/p/9860807.html
-    window.onload = function () {
-        setParentIframeHeight('mainIframe');
-        addResizeListener(document.getElementsByTagName("body")[0], detectCallback);
+    function setIframeHeight(iframe) {
+        var iframeHeight = $("#mainIframe").contents().find("body").height() + 30;
+        if (iframeHeight <= 500) {
+            iframe.height = 500;
+        } else {
+            if (iframe) {
+                var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+                if (iframeWin.document.body) {
+                    iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+                }
+            }
+        }
     };
-
-    var detectCallback = function () {
-        setParentIframeHeight('mainIframe');
-    };
-
-    function setParentIframeHeight(id) {
-        var parentIframe = parent.document.getElementById(id);
-        parentIframe.height = document.body.scrollHeight;
-    }
 </script>
 </html>

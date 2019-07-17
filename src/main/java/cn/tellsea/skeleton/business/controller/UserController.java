@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * User 控制层
  *
@@ -53,5 +55,33 @@ public class UserController extends BaseController<User> {
     @ResponseBody
     public ResponseResult getSessionUser() {
         return ResponseResult.success(super.getCurrentUser());
+    }
+
+    /**
+     * 更新密码页
+     *
+     * @return
+     */
+    @GetMapping("/updatePwd")
+    public String updatePwd() {
+        return "page/personal/update-pwd";
+    }
+
+    /**
+     * 个人信息
+     *
+     * @param session
+     * @return
+     */
+    @GetMapping("/info")
+    public String profile(HttpSession session) {
+        User activeUser = super.getCurrentUser();
+        if (activeUser == null) {
+            return "page/login/login";
+        }
+        activeUser.setPassword(null);
+        activeUser.setSalt(null);
+        session.setAttribute("activeUser", activeUser);
+        return "page/personal/info";
     }
 }
