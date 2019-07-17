@@ -2,9 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>error</title>
+    <title>404</title>
+    <meta name="viewpoint" content="width=device-width,initial-scale=1">
+    <link href="/assets/css/404.css" rel="stylesheet">
 </head>
 <body>
-<h1>别看了，啥也没得</h1>
+<div class="code">
+    <p>ERROR 404</p>
+</div>
+<div class="road">
+    <div class="shadow">
+        <div class="shelt">
+            <div class="head">
+                <div class="eyes">
+                    <div class="lefteye">
+                        <div class="eyeball"></div>
+                        <div class="eyebrow"></div>
+                    </div>
+                    <div class="righteye">
+                        <div class="eyeball"></div>
+                        <div class="eyebrow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hat"></div>
+        <div class="bubble">
+            <a href="#" onclick="loadIndex()">Go back Home?</a>
+        </div>
+    </div>
+    <p>页面未找到</p>
+</div>
 </body>
+<script src="/assets/js/lib/jquery.min.js"></script>
+<script src="/assets/js/404.js"></script>
+<script>
+    function loadIndex() {
+        window.parent.location.href = "/";
+    }
+</script>
 </html>
