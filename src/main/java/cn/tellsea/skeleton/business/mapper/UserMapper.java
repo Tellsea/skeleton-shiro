@@ -28,5 +28,5 @@ public interface UserMapper extends MyMapper<User> {
      *
      * @return
      */
-    List<User> listUser();
+    List<User> listUserByPage();
 }

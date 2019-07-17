@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   profiles:
-    active: test
+    active: prod
   # thymeleaf
   thymeleaf:
     mode: HTML5

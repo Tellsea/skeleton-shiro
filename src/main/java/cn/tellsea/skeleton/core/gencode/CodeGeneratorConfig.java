@@ -1,6 +1,6 @@
 package cn.tellsea.skeleton.core.gencode;
 
-import cn.tellsea.skeleton.core.gencode.constant.GenCodeConstant;
+import cn.tellsea.skeleton.core.gencode.consts.GenCodeConst;
 import com.google.common.base.CaseFormat;
 import freemarker.template.TemplateExceptionHandler;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -44,15 +44,15 @@ public class CodeGeneratorConfig {
     /**
      * 生成的Service存放路径
      */
-    private static final String PACKAGE_PATH_SERVICE = packageConvertPath(GenCodeConstant.SERVICE_PACKAGE);
+    private static final String PACKAGE_PATH_SERVICE = packageConvertPath(GenCodeConst.SERVICE_PACKAGE);
     /**
      * 生成的Service实现存放路径
      */
-    private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(GenCodeConstant.SERVICE_IMPL_PACKAGE);
+    private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(GenCodeConst.SERVICE_IMPL_PACKAGE);
     /**
      * 生成的Controller存放路径
      */
-    private static final String PACKAGE_PATH_CONTROLLER = packageConvertPath(GenCodeConstant.CONTROLLER_PACKAGE);
+    private static final String PACKAGE_PATH_CONTROLLER = packageConvertPath(GenCodeConst.CONTROLLER_PACKAGE);
     /**
      * author
      */
@@ -78,12 +78,12 @@ public class CodeGeneratorConfig {
             data.put("baseRequestMapping", CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, modelNameUpperCamel));
             data.put("modelNameUpperCamel", modelNameUpperCamel);
             data.put("modelNameLowerCamel", CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, modelNameUpperCamel));
-            data.put("basePackage", GenCodeConstant.BASE_PACKAGE);
-            data.put("baseBusinessPackage", GenCodeConstant.BASE_BUSINESS_PACKAGE);
-            data.put("baseSkeletonPackage", GenCodeConstant.BASE_SKELETON_PACKAGE);
-            data.put("basePackageController", GenCodeConstant.CONTROLLER_PACKAGE);
-            data.put("basePackageService", GenCodeConstant.SERVICE_PACKAGE);
-            data.put("basePackageModel", GenCodeConstant.MODEL_PACKAGE);
+            data.put("basePackage", GenCodeConst.BASE_PACKAGE);
+            data.put("baseBusinessPackage", GenCodeConst.BASE_BUSINESS_PACKAGE);
+            data.put("baseSkeletonPackage", GenCodeConst.BASE_SKELETON_PACKAGE);
+            data.put("basePackageController", GenCodeConst.CONTROLLER_PACKAGE);
+            data.put("basePackageService", GenCodeConst.SERVICE_PACKAGE);
+            data.put("basePackageModel", GenCodeConst.MODEL_PACKAGE);
 
             File file = new File(JAVA_PATH + PACKAGE_PATH_CONTROLLER + modelNameUpperCamel + "Controller.java");
             if (!file.getParentFile().exists()) {
@@ -111,13 +111,13 @@ public class CodeGeneratorConfig {
             String modelNameUpperCamel = tableNameConvertUpperCamel(tableName);
             data.put("modelNameUpperCamel", modelNameUpperCamel);
             data.put("modelNameLowerCamel", CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, modelNameUpperCamel));
-            data.put("basePackage", GenCodeConstant.BASE_BUSINESS_PACKAGE);
-            data.put("baseBusinessPackage", GenCodeConstant.BASE_BUSINESS_PACKAGE);
-            data.put("baseSkeletonPackage", GenCodeConstant.BASE_SKELETON_PACKAGE);
-            data.put("basePackageService", GenCodeConstant.SERVICE_PACKAGE);
-            data.put("basePackageServiceImpl", GenCodeConstant.SERVICE_IMPL_PACKAGE);
-            data.put("basePackageModel", GenCodeConstant.MODEL_PACKAGE);
-            data.put("basePackageDao", GenCodeConstant.MAPPER_PACKAGE);
+            data.put("basePackage", GenCodeConst.BASE_BUSINESS_PACKAGE);
+            data.put("baseBusinessPackage", GenCodeConst.BASE_BUSINESS_PACKAGE);
+            data.put("baseSkeletonPackage", GenCodeConst.BASE_SKELETON_PACKAGE);
+            data.put("basePackageService", GenCodeConst.SERVICE_PACKAGE);
+            data.put("basePackageServiceImpl", GenCodeConst.SERVICE_IMPL_PACKAGE);
+            data.put("basePackageModel", GenCodeConst.MODEL_PACKAGE);
+            data.put("basePackageDao", GenCodeConst.MAPPER_PACKAGE);
 
             File file = new File(JAVA_PATH + PACKAGE_PATH_SERVICE + modelNameUpperCamel + "Service.java");
             if (!file.getParentFile().exists()) {
@@ -202,7 +202,7 @@ public class CodeGeneratorConfig {
     private static PluginConfiguration getPluginConfiguration() {
         PluginConfiguration pluginConfiguration = new PluginConfiguration();
         pluginConfiguration.setConfigurationType("tk.mybatis.mapper.generator.MapperPlugin");
-        pluginConfiguration.addProperty("mappers", GenCodeConstant.MAPPER_INTERFACE_REFERENCE);
+        pluginConfiguration.addProperty("mappers", GenCodeConst.MAPPER_INTERFACE_REFERENCE);
         // 强制生成 @Table 和 @Column
         pluginConfiguration.addProperty("forceAnnotation", "true");
         // 使用数据库注释，默认 true
@@ -219,7 +219,7 @@ public class CodeGeneratorConfig {
     private static JavaModelGeneratorConfiguration getJavaModelGeneratorConfiguration() {
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
         javaModelGeneratorConfiguration.setTargetProject(JAVA_PATH);
-        javaModelGeneratorConfiguration.setTargetPackage(GenCodeConstant.MODEL_PACKAGE);
+        javaModelGeneratorConfiguration.setTargetPackage(GenCodeConst.MODEL_PACKAGE);
         javaModelGeneratorConfiguration.addProperty("enableSubPackages", "true");
         javaModelGeneratorConfiguration.addProperty("trimStrings", "true");
         return javaModelGeneratorConfiguration;
@@ -235,7 +235,7 @@ public class CodeGeneratorConfig {
     private static JavaClientGeneratorConfiguration getJavaClientGeneratorConfiguration() {
         JavaClientGeneratorConfiguration javaClientGeneratorConfiguration = new JavaClientGeneratorConfiguration();
         javaClientGeneratorConfiguration.setTargetProject(JAVA_PATH);
-        javaClientGeneratorConfiguration.setTargetPackage(GenCodeConstant.MAPPER_PACKAGE);
+        javaClientGeneratorConfiguration.setTargetPackage(GenCodeConst.MAPPER_PACKAGE);
         javaClientGeneratorConfiguration.setConfigurationType("XMLMAPPER");
         return javaClientGeneratorConfiguration;
     }

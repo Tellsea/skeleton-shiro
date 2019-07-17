@@ -2,6 +2,7 @@ package cn.tellsea.skeleton.business.service;
 
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.business.entity.User;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -22,9 +23,10 @@ public interface UserService extends BaseService<User> {
     User getUserByUsername(String username);
 
     /**
-     * 用户列表
+     * 用户列表分页
      *
+     * @param pn
      * @return
      */
-    List<User> listUser();
+    PageInfo<User> listUserByPage(Integer pn);
 }

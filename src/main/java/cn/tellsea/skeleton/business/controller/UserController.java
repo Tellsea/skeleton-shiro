@@ -6,8 +6,10 @@ import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.core.common.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -30,6 +32,19 @@ public class UserController extends BaseController<User> {
     }
 
     /**
+     * 用户列表分页
+     *
+     * @param pn
+     * @param model
+     * @return
+     */
+    @GetMapping("/index")
+    public String index(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
+        model.addAttribute("pageInfo", userService.listUserByPage(pn));
+        return "page/system/user/index";
+    }
+
+    /**
      * 获取当前session中的用户信息
      *
      * @return
@@ -38,16 +53,5 @@ public class UserController extends BaseController<User> {
     @ResponseBody
     public ResponseResult getSessionUser() {
         return ResponseResult.success(super.getCurrentUser());
-    }
-
-    /**
-     * 用户列表
-     *
-     * @return
-     */
-    @GetMapping("/listUser")
-    @ResponseBody
-    public ResponseResult listUser() {
-        return ResponseResult.success(userService.listUser());
     }
 }

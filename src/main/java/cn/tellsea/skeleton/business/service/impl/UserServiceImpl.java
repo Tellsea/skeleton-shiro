@@ -4,10 +4,10 @@ import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.business.mapper.UserMapper;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
 import cn.tellsea.skeleton.business.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * User 接口实现类
@@ -27,7 +27,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
     @Override
-    public List<User> listUser() {
-        return userMapper.listUser();
+    public PageInfo<User> listUserByPage(Integer pn) {
+        PageHelper.startPage(pn, 10);
+        return new PageInfo<>(userMapper.listUserByPage());
     }
 }

@@ -64,10 +64,19 @@
         toastr.options.positionClass = 'toast-center-center';
     });
 
+    // 刷新验证码
     function refreshCaptcha() {
         $("#captcha_img").attr("src", "/Captcha.jpg?id=" + new Date() + Math.floor(Math.random() * 24));
     }
 
+    // 鼠标回车事件
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            login();
+        }
+    });
+
+    // 登录
     function login() {
         var username = $("input[name='username']").val();
         var password = $("input[name='password']").val();
@@ -95,16 +104,15 @@
                 captcha: captcha
             },
             dataType: "json",
-            success: function (data) {
-                if (data.code == 200) {
-                    window.location.href = "/";
+            success: function (result) {
+                if (result.code == 200) {
+                    window.location.href = result.data;
                 } else {
-                    $("input[name='username']").val(data.data);
-                    toastr.error(data.message);
+                    $("input[name='username']").val(result.data);
+                    toastr.error(result.message);
                 }
             },
-            error: function (e) {
-                console.log(e);
+            error: function () {
                 toastr.warning("网络连接异常，请检查网络是否稳定");
             }
         });

@@ -29,11 +29,11 @@ public class BaseController<T> {
         return SecurityUtils.getSubject();
     }
 
-    protected Session getSession() {
+    protected static Session getSession() {
         return getSubject().getSession();
     }
 
-    protected Session getSession(Boolean flag) {
+    protected static Session getSession(Boolean flag) {
         return getSubject().getSession(flag);
     }
 

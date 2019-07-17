@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.core.gencode.constant;
+package cn.tellsea.skeleton.core.gencode.consts;
 
 /**
  * 代码生成器常量
@@ -6,7 +6,7 @@ package cn.tellsea.skeleton.core.gencode.constant;
  * @author Tellsea
  * @Description Created on 2019/7/13
  */
-public class GenCodeConstant {
+public class GenCodeConst {
 
     /**
      * 项目基础包

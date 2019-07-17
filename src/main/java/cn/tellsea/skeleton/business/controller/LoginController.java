@@ -10,12 +10,15 @@ import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.SavedRequest;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,14 +96,19 @@ public class LoginController {
             OperatingSystem operatingSystem = userAgent.getOperatingSystem();
             loginLog.setDevice(browser.getName() + " -- " + operatingSystem.getName());
             loginLogService.insert(loginLog);
-            return ResponseResult.success(username);
+            SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+            String loginSuccessUrl = "/";
+            if (!StringUtils.isEmpty(savedRequest.getRequestURI())) {
+                loginSuccessUrl = savedRequest.getRequestUrl();
+            }
+            return ResponseResult.success(loginSuccessUrl);
 
         } catch (DisabledAccountException e) {
-            return ResponseResult.error(StatusEnums.UNAUTHORIZED);
+            return ResponseResult.error(StatusEnums.UNAUTHORIZED, username);
         } catch (UnknownAccountException e) {
-            return ResponseResult.error(StatusEnums.USER_NOT_FOUND);
+            return ResponseResult.error(StatusEnums.USER_NOT_FOUND, username);
         } catch (IncorrectCredentialsException e) {
-            return ResponseResult.error(StatusEnums.PASSWORD_ERROR);
+            return ResponseResult.error(StatusEnums.PASSWORD_ERROR, username);
         }
     }
 }

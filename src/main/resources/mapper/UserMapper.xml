@@ -19,6 +19,22 @@
     <result column="status" jdbcType="BIT" property="status" />
   </resultMap>
 
+  <select id="listUserByPage" resultType="User">
+    SELECT u.id,
+    u.username,
+    u.dept_id,
+    u.create_time,
+    u.modify_time,
+    u.avatar,
+    u.phone,
+    u.sex,
+    u.description,
+    u.`status`,
+    d.`name` AS 'deptName'
+    FROM `user` u
+  LEFT JOIN dept d ON u.dept_id = d.id
+  </select>
+
   <select id="listUser" resultMap="BaseResultMap">
     SELECT
 	u.username,
