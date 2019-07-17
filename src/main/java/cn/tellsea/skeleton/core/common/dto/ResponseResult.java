@@ -45,6 +45,7 @@ public class ResponseResult {
     public static ResponseResult error() {
         return new ResponseResult(StatusEnums.SERVER_ERROR);
     }
+
     public static ResponseResult error(StatusEnums enums) {
         return new ResponseResult(enums.getCode(), enums.getInfo());
     }

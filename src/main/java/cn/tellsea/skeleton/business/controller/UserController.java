@@ -1,16 +1,14 @@
 package cn.tellsea.skeleton.business.controller;
 
 import cn.tellsea.skeleton.business.service.UserService;
+import cn.tellsea.skeleton.core.aop.annotation.SystemControllerLog;
 import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.core.common.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +29,13 @@ public class UserController extends BaseController<User> {
     @ResponseBody
     public Object list() {
         return baseService.selectAll();
+    }
+
+    @SystemControllerLog("删除用户")
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public ResponseResult deleteUser(@PathVariable Long id) {
+        return ResponseResult.success(id);
     }
 
     /**
