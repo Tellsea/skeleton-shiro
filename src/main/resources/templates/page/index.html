@@ -13,25 +13,21 @@
 
 <div class="content-wrap">
     <div class="main">
-        <iframe src="/console/data" id="mainIframe" name="main-iframe" width="100%" frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
+        <iframe src="/console/data" id="mainIframe" name="main-iframe" onload="setIframeHeight(this)" width="100%" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 
 </body>
 <div th:replace="/common/js"></div>
 <script type="text/javascript">
+    // todo 初始加载时，窗口改变时，内容高度改变时重置高度
     function setIframeHeight(iframe) {
-        var iframeHeight = $("#mainIframe").contents().find("body").height() + 30;
-        if (iframeHeight <= 500) {
-            iframe.height = 500;
-        } else {
-            if (iframe) {
-                var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-                if (iframeWin.document.body) {
-                    iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-                }
-            }
+        var iframeHeight = $("#mainIframe").contents().find("body").height();
+        var screenHeight = window.screen.height - 210;
+        if (iframeHeight <= screenHeight) {
+            iframeHeight = screenHeight;
         }
+        iframe.height = iframeHeight;
     };
 </script>
 </html>

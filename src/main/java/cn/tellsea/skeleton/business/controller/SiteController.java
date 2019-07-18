@@ -41,4 +41,15 @@ public class SiteController {
     public String consolePermission() {
         return "page/console/permission";
     }
+
+    /**
+     * api 文档
+     *
+     * @return
+     */
+    @GetMapping("/swagger/index")
+    public String swagger() {
+        return "page/swagger/index";
+    }
+
 }

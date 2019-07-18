@@ -10,7 +10,6 @@ import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -98,7 +97,7 @@ public class LoginController {
             loginLogService.insert(loginLog);
             SavedRequest savedRequest = WebUtils.getSavedRequest(request);
             String loginSuccessUrl = "/";
-            if (!StringUtils.isEmpty(savedRequest.getRequestURI())) {
+            if (null != savedRequest) {
                 loginSuccessUrl = savedRequest.getRequestUrl();
             }
             return ResponseResult.success(loginSuccessUrl);
