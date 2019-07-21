@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.business.service;
 
+import cn.tellsea.skeleton.business.dto.TableDataDTO;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.business.entity.User;
 import com.github.pagehelper.PageInfo;
@@ -29,4 +30,12 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     PageInfo<User> listUserByPage(Integer pn);
+
+    /**
+     * 查询用户列表
+     *
+     * @param tableDataDTO
+     * @return
+     */
+    TableDataDTO listUser(TableDataDTO<User> tableDataDTO);
 }

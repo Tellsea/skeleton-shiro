@@ -189,4 +189,23 @@ public interface BaseService<T> {
      * @return
      */
     List<T> selectByExampleAndRowBounds(Object example, RowBounds rowBounds);
+
+    /**
+     * ----------------------------------------------------------- 计数接口
+     */
+    /**
+     * 根据实体非空属性计数
+     *
+     * @param record
+     * @return
+     */
+    int selectCount(T record);
+
+    /**
+     * 根据构造查询条件计数
+     *
+     * @param example
+     * @return
+     */
+    int selectCountByExample(Object example);
 }

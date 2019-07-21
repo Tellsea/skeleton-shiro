@@ -52,6 +52,7 @@ public class User implements Serializable {
     /**
      * 部门名称
      */
+    @Transient
     private String deptName;
 
     /**

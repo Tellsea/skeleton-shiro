@@ -188,4 +188,20 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         }
         return baseMapper.selectByExampleAndRowBounds(example, rowBounds);
     }
+
+    @Override
+    public int selectCount(T record) {
+        if (ObjectUtils.isEmpty(record)) {
+            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        }
+        return baseMapper.selectCount(record);
+    }
+
+    @Override
+    public int selectCountByExample(Object example) {
+        if (ObjectUtils.isEmpty(example)) {
+            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        }
+        return baseMapper.selectCountByExample(example);
+    }
 }
