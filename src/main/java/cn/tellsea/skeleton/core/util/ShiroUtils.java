@@ -98,8 +98,6 @@ public class ShiroUtils {
 
     /**
      * 清除所有用户认证缓存
-     *
-     * @param principals
      */
     public static void clearAllCachedAuthenticationInfo() {
         getUserRealm().clearAllCachedAuthenticationInfo();
@@ -107,8 +105,6 @@ public class ShiroUtils {
 
     /**
      * 清除所有用户授权缓存
-     *
-     * @param principals
      */
     public static void clearAllCachedAuthorizationInfo() {
         getUserRealm().clearAllCachedAuthorizationInfo();
