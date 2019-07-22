@@ -3,23 +3,3 @@ server:
 spring:
   profiles:
     active: prod
-  # thymeleaf
-  thymeleaf:
-    mode: HTML5
-    cache: false
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-
-# mybatis
-mybatis:
-  type-aliases-package: cn.tellsea.skeleton.business.entity
-  configuration:
-    map-underscore-to-camel-case: true
-  mapper-locations: classpath*:mapper/*.xml
-
-# 日志
-logging:
-  level:
-    cn.tellsea.skeleton.business.mapper: debug
-

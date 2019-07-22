@@ -5,6 +5,10 @@ import cn.tellsea.skeleton.core.aop.annotation.SystemControllerLog;
 import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.core.common.dto.ResponseResult;
+import cn.tellsea.skeleton.core.util.ShiroUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +29,29 @@ public class UserController extends BaseController<User> {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/clear")
+    @ResponseBody
+    public void clear() {
+        // 假设修改了用户的
+    }
+
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
     @GetMapping("/list")
     @ResponseBody
     public Object list() {
         return baseService.selectAll();
     }
 
+    /**
+     * 删除用户
+     *
+     * @param id
+     * @return
+     */
     @SystemControllerLog("删除用户")
     @GetMapping("/delete/{id}")
     @ResponseBody
@@ -52,17 +73,6 @@ public class UserController extends BaseController<User> {
     }
 
     /**
-     * 获取当前session中的用户信息
-     *
-     * @return
-     */
-    @GetMapping("/getCurrentUser")
-    @ResponseBody
-    public ResponseResult getSessionUser() {
-        return ResponseResult.success(super.getCurrentUser());
-    }
-
-    /**
      * 更新密码页
      *
      * @return
@@ -80,7 +90,7 @@ public class UserController extends BaseController<User> {
      */
     @GetMapping("/info")
     public String profile(HttpSession session) {
-        User activeUser = super.getCurrentUser();
+        User activeUser = (User) ShiroUtils.getCurrentUser();
         if (activeUser == null) {
             return "page/login/login";
         }

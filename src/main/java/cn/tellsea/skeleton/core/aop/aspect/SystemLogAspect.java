@@ -4,9 +4,9 @@ import cn.tellsea.skeleton.business.entity.User;
 import cn.tellsea.skeleton.core.aop.annotation.SystemControllerLog;
 import cn.tellsea.skeleton.core.aop.annotation.SystemServiceLog;
 import cn.tellsea.skeleton.core.util.IpUtils;
+import cn.tellsea.skeleton.core.util.ShiroUtils;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,7 +17,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
 
 /**
@@ -54,7 +53,7 @@ public class SystemLogAspect {
     @Before("controllerAspect()")
     public void doBefore(JoinPoint joinPoint) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        User user = (User) ShiroUtils.getCurrentUser();
         String ip = IpUtils.getIpAddr(request);
         try {
             log.info("-------------------------------------------------------");
@@ -79,7 +78,7 @@ public class SystemLogAspect {
     @AfterThrowing(pointcut = "serviceAspect()", throwing = "e")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        User user = (User) ShiroUtils.getCurrentUser();
         String ip = IpUtils.getIpAddr(request);
         //获取用户请求方法的参数并序列化为JSON格式字符串
         String params = "";
