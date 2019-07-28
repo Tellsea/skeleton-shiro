@@ -52,7 +52,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(@RequestParam(value = "kickout", required = false) Integer kickout, Model model) {
         model.addAttribute("kickout", kickout);
-        return "page/login/login";
+        return "login";
     }
 
     /**
