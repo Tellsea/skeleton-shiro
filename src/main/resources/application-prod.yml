@@ -20,7 +20,7 @@ spring:
     logSlowSql: true
   # thymeleaf
   thymeleaf:
-    mode: HTML5
+    mode: LEGACYHTML5
     cache: false
     encoding: UTF-8
     servlet:

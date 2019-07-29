@@ -69,7 +69,7 @@ public class LoginController {
     @ResponseBody
     public ResponseResult login(@RequestParam("username") String username,
                                 @RequestParam("password") String password,
-                                @RequestParam("rememberMe") boolean rememberMe,
+                                @RequestParam(value = "rememberMe", required = false) boolean rememberMe,
                                 @RequestParam("captcha") String captcha,
                                 HttpServletRequest request) {
         // 校验验证码

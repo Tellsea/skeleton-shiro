@@ -19,7 +19,7 @@ public class SiteController {
      */
     @GetMapping(value = {"/", "/index"})
     public String index() {
-        return "page/index";
+        return "index";
     }
 
     /**
