@@ -6,10 +6,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 解决layui跨域访问
+ * 跨域配置
  *
  * @author Tellsea
- * @Description Created on 2019/7/20
+ * @Description Created on 2019/7/29
  * 参考文章：https://segmentfault.com/a/1190000018554528?utm_source=tag-newest
  */
 @Configuration
