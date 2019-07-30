@@ -70,11 +70,13 @@ public class ShiroConfig {
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //  静态资源
+        filterChainDefinitionMap.put("/favicon.ico", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/login", "kickout,anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-        filterChainDefinitionMap.put("/**", "kickout,user");
+        // filterChainDefinitionMap.put("/**", "kickout,user");
+        filterChainDefinitionMap.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;

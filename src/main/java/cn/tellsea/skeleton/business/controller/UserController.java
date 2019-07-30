@@ -4,6 +4,7 @@ import cn.tellsea.skeleton.business.service.UserService;
 import cn.tellsea.skeleton.core.aop.annotation.SystemControllerLog;
 import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.business.entity.User;
+import cn.tellsea.skeleton.core.base.entity.BaseEntity;
 import cn.tellsea.skeleton.core.common.dto.ResponseResult;
 import cn.tellsea.skeleton.core.util.ShiroUtils;
 import org.apache.shiro.session.Session;
@@ -29,6 +30,13 @@ public class UserController extends BaseController<User> {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/manage")
+    public String manage() {
+        return "user-manage";
+    }
+
+
+
     @GetMapping("/clear")
     @ResponseBody
     public void clear() {
@@ -43,7 +51,7 @@ public class UserController extends BaseController<User> {
     @GetMapping("/list")
     @ResponseBody
     public Object list() {
-        return baseService.selectAll();
+        return new BaseEntity(0, "", 100, baseService.selectAll());
     }
 
     /**

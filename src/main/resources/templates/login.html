@@ -5,7 +5,8 @@
     <title>登入 - Skeleton</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
     <link rel="stylesheet" href="/assets/css/login.css">
     <style type="text/css">
@@ -67,56 +68,59 @@
 </body>
 <script src="/assets/lib/layui/layui.all.js"></script>
 <script>
-    layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
-    }).extend({
-        index: 'lib/index' //主入口模块
-    }).use(['index', 'user'], function(){
-        var $ = layui.$
-            ,setter = layui.setter
-            ,admin = layui.admin
-            ,form = layui.form
-            ,router = layui.router()
-            ,search = router.search;
+    var $ = layui.jquery;
+    var form = layui.form;
+    /*var kickout = [[${kickout}]];
+    if (kickout > 0) {
+        if (confirm("您的账号在另一台设备上登录,如非本人操作，请立即修改密码！")) {
 
-        form.render();
+        }
+    }*/
 
-        //提交
-        form.on('submit(LAY-user-login-submit)', function(obj){
-
-            //请求登入接口
-            admin.req({
-                url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
-                ,data: obj.field
-                ,done: function(res){
-
-                    //请求成功后，写入 access_token
-                    layui.data(setter.tableName, {
-                        key: setter.request.tokenName
-                        ,value: res.data.access_token
-                    });
-
-                    //登入成功的提示与跳转
+    // 按钮登录
+    form.on('submit(LAY-user-login-submit)', function (obj) {
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: obj.field,
+            dataType: "json",
+            success: function (result) {
+                if (result.code == 200) {
                     layer.msg('登入成功', {
                         offset: '15px'
-                        ,icon: 1
-                        ,time: 1000
-                    }, function(){
-                        location.href = '../'; //后台主页
+                        , icon: 1
+                        , time: 1000
+                    }, function () {
+                        window.location.href = result.data;
+                    });
+                } else {
+                    layer.msg(result.message, {
+                        offset: '15px'
+                        , icon: 1
                     });
                 }
-            });
-
+            },
+            error: function () {
+                layer.msg('网络连接异常，请检查网络是否稳定', {
+                    offset: '15px'
+                    , icon: 1
+                });
+            }
         });
+    });
 
+    // 刷新验证码
+    function refreshCaptcha() {
+        $("#captcha-img").attr("src", "/Captcha.jpg?id=" + new Date() + Math.floor(Math.random() * 24));
+    }
 
-        //实际使用时记得删除该代码
-        layer.msg('为了方便演示，用户名密码可随意输入', {
-            offset: '15px'
-            ,icon: 1
-        });
-
+    // 鼠标回车事件
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            $("#login-btn").click();
+        }
     });
 </script>
 
+</body>
 </html>
