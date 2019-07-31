@@ -101,27 +101,19 @@
     </div>
 
     <div class="layui-body">
-        <div class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true" style="margin: 0px;">
-            <ul class="layui-tab-title"></ul>
-            <div class="layui-tab-content" style="padding: 0px;"></div>
+        <div class="layui-tab layui-tab-brief" lay-filter="demo" lay-allowclose="true" style="margin: 0px;">
+            <ul class="layui-tab-title">
+                <li class="layui-this">首页</li>
+            </ul>
+            <div class="layui-tab-content" style="padding: 0;">
+                <div class="layui-tab-item layui-show">首页内容...</div>
+            </div>
         </div>
     </div>
 
     <div class="layui-footer">
         © Tellsea - Skeleton 骨架项目
         <button type="button" id="donation" data-method="offset" data-type="auto" class="layui-btn layui-btn-sm">捐赠作者</button>
-    </div>
-</div>
-<div id="donation-alert" class="layui-tab">
-    <ul class="layui-tab-title">
-        <li class="layui-this">支付宝</li>
-        <li>微信</li>
-    </ul>
-    <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show">
-            内容1
-        </div>
-        <div class="layui-tab-item">内容2</div>
     </div>
 </div>
 <script src="/assets/lib/layui/layui.js"></script>
@@ -193,7 +185,7 @@
         $("#donation").on("click", function () {
             layer.open({
                 title: '捐赠',
-                content: $("#donation-alert")
+                content: "哈哈哈哈哈哈哈哈哈哈或好好"
             });
         });
     });

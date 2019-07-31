@@ -6,7 +6,35 @@
     <title>layui在线调试</title>
     <link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all">
 </head>
-<body>
+<body style="padding: 15px;">
+
+<div class="layui-collapse" lay-filter="test">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">搜索条件</h2>
+        <div class="layui-colla-content">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-search"></i></button>
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
@@ -42,7 +70,7 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo'
-            , height: 600
+            , height: 500
             , url: '/user/list' //数据接口
             , title: '用户表'
             , page: true //开启分页
