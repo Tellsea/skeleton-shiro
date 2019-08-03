@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.business.controller;
+package cn.tellsea.skeleton.common.controller;
 
 import cn.tellsea.skeleton.business.service.MapRoleResourceService;
 import org.springframework.beans.factory.annotation.Autowired;

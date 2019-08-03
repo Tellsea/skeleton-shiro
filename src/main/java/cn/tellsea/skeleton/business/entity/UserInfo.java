@@ -37,11 +37,6 @@ public class UserInfo {
     private String salt;
 
     /**
-     * 部门ID
-     */
-    private Integer deptId;
-
-    /**
      * 创建时间
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")

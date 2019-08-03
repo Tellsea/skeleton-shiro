@@ -1,6 +1,10 @@
 package cn.tellsea.skeleton.business.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+
+import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * 角色资源关联表 实体类
