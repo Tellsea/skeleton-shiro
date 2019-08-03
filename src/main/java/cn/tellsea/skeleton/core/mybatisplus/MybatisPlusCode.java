@@ -7,16 +7,19 @@ import java.util.Scanner;
  *
  * @author Tellsea
  * @Description Created on 2019/7/22
+ * 数据库时区问题解决方案
+ * SHOW VARIABLES LIKE '%time_zone%'
+ * SET GLOBAL time_zone='+8:00'
  */
 public class MybatisPlusCode {
 
     public static void main(String[] args) {
-        // 数据库时区问题解决方案
-        // SHOW VARIABLES LIKE '%time_zone%'
-        // SET GLOBAL time_zone='+8:00'
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         System.out.println("请输入表名：");
-        String tableName = scanner.next();
-        MybatisPlusCodeConfig.codeGenerator("business", tableName);
+        String tableName = scanner.next();*/
+        String[] nameList = new String[]{"user_info", "map_user_role", "role_info", "map_role_resource", "resource_info", "login_log", "system_log", "dept"};
+        for (int i = 0; i < nameList.length; i++) {
+            MybatisPlusCodeConfig.codeGenerator("business", nameList[i]);
+        }
     }
 }

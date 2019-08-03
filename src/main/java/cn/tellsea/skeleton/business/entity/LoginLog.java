@@ -1,0 +1,50 @@
+package cn.tellsea.skeleton.business.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+import lombok.Data;
+
+import javax.persistence.Id;
+import java.util.Date;
+
+/**
+ *  实体类
+ *
+ * @author Tellsea
+ * @Description Created on 2019-08-03
+ */
+@Data
+public class LoginLog {
+
+    /**
+     * 编号
+     */
+    @Id
+    private Integer id;
+
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * IP地址
+     */
+    private String ip;
+
+    /**
+     * 登录地点
+     */
+    private String location;
+
+    /**
+     * 登录时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
+    /**
+     * 登录设备
+     */
+    private String device;
+
+}
