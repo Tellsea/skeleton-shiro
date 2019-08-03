@@ -1,8 +1,6 @@
 package cn.tellsea.skeleton.core.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import cn.tellsea.skeleton.core.shiro.filter.KickoutSessionControlFilter;
-import cn.tellsea.skeleton.core.shiro.listener.ShiroSessionListener;
 import cn.tellsea.skeleton.core.shiro.realm.UserRealm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -10,8 +8,6 @@ import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.session.SessionListener;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -19,19 +15,15 @@ import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -64,8 +56,6 @@ public class ShiroConfig {
 
         // 自定义拦截器限制并发人数
         LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
-        // 限制同一帐号同时在线的个数
-        filtersMap.put("kickout", kickoutSessionControlFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
@@ -75,7 +65,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "kickout,anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-        // filterChainDefinitionMap.put("/**", "kickout,user");
         filterChainDefinitionMap.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
@@ -96,8 +85,6 @@ public class ShiroConfig {
         securityManager.setRememberMeManager(rememberMeManager());
         // 配置 ehcache缓存管理器
         securityManager.setCacheManager(ehCacheManager());
-        // 配置自定义session管理，使用ehcache 或redis
-        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
@@ -183,17 +170,6 @@ public class ShiroConfig {
     }
 
     /**
-     * 配置session监听
-     *
-     * @return
-     */
-    @Bean("sessionListener")
-    public ShiroSessionListener sessionListener() {
-        ShiroSessionListener sessionListener = new ShiroSessionListener();
-        return sessionListener;
-    }
-
-    /**
      * 配置会话ID生成器
      *
      * @return
@@ -244,65 +220,6 @@ public class ShiroConfig {
         simpleCookie.setMaxAge(-1);
         return simpleCookie;
     }
-
-    /**
-     * 配置会话管理器，设定会话超时及保存
-     *
-     * @return
-     */
-    @Bean("sessionManager")
-    public SessionManager sessionManager() {
-
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        Collection<SessionListener> listeners = new ArrayList<>();
-        // 配置监听
-        listeners.add(sessionListener());
-        sessionManager.setSessionListeners(listeners);
-        sessionManager.setSessionIdCookie(sessionIdCookie());
-        sessionManager.setSessionDAO(sessionDAO());
-        sessionManager.setCacheManager(ehCacheManager());
-
-        // 如果用户如果不点注销，直接关闭浏览器，不能够进行session的清空处理，
-        // 所以为了防止这样的问题，还需要增加有一个会话的验证调度
-        sessionManager.setGlobalSessionTimeout(1800000);
-        // 是否开启删除无效的session对象  默认为true
-        sessionManager.setDeleteInvalidSessions(true);
-        // 是否开启定时调度器进行检测过期session 默认为true
-        sessionManager.setSessionValidationSchedulerEnabled(true);
-        // 设置session失效的扫描时间, 清理用户直接关闭浏览器造成的孤立会话 默认为 1个小时
-        // 设置该属性 就不需要设置 ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
-        // 暂时设置为 5秒 用来测试
-        sessionManager.setSessionValidationInterval(3600000);
-
-        // 取消url 后面的 JSESSIONID
-        sessionManager.setSessionIdUrlRewritingEnabled(false);
-        return sessionManager;
-
-    }
-
-    /** ===================================================================================================== 一人一号 */
-
-    /**
-     * 并发登录控制
-     *
-     * @return
-     */
-    @Bean
-    public KickoutSessionControlFilter kickoutSessionControlFilter() {
-        KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
-        // 用于根据会话ID，获取会话进行踢出操作的；
-        kickoutSessionControlFilter.setSessionManager(sessionManager());
-        // 使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户—会话之间的关系的；
-        kickoutSessionControlFilter.setCacheManager(ehCacheManager());
-        // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；
-        kickoutSessionControlFilter.setKickoutAfter(false);
-        // 同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录；
-        kickoutSessionControlFilter.setMaxSession(1);
-        // 被踢出后重定向到的地址；
-        kickoutSessionControlFilter.setKickoutUrl("/login?kickout=1");
-        return kickoutSessionControlFilter;
-    }
-
 
     /** ===================================================================================================== 以下基础配置 */
 

@@ -1,11 +1,5 @@
 package cn.tellsea.skeleton.core.shiro.realm;
 
-import cn.tellsea.skeleton.business.entity.Resource;
-import cn.tellsea.skeleton.business.entity.Role;
-import cn.tellsea.skeleton.business.entity.User;
-import cn.tellsea.skeleton.business.service.ResourceService;
-import cn.tellsea.skeleton.business.service.RoleService;
-import cn.tellsea.skeleton.business.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -13,9 +7,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 /**
  * 认证授权验证域
@@ -26,16 +17,10 @@ import java.util.List;
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private RoleService roleService;
-    @Autowired
-    private ResourceService resourceService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        log.info("授权用户：");
+        /*log.info("授权用户：");
         User user = (User) principalCollection.getPrimaryPrincipal();
         // 查找角色和权限
         List<Role> roleList = roleService.listRoleByUserId(user.getId());
@@ -48,18 +33,20 @@ public class UserRealm extends AuthorizingRealm {
         if (null == resourceList || resourceList.size() == 0) {
             resourceList.forEach(resource -> info.addStringPermission(resource.getName()));
         }
-        return info;
+        return info;*/
+        return null;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username = (String) token.getPrincipal();
+        /*String username = (String) token.getPrincipal();
         log.info("认证用户：" + username);
         User user = userService.getUserByUsername(username);
         if (user == null) {
             throw new UnknownAccountException();
         }
-        return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+        return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());*/
+        return null;
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 解决layui跨域访问
+ * 解决跨域访问
  *
  * @author Tellsea
  * @Description Created on 2019/7/20

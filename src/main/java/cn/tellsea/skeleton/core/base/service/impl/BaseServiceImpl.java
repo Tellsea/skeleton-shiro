@@ -2,8 +2,8 @@ package cn.tellsea.skeleton.core.base.service.impl;
 
 import cn.tellsea.skeleton.core.base.mapper.MyMapper;
 import cn.tellsea.skeleton.core.base.service.BaseService;
-import cn.tellsea.skeleton.core.common.enums.StatusEnums;
-import cn.tellsea.skeleton.core.common.exception.SkeletonException;
+import cn.tellsea.skeleton.core.global.enums.StatusEnums;
+import cn.tellsea.skeleton.core.global.exception.SkeletonException;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
