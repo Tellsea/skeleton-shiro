@@ -18,7 +18,7 @@ public class ResourceInfoServiceImpl implements ResourceInfoService {
     @Autowired
     private ResourceInfoDao resourceInfoDao;
     @Autowired
-    private ResourceInfoMapper ResourceInfoMapper;
+    private ResourceInfoMapper resourceInfoMapper;
 
 }
 

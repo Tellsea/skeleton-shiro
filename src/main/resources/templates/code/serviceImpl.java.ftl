@@ -18,7 +18,7 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
     @Autowired
     private ${entity}Dao ${table.xmlName}Dao;
     @Autowired
-    private ${table.mapperName} ${entity}Mapper;
+    private ${table.mapperName} ${table.xmlName}Mapper;
 
 }
 

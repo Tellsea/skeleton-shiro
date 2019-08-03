@@ -19,13 +19,16 @@ public enum StatusEnums {
     SAVE_SUCCESS(200, "新增成功"),
     DELETE_SUCCESS(200, "删除成功"),
     UPDATE_SUCCESS(200, "修改成功"),
+    SAVE_ERROR(500, "新增失败"),
+    DELETE_ERROR(500, "删除失败"),
+    UPDATE_ERROR(500, "修改失败"),
     UNAUTHORIZED(403, "未授权"),
     NOT_FOUND(404, "请求资源不存在"),
     USER_NOT_FOUND(500, "用户不存在"),
     PARAM_NOT_NULL(500, "参数不能为空"),
     CAPTCHA_ERROR(500, "验证码错误"),
     PASSWORD_ERROR(500, "密码错误"),
-    SERVER_ERROR(503, "服务器错误"),
+    SERVER_ERROR(503, "服务器累了，休息一会吧!"),
     ;
 
     private int code;

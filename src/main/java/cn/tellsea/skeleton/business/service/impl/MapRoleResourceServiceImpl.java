@@ -18,7 +18,7 @@ public class MapRoleResourceServiceImpl implements MapRoleResourceService {
     @Autowired
     private MapRoleResourceDao mapRoleResourceDao;
     @Autowired
-    private MapRoleResourceMapper MapRoleResourceMapper;
+    private MapRoleResourceMapper mapRoleResourceMapper;
 
 }
 

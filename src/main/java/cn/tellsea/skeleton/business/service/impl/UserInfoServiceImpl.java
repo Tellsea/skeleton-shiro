@@ -18,7 +18,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private UserInfoDao userInfoDao;
     @Autowired
-    private UserInfoMapper UserInfoMapper;
+    private UserInfoMapper userInfoMapper;
 
 }
 

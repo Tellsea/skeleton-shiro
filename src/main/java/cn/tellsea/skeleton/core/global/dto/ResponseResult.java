@@ -3,6 +3,7 @@ package cn.tellsea.skeleton.core.global.dto;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 全局返回结果集
@@ -11,46 +12,53 @@ import lombok.Data;
  * @Description Created on 2019/7/13
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ResponseResult {
 
     private Integer code;
     private String message;
     private Object data;
+    private static volatile ResponseResult instance;
 
-    public ResponseResult(StatusEnums enums) {
-        this.code = enums.getCode();
-        this.message = enums.getInfo();
+    public static ResponseResult success(StatusEnums enums) {
+        ResponseResult result = getInstance();
+        result.code = enums.getCode();
+        result.message = enums.getInfo();
+        return result;
     }
 
-    public ResponseResult(StatusEnums enums, Object data) {
-        this.code = enums.getCode();
-        this.message = enums.getInfo();
-        this.data = data;
-    }
-
-    public ResponseResult(Integer code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public static ResponseResult success() {
-        return new ResponseResult(StatusEnums.SUCCESS);
-    }
-
-    public static ResponseResult success(Object data) {
-        return new ResponseResult(StatusEnums.SUCCESS, data);
-    }
-
-    public static ResponseResult error() {
-        return new ResponseResult(StatusEnums.SERVER_ERROR);
+    public static ResponseResult success(StatusEnums enums, Object data) {
+        ResponseResult result = getInstance();
+        result.code = enums.getCode();
+        result.message = enums.getInfo();
+        result.data = data;
+        return result;
     }
 
     public static ResponseResult error(StatusEnums enums) {
-        return new ResponseResult(enums.getCode(), enums.getInfo());
+        ResponseResult result = getInstance();
+        result.code = enums.getCode();
+        result.message = enums.getInfo();
+        return result;
     }
 
     public static ResponseResult error(StatusEnums enums, Object data) {
-        return new ResponseResult(enums.getCode(), enums.getInfo(), data);
+        ResponseResult result = getInstance();
+        result.code = enums.getCode();
+        result.message = enums.getInfo();
+        result.data = data;
+        return result;
+    }
+
+    public static ResponseResult getInstance() {
+        if (null == instance) {
+            synchronized (ResponseResult.class) {
+                if (null == instance) {
+                    instance = new ResponseResult();
+                }
+            }
+        }
+        return instance;
     }
 }

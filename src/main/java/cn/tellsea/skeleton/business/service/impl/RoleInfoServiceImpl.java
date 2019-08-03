@@ -18,7 +18,7 @@ public class RoleInfoServiceImpl implements RoleInfoService {
     @Autowired
     private RoleInfoDao roleInfoDao;
     @Autowired
-    private RoleInfoMapper RoleInfoMapper;
+    private RoleInfoMapper roleInfoMapper;
 
 }
 

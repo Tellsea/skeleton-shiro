@@ -24,7 +24,7 @@ public class LoginLog {
     /**
      * 用户名
      */
-    private String username;
+    private String userName;
 
     /**
      * IP地址

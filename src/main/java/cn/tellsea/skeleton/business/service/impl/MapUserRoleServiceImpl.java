@@ -18,7 +18,7 @@ public class MapUserRoleServiceImpl implements MapUserRoleService {
     @Autowired
     private MapUserRoleDao mapUserRoleDao;
     @Autowired
-    private MapUserRoleMapper MapUserRoleMapper;
+    private MapUserRoleMapper mapUserRoleMapper;
 
 }
 

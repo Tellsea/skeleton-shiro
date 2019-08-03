@@ -27,14 +27,14 @@ public class GlobalExceptionHandle {
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return new ResponseResult(StatusEnums.SERVER_ERROR);
+        return ResponseResult.error(StatusEnums.SERVER_ERROR);
     }
 
     @ExceptionHandler(value = SkeletonException.class)
-    public ResponseResult globalExceptionHandle(SkeletonException e, HttpServletResponse response) {
+    public ResponseResult globalExceptionHandle(SkeletonException e) {
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return new ResponseResult(response.getStatus(), e.getMessage());
+        return ResponseResult.error(StatusEnums.SERVER_ERROR);
     }
 }

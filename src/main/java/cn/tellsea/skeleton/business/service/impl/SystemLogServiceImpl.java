@@ -18,7 +18,7 @@ public class SystemLogServiceImpl implements SystemLogService {
     @Autowired
     private SystemLogDao systemLogDao;
     @Autowired
-    private SystemLogMapper SystemLogMapper;
+    private SystemLogMapper systemLogMapper;
 
 }
 

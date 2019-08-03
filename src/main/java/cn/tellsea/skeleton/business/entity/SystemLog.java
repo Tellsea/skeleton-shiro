@@ -24,7 +24,7 @@ public class SystemLog {
     /**
      * 操作用户
      */
-    private String username;
+    private String userName;
 
     /**
      * 操作描述
