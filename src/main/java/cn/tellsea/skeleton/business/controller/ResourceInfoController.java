@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.common.controller;
+package cn.tellsea.skeleton.business.controller;
 
 import cn.tellsea.skeleton.business.service.ResourceInfoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,29 +21,14 @@ public class ResponseResult {
     private Object data;
     private static volatile ResponseResult instance;
 
-    public static ResponseResult success(StatusEnums enums) {
+    public static ResponseResult build(StatusEnums enums) {
         ResponseResult result = getInstance();
         result.code = enums.getCode();
         result.message = enums.getInfo();
         return result;
     }
 
-    public static ResponseResult success(StatusEnums enums, Object data) {
-        ResponseResult result = getInstance();
-        result.code = enums.getCode();
-        result.message = enums.getInfo();
-        result.data = data;
-        return result;
-    }
-
-    public static ResponseResult error(StatusEnums enums) {
-        ResponseResult result = getInstance();
-        result.code = enums.getCode();
-        result.message = enums.getInfo();
-        return result;
-    }
-
-    public static ResponseResult error(StatusEnums enums, Object data) {
+    public static ResponseResult build(StatusEnums enums, Object data) {
         ResponseResult result = getInstance();
         result.code = enums.getCode();
         result.message = enums.getInfo();

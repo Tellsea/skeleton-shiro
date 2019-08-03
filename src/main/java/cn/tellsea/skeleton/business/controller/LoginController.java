@@ -1,8 +1,7 @@
-package cn.tellsea.skeleton.common.controller;
+package cn.tellsea.skeleton.business.controller;
 
 import cn.tellsea.skeleton.business.entity.LoginLog;
 import cn.tellsea.skeleton.business.service.LoginLogService;
-import cn.tellsea.skeleton.common.controller.CaptchaController;
 import cn.tellsea.skeleton.core.util.AddressUtils;
 import cn.tellsea.skeleton.core.util.IpUtils;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
@@ -21,7 +20,6 @@ import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,14 +44,11 @@ public class LoginController {
     /**
      * 跳转登录页
      *
-     * @param kickout
-     * @param model
      * @return
      */
     @GetMapping("/login")
-    public String login(@RequestParam(value = "kickout", required = false) Integer kickout, Model model) {
-        model.addAttribute("kickout", kickout);
-        return "login";
+    public String login() {
+        return "admin/login";
     }
 
     /**
@@ -76,7 +71,7 @@ public class LoginController {
         // 校验验证码
         String sessionCaptcha = (String) SecurityUtils.getSubject().getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
         if (null == captcha || !captcha.equalsIgnoreCase(sessionCaptcha)) {
-            return ResponseResult.error(StatusEnums.CAPTCHA_ERROR);
+            return ResponseResult.build(StatusEnums.CAPTCHA_ERROR);
         }
 
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
@@ -101,14 +96,14 @@ public class LoginController {
             if (null != savedRequest) {
                 loginSuccessUrl = savedRequest.getRequestUrl();
             }
-            return ResponseResult.success(StatusEnums.SUCCESS, loginSuccessUrl);
+            return ResponseResult.build(StatusEnums.SUCCESS, loginSuccessUrl);
 
         } catch (DisabledAccountException e) {
-            return ResponseResult.error(StatusEnums.UNAUTHORIZED, username);
+            return ResponseResult.build(StatusEnums.UNAUTHORIZED, username);
         } catch (UnknownAccountException e) {
-            return ResponseResult.error(StatusEnums.USER_NOT_FOUND, username);
+            return ResponseResult.build(StatusEnums.USER_NOT_FOUND, username);
         } catch (IncorrectCredentialsException e) {
-            return ResponseResult.error(StatusEnums.PASSWORD_ERROR, username);
+            return ResponseResult.build(StatusEnums.PASSWORD_ERROR, username);
         }
     }
 }

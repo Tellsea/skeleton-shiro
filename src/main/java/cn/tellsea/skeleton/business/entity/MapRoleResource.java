@@ -1,10 +1,8 @@
 package cn.tellsea.skeleton.business.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import javax.persistence.Id;
-import java.util.Date;
 
 /**
  * 角色资源关联表 实体类
@@ -18,6 +16,7 @@ public class MapRoleResource {
     /**
      * 角色ID
      */
+    @Id
     private Integer roleId;
 
     /**

@@ -62,7 +62,7 @@ public class ShiroConfig {
         //  静态资源
         filterChainDefinitionMap.put("/favicon.ico", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/login", "kickout,anon");
+        filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
         filterChainDefinitionMap.put("/**", "anon");
@@ -125,20 +125,6 @@ public class ShiroConfig {
         cookieRememberMeManager.setCipherKey(Base64.decode("4AvVhmFLUs0KTA3Kprsdag=="));
         return cookieRememberMeManager;
     }
-
-    /**
-     * FormAuthenticationFilter 过滤器 过滤记住我
-     *
-     * @return
-     */
-    /*@Bean
-    public FormAuthenticationFilter formAuthenticationFilter() {
-        FormAuthenticationFilter formAuthenticationFilter = new FormAuthenticationFilter();
-        // 对应前端的checkbox的name = rememberMe
-        formAuthenticationFilter.setRememberMeParam("rememberMe");
-        return formAuthenticationFilter;
-    }*/
-
 
     /** =====================================================================================================以下 session 的配置 */
 

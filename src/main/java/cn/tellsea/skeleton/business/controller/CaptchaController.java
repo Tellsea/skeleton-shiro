@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.common.controller;
+package cn.tellsea.skeleton.business.controller;
 
 import cn.tellsea.skeleton.core.util.CaptchaUtils;
 import org.springframework.stereotype.Controller;

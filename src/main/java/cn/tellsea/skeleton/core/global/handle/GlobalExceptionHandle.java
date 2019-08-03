@@ -27,7 +27,7 @@ public class GlobalExceptionHandle {
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return ResponseResult.error(StatusEnums.SERVER_ERROR);
+        return ResponseResult.build(StatusEnums.SERVER_ERROR);
     }
 
     @ExceptionHandler(value = SkeletonException.class)
@@ -35,6 +35,6 @@ public class GlobalExceptionHandle {
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return ResponseResult.error(StatusEnums.SERVER_ERROR);
+        return ResponseResult.build(StatusEnums.SERVER_ERROR);
     }
 }

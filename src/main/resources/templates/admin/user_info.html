@@ -6,44 +6,53 @@
     <title>layui在线调试</title>
     <link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all">
 </head>
-<body style="padding: 15px;">
+<body>
 
-<div class="layui-collapse" lay-filter="test">
-    <div class="layui-colla-item">
-        <h2 class="layui-colla-title">搜索条件</h2>
-        <div class="layui-colla-content">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">手机号</label>
-                    <div class="layui-input-inline">
-                        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+<div style="padding: 15px; background-color: #F2F2F2;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <!-- 主体内容开始 -->
+                    <div class="layui-collapse" lay-filter="test">
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">搜索条件</h2>
+                            <div class="layui-colla-content">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">手机号</label>
+                                        <div class="layui-input-inline">
+                                            <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">邮箱</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-search"></i></button>
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">邮箱</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-search"></i></button>
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i></button>
-                    </div>
+                    <table class="layui-hide" id="demo" lay-filter="test"></table>
+                    <script type="text/html" id="barDemo">
+                        <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
+                        <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+                    </script>
+                    <!-- 主体内容结束 -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<table class="layui-hide" id="demo" lay-filter="test"></table>
-
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
-</script>
-
 <script src="/assets/lib/layui/layui.js"></script>
 <script th:inline="none">
     layui.config({
@@ -60,13 +69,6 @@
             , element = layui.element //元素操作
             , slider = layui.slider //滑块
 
-        var ft = {
-            sex: function (obj) {
-                var sex = ['女', '男'];
-                return sex[obj.sex * 1];
-            }
-        };
-
         //执行一个 table 实例
         table.render({
             elem: '#demo'
@@ -75,15 +77,15 @@
             , title: '用户表'
             , page: true //开启分页
             , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-            , totalRow: true //开启合计行
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'id', title: 'ID', sort: true, height: 80, totalRowText: '合计：'}
+                , {field: 'id', title: 'ID', sort: true, height: 80}
                 , {field: 'username', title: '用户名'}
                 , {field: 'experience', title: '积分', sort: true, totalRow: true}
                 , {
-                    field: 'sex', title: '性别', sort: true, templet: function (e) {
-                        return ft.sex(e);
+                    field: 'sex', title: '性别', sort: true, templet: function (d) {
+                        var sex = ['女', '男'];
+                        return sex[d.sex * 1];
                     }
                 }
                 , {field: 'score', title: '评分', sort: true, totalRow: true}

@@ -66,11 +66,9 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;"><i class="layui-icon layui-icon-set"></i>系统管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" class="site-demo-active" data-id="200" data-title="用户管理" data-url="/user/manage" data-type="tabAdd">用户管理</a></dd>
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="200" data-title="用户管理" data-url="/userInfo/init" data-type="tabAdd">用户管理</a></dd>
                         <dd><a href="javascript:;">角色管理</a></dd>
                         <dd><a href="javascript:;">资源管理</a></dd>
-                        <dd><a href="javascript:;">部门管理</a></dd>
-                        <dd><a href="javascript:;">文件管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
@@ -95,7 +93,7 @@
                         <dd><a href="javascript:;">系统使用统计</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href=""><i class="layui-icon layui-icon-about"></i>帮助</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" class="site-demo-active" data-id="300" data-title="接口文档" data-url="/swagger-ui.html" data-type="tabAdd"><i class="layui-icon layui-icon-about"></i>接口文档</a></li>
             </ul>
         </div>
     </div>
@@ -111,18 +109,17 @@
         </div>
     </div>
 
-    <div class="layui-footer">
+    <!--<div class="layui-footer">
         © Tellsea - Skeleton 骨架项目
         <button type="button" id="donation" data-method="offset" data-type="auto" class="layui-btn layui-btn-sm">捐赠作者</button>
-    </div>
+    </div>-->
 </div>
 <script src="/assets/lib/layui/layui.js"></script>
 <script>
     // 切换内容参考文章：https://segmentfault.com/a/1190000014617129
     layui.use(['element', 'layer', 'jquery'], function () {
         var element = layui.element;
-        var $ = layui.$;
-        var layer = layui.layer;
+        var $ = layui.jquery;
         var active = {
             // 在这里给active绑定几项事件，后面可通过active调用这些事件
             tabAdd: function (url, id, name) {
@@ -182,12 +179,12 @@
             $("iframe").css("height", h + "px");
         }
 
-        $("#donation").on("click", function () {
+        /*$("#donation").on("click", function () {
             layer.open({
                 title: '捐赠',
                 content: "哈哈哈哈哈哈哈哈哈哈或好好"
             });
-        });
+        });*/
     });
 </script>
 </body>
