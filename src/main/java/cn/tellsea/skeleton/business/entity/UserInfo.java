@@ -3,6 +3,8 @@ package cn.tellsea.skeleton.business.entity;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class UserInfo {
      * 用户ID
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
@@ -40,18 +43,6 @@ public class UserInfo {
      * 盐值
      */
     private String salt;
-
-    /**
-     * 创建时间
-     */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    /**
-     * 修改时间
-     */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date modifyTime;
 
     /**
      * 头像
@@ -77,5 +68,16 @@ public class UserInfo {
      * 状态 0 锁定 1有效
      */
     private Boolean status;
+
+    /**
+     * 创建人
+     */
+    private Integer createUser;
+
+    /**
+     * 创建时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
 }

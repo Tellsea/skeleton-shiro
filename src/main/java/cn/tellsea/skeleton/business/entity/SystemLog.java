@@ -3,6 +3,8 @@ package cn.tellsea.skeleton.business.entity;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class SystemLog {
      * 编号
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**

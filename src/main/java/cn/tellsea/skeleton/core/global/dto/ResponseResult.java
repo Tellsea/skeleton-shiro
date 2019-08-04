@@ -1,9 +1,7 @@
 package cn.tellsea.skeleton.core.global.dto;
 
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * 全局返回结果集
@@ -12,11 +10,9 @@ import lombok.NoArgsConstructor;
  * @Description Created on 2019/7/13
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ResponseResult {
 
-    private Integer code;
+    private int code;
     private String message;
     private Object data;
     private static volatile ResponseResult instance;

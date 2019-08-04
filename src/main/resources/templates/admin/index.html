@@ -4,7 +4,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Skeleton 骨架 - Tellsea</title>
-    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+    <!--<link rel="stylesheet" href="/assets/lib/layui/css/layui.css">-->
+    <link rel="stylesheet" href="https://res.layui.com/layui/dist/css/layui.css?t=1560414887305">
     <style type="text/css">
         .layui-nav-tree .layui-nav-child a {
             margin-left: 20px;
@@ -12,6 +13,12 @@
 
         .layui-nav-tree i {
             margin-right: 5px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            background-color: #F2F2F2;
         }
     </style>
 </head>
@@ -66,7 +73,8 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;"><i class="layui-icon layui-icon-set"></i>系统管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" class="site-demo-active" data-id="200" data-title="用户管理" data-url="/userInfo/init" data-type="tabAdd">用户管理</a></dd>
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="200" data-title="用户管理"
+                               data-url="/userInfo/init" data-type="tabAdd">用户管理</a></dd>
                         <dd><a href="javascript:;">角色管理</a></dd>
                         <dd><a href="javascript:;">资源管理</a></dd>
                     </dl>
@@ -74,7 +82,6 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;"><i class="layui-icon layui-icon-code-circle"></i>系统监控</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">在线用户</a></dd>
                         <dd><a href="javascript:;">任务调度</a></dd>
                         <dd><a href="javascript:;">数据监控</a></dd>
                     </dl>
@@ -93,7 +100,9 @@
                         <dd><a href="javascript:;">系统使用统计</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="javascript:;" class="site-demo-active" data-id="300" data-title="接口文档" data-url="/swagger-ui.html" data-type="tabAdd"><i class="layui-icon layui-icon-about"></i>接口文档</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" class="site-demo-active" data-id="300"
+                                              data-title="接口文档" data-url="/swagger-ui.html" data-type="tabAdd"><i
+                        class="layui-icon layui-icon-about"></i>接口文档</a></li>
             </ul>
         </div>
     </div>
@@ -101,7 +110,7 @@
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="demo" lay-allowclose="true" style="margin: 0px;">
             <ul class="layui-tab-title">
-                <li class="layui-this">首页</li>
+                <li class="home"><i class="layui-icon">&#xe68e;</i>我的桌面</li>
             </ul>
             <div class="layui-tab-content" style="padding: 0;">
                 <div class="layui-tab-item layui-show">首页内容...</div>
@@ -109,10 +118,11 @@
         </div>
     </div>
 
-    <!--<div class="layui-footer">
+    <div class="layui-footer">
         © Tellsea - Skeleton 骨架项目
-        <button type="button" id="donation" data-method="offset" data-type="auto" class="layui-btn layui-btn-sm">捐赠作者</button>
-    </div>-->
+        <button type="button" id="donation" data-method="offset" data-type="auto" class="layui-btn layui-btn-sm">捐赠作者
+        </button>
+    </div>
 </div>
 <script src="/assets/lib/layui/layui.js"></script>
 <script>
@@ -127,7 +137,7 @@
                 // 关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                 element.tabAdd('demo', {
                     title: name,
-                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="' + url + '" style="width: 100%; height: 100%;"></iframe>',
+                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="' + url + '"></iframe>',
                     id: id // 规定好的id
                 });
                 FrameWH();  // 计算ifram层的大小

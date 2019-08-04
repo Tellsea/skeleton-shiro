@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 </#if>
 
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -24,6 +24,7 @@ public class ${entity} {
      */
     <#if "id" == field.name>
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     </#if>
     <#if "create_time" == field.name>
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")

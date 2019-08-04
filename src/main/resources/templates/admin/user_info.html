@@ -8,50 +8,52 @@
 </head>
 <body>
 
-<div style="padding: 15px; background-color: #F2F2F2;">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <!-- 主体内容开始 -->
-                    <div class="layui-collapse" lay-filter="test">
-                        <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">搜索条件</h2>
-                            <div class="layui-colla-content">
-                                <div class="layui-form-item">
-                                    <div class="layui-inline">
-                                        <label class="layui-form-label">手机号</label>
-                                        <div class="layui-input-inline">
-                                            <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                                        </div>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <!-- 主体内容开始 -->
+                <div class="layui-collapse" lay-filter="search-box">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">搜索条件</h2>
+                        <div class="layui-colla-content">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">手机号</label>
+                                    <div class="layui-input-inline">
+                                        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
                                     </div>
-                                    <div class="layui-inline">
-                                        <label class="layui-form-label">邮箱</label>
-                                        <div class="layui-input-inline">
-                                            <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                                        </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">邮箱</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
                                     </div>
-                                    <div class="layui-inline">
-                                        <div class="layui-input-inline">
-                                            <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-search"></i></button>
-                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i></button>
-                                        </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-search"></i></button>
+                                        <button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <table class="layui-hide" id="demo" lay-filter="test"></table>
-                    <script type="text/html" id="barDemo">
-                        <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
-                        <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
-                    </script>
-                    <!-- 主体内容结束 -->
                 </div>
+                <table class="layui-hide" id="demo" lay-filter="test"></table>
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+                </script>
+                <script type="text/html" id="switchStatus">
+                    <input type="checkbox" name="status" value="{{d.id}}" lay-skin="switch" lay-text="有效|锁定" lay-filter="statusDemo" {{ d.status == 1 ? 'checked' : '' }}>
+                </script>
+                <!-- 主体内容结束 -->
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="/assets/lib/layui/layui.js"></script>
 <script th:inline="none">
@@ -64,39 +66,36 @@
             , laypage = layui.laypage //分页
             , layer = layui.layer //弹层
             , table = layui.table //表格
-            , carousel = layui.carousel //轮播
-            , upload = layui.upload //上传
-            , element = layui.element //元素操作
-            , slider = layui.slider //滑块
 
         //执行一个 table 实例
         table.render({
             elem: '#demo'
-            , height: 500
-            , url: '/user/list' //数据接口
-            , title: '用户表'
-            , page: true //开启分页
-            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-            , cols: [[ //表头
+            , method: 'post'
+            , url: '/userInfo/listUserInfo'
+            , page: true
+            , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', sort: true, height: 80}
-                , {field: 'username', title: '用户名'}
-                , {field: 'experience', title: '积分', sort: true, totalRow: true}
-                , {
-                    field: 'sex', title: '性别', sort: true, templet: function (d) {
+                , {field: 'userName', title: '账户'}
+                , {field: 'nickName', title: '昵称'}
+                , {field: 'avatar', title: '头像',
+                    templet: function(d){
+                        return "<img onclick=\"showImg(this)\" src=\"${fileServerUrl}" + d.avatar + "\" style=\"height: 80px; cursor: pointer;\">";
+                    }
+                }
+                , {field: 'sex', title: '性别', sort: true, templet: function (d) {
                         var sex = ['女', '男'];
                         return sex[d.sex * 1];
                     }
                 }
-                , {field: 'score', title: '评分', sort: true, totalRow: true}
-                , {field: 'city', title: '城市',}
-                , {field: 'sign', title: '签名',}
-                , {field: 'classify', title: '职业',}
-                , {field: 'wealth', title: '财富', ort: true, totalRow: true}
+                , {field: 'phone', title: '手机号码'}
+                , {field: 'description', title: '描述'}
+                , {field: 'createUserName', title: '创建人'}
+                , {field: 'createTime', title: '创建时间'}
+                ,{field: 'status', title: '状态', templet: '#switchStatus',}
                 , {fixed: 'right', width: 200, align: 'center', toolbar: '#barDemo'}
             ]]
         });
-
 
         //监听头工具栏事件
         table.on('toolbar(test)', function (obj) {
@@ -161,6 +160,12 @@
             , input: true //输入框
         });
     });
+
+    // 查看图片
+    function showImg(obj) {
+        $('.viewer-img').attr('src', $(obj).attr('src'));
+        $('.viewer-img').click();
+    }
 </script>
 </body>
 </html>
