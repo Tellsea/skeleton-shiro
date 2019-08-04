@@ -4,6 +4,7 @@ import cn.tellsea.skeleton.business.entity.UserInfo;
 import cn.tellsea.skeleton.business.entity.vo.UserInfoVo;
 import cn.tellsea.skeleton.business.mapper.UserInfoMapper;
 import cn.tellsea.skeleton.core.layui.LayuiPage;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import cn.tellsea.skeleton.business.service.UserInfoService;
@@ -36,18 +37,18 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public List<UserInfoVo> listUserInfo(UserInfo userInfo, LayuiPage layuiPage) {
-        return userInfoDao.listUserInfo(userInfo, layuiPage);
-    }
-
-    @Override
-    public int countUserInfo(UserInfo userInfo) {
+    public LayuiTable listUserInfo(LayuiPage layuiPage, UserInfo userInfo) {
         Example example = new Example(UserInfo.class);
         Example.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(userInfo.getUserName())) {
             criteria.andLike("user_name", userInfo.getUserName());
         }
-        return userInfoMapper.selectCountByExample(example);
+        int count = userInfoMapper.selectCountByExample(example);
+        List<UserInfoVo> list = null;
+        if (count > 0) {
+            list = userInfoDao.listUserInfo(userInfo, layuiPage);
+        }
+        return LayuiTable.build(count, list);
     }
 }
 

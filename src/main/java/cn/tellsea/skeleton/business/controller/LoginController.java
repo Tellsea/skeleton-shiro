@@ -91,6 +91,7 @@ public class LoginController {
             OperatingSystem operatingSystem = userAgent.getOperatingSystem();
             loginLog.setDevice(browser.getName() + " -- " + operatingSystem.getName());
             loginLogService.saveLoginLog(loginLog);
+            // 返回之前请求
             SavedRequest savedRequest = WebUtils.getSavedRequest(request);
             String loginSuccessUrl = "/";
             if (null != savedRequest) {

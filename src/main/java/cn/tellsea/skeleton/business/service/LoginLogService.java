@@ -1,6 +1,8 @@
 package cn.tellsea.skeleton.business.service;
 
 import cn.tellsea.skeleton.business.entity.LoginLog;
+import cn.tellsea.skeleton.core.layui.LayuiPage;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 
 /**
  * Service接口
@@ -16,4 +18,14 @@ public interface LoginLogService {
      * @param loginLog
      */
     void saveLoginLog(LoginLog loginLog);
+
+    /**
+     * 列表
+     *
+     * @param loginLog
+     * @param layuiPage
+     * @return
+     */
+    LayuiTable listLoginLog(LoginLog loginLog, LayuiPage layuiPage);
+
 }

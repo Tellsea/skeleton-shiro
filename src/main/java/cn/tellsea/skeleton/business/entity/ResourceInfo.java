@@ -32,7 +32,7 @@ public class ResourceInfo {
     /**
      * 父级ID
      */
-    private Long parentId;
+    private Integer parentId;
 
     /**
      * URL
@@ -45,9 +45,9 @@ public class ResourceInfo {
     private String perms;
 
     /**
-     * 类型：如button按钮 menu菜单
+     * 类型：1 menu菜单  2 button按钮
      */
-    private String type;
+    private Integer type;
 
     /**
      * 菜单图标

@@ -1,10 +1,8 @@
 package cn.tellsea.skeleton.business.service;
 
 import cn.tellsea.skeleton.business.entity.UserInfo;
-import cn.tellsea.skeleton.business.entity.vo.UserInfoVo;
 import cn.tellsea.skeleton.core.layui.LayuiPage;
-
-import java.util.List;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 
 /**
  * 用户表 Service接口
@@ -25,17 +23,10 @@ public interface UserInfoService {
     /**
      * 用户列表
      *
-     * @param userInfo
      * @param layuiPage
-     * @return
-     */
-    List<UserInfoVo> listUserInfo(UserInfo userInfo, LayuiPage layuiPage);
-
-    /**
-     * 用户列表计数
-     *
      * @param userInfo
      * @return
      */
-    int countUserInfo(UserInfo userInfo);
+    LayuiTable listUserInfo(LayuiPage layuiPage, UserInfo userInfo);
+
 }
