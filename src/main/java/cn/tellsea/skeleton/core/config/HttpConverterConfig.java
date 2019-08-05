@@ -6,10 +6,14 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Http 转换器
+ * Http FastJSON 转换器
  *
  * @author Tellsea
  * @Description Created on 2019/8/4
@@ -26,9 +30,13 @@ public class HttpConverterConfig {
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
         // 3.在converter中添加配置信息
         fastConverter.setFastJsonConfig(fastJsonConfig);
-        // 4.将converter赋值给HttpMessageConverter
+        // 4.处理中文乱码问题
+        List<MediaType> fastMediaTypes = new ArrayList<>();
+        fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        fastConverter.setSupportedMediaTypes(fastMediaTypes);
+        // 5.将converter赋值给HttpMessageConverter
         HttpMessageConverter<?> converter = fastConverter;
-        // 5.返回HttpMessageConverters对象
+        // 6.返回HttpMessageConverters对象
         return new HttpMessageConverters(converter);
     }
 }

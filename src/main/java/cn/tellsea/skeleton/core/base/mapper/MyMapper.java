@@ -16,7 +16,7 @@ public interface MyMapper<T> extends Mapper<T>, DeleteByIdsMapper<T>, MySqlMappe
 
     // Mapper 基础接口
     // DeleteByIdsMapper 支持批量删除
-    // MySqlMapper // 支持批量新增
+    // MySqlMapper 支持批量新增
     // BatchMapper 支持批量更新
 
 }

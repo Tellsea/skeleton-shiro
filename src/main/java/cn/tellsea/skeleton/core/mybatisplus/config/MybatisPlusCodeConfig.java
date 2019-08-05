@@ -1,6 +1,5 @@
-package cn.tellsea.skeleton.core.mybatisplus;
+package cn.tellsea.skeleton.core.mybatisplus.config;
 
-import cn.tellsea.skeleton.core.base.mapper.MyMapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
@@ -10,7 +9,9 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -92,6 +93,9 @@ public class MybatisPlusCodeConfig {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
+                Map<String, Object> map = new HashMap<>();
+                map.put("Dao", "cn.tellsea.skeleton.".concat(model).concat(".dao"));
+                this.setMap(map);
             }
         };
 
@@ -108,10 +112,10 @@ public class MybatisPlusCodeConfig {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        /*strategy.setSuperEntityClass(basePackage + ".entity.BaseEntity");
+        strategy.setSuperEntityClass(basePackage + ".entity.BaseEntity");
         strategy.setSuperControllerClass(basePackage + ".controller.BaseController");
         strategy.setSuperServiceClass(basePackage + ".service.BaseService");
-        strategy.setSuperServiceImplClass(basePackage + ".service.impl.BaseServiceImpl");*/
+        strategy.setSuperServiceImplClass(basePackage + ".service.impl.BaseServiceImpl");
         strategy.setSuperMapperClass(basePackage + ".mapper.MyMapper");
         strategy.setEntityLombokModel(true);
         strategy.setInclude(tableName);

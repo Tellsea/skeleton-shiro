@@ -11,18 +11,20 @@ import lombok.Setter;
  */
 public class LayuiPage {
 
-    @Getter
+    /**
+     * 页数
+     */
     @Setter
     private int page;
 
-    @Setter
-    private int offset;
-
+    /**
+     * 条数
+     */
     @Getter
     @Setter
     private int limit;
 
-    public int getOffset() {
+    public int getPage() {
         return (page - 1) * limit;
     }
 }

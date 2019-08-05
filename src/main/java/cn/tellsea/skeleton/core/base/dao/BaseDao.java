@@ -1,17 +1,15 @@
-package cn.tellsea.skeleton.business.dao;
+package cn.tellsea.skeleton.core.base.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 /**
- * 角色表 Dao 实现类
+ * 基类 Dao 实现类
  *
  * @author Tellsea
- * @Description Created on 2019-08-03
+ * @Description Created on 2019/8/5
  */
-@Repository
-public class RoleInfoDao {
+public class BaseDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

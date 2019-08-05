@@ -1,7 +1,7 @@
-package cn.tellsea.skeleton.business.dao;
+package ${cfg.Dao};
 
+import cn.tellsea.skeleton.core.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,9 +11,6 @@ import org.springframework.stereotype.Repository;
  * @Description Created on ${date}
  */
 @Repository
-public class ${entity}Dao {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+public class ${entity}Dao extends BaseDao {
 
 }

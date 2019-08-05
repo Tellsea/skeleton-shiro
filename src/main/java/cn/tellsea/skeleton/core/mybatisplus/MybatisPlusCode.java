@@ -1,6 +1,6 @@
 package cn.tellsea.skeleton.core.mybatisplus;
 
-import java.util.Scanner;
+import cn.tellsea.skeleton.core.mybatisplus.config.MybatisPlusCodeConfig;
 
 /**
  * 代码生成器

@@ -21,6 +21,9 @@ public class LayuiTable {
      */
     private int code;
 
+    /**
+     * 消息
+     */
     private String msg;
 
     /**
@@ -28,6 +31,9 @@ public class LayuiTable {
      */
     private int count;
 
+    /**
+     * 数据
+     */
     private Object data;
 
     private static volatile LayuiTable instance;

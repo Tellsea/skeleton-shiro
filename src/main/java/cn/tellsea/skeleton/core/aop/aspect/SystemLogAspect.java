@@ -1,11 +1,7 @@
 package cn.tellsea.skeleton.core.aop.aspect;
 
-import cn.tellsea.skeleton.business.entity.UserInfo;
 import cn.tellsea.skeleton.core.aop.annotation.SystemControllerLog;
 import cn.tellsea.skeleton.core.aop.annotation.SystemServiceLog;
-import cn.tellsea.skeleton.core.util.IpUtils;
-import cn.tellsea.skeleton.core.util.ShiroUtils;
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -13,10 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 
 /**
@@ -52,7 +45,7 @@ public class SystemLogAspect {
      */
     @Before("controllerAspect()")
     public void doBefore(JoinPoint joinPoint) {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        /*HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInfo userInfo = (UserInfo) ShiroUtils.getCurrentUser();
         String ip = IpUtils.getIpAddr(request);
         try {
@@ -66,7 +59,7 @@ public class SystemLogAspect {
         } catch (Exception e) {
             log.error("==前置通知异常==");
             log.error("异常信息：{}", e.getMessage());
-        }
+        }*/
     }
 
     /**
@@ -77,7 +70,7 @@ public class SystemLogAspect {
      */
     @AfterThrowing(pointcut = "serviceAspect()", throwing = "e")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        /*HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInfo userInfo = (UserInfo) ShiroUtils.getCurrentUser();
         String ip = IpUtils.getIpAddr(request);
         //获取用户请求方法的参数并序列化为JSON格式字符串
@@ -100,7 +93,7 @@ public class SystemLogAspect {
             // todo 保存日志到数据库
         } catch (Exception ex) {
             log.error("异常信息:{}", ex.getMessage());
-        }
+        }*/
     }
 
     /**
