@@ -1,18 +1,18 @@
 package cn.tellsea.skeleton.business.controller;
 
-import cn.tellsea.skeleton.core.base.controller.BaseController;
+import org.springframework.web.bind.annotation.RequestMapping;
 import cn.tellsea.skeleton.business.entity.LoginLog;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+    import cn.tellsea.skeleton.core.base.controller.BaseController;
 
 /**
- * LoginLog 控制层
- *
- * @author Tellsea
- * @Description Created on 2019/07/16
- */
+*  前端控制器
+*
+* @author Tellsea
+* @Description Created on 2019-08-06
+*/
 @Controller
-@RequestMapping("/loginLog")
+@RequestMapping("loginLog")
 public class LoginLogController extends BaseController<LoginLog> {
 
 }

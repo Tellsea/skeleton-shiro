@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Skeleton 骨架 - Tellsea</title>
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+    <style type="text/css">
+        .layui-nav-tree .layui-nav-child a {
+            margin-left: 20px;
+        }
+
+        .layui-nav-tree i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Skeleton 骨架</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    小海绵
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;" onclick="logout()">臣退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+
+                <li class="layui-nav-item" th:each="entity : ${resourceInfoList}">
+                    <a href="javascript:;" th:if="${entity.parentId == 0}" th:text="${entity.name}"><i th:class="'layui-icon ' + ${entity.icon}"></i></a>
+                    <dl class="layui-nav-child">
+                        <dd th:each="child : ${entity.childMenus}">
+                            <a href="javascript:;" class="site-demo-active" th:data-id="${child.id}" th:data-title="${child.name}" th:data-url="${child.url}" data-type="tabAdd" th:text="${child.name}"></a>
+                        </dd>
+                    </dl>
+                </li>
+
+
+                <!--<li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;"><i class="layui-icon layui-icon-set"></i>系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="200" data-title="用户管理" data-url="/userInfo/init" data-type="tabAdd">用户管理</a></dd>
+                        <dd><a href="javascript:;">角色管理</a></dd>
+                        <dd><a href="javascript:;">资源管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;"><i class="layui-icon layui-icon-code-circle"></i>系统监控</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">任务调度</a></dd>
+                        <dd><a href="javascript:;">数据监控</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-log"></i>日志记录</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="301" data-title="登录日志" data-url="/loginLog/init" data-type="tabAdd">登录日志</a></dd>
+                        <dd><a href="javascript:;">操作日志</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-chart"></i>统计报表</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">系统用户统计</a></dd>
+                        <dd><a href="javascript:;">系统使用统计</a></dd>
+                    </dl>
+                </li>-->
+                <li class="layui-nav-item"><a href="javascript:;" class="site-demo-active" data-id="300"
+                                              data-title="接口文档" data-url="/swagger-ui.html" data-type="tabAdd"><i
+                        class="layui-icon layui-icon-about"></i>接口文档</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="demo" lay-allowclose="true" style="margin: 0px;">
+            <ul class="layui-tab-title">
+                <li class="home"><i class="layui-icon">&#xe68e;</i></li>
+            </ul>
+            <div class="layui-tab-content" style="padding: 0;">
+                <div class="layui-tab-item layui-show">首页内容...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        © Tellsea - Skeleton 骨架项目
+        <button type="button" id="donation" data-method="offset" data-type="auto" class="layui-btn layui-btn-sm">捐赠作者
+        </button>
+    </div>
+</div>
+<script src="/assets/lib/layui/layui.js"></script>
+<script>
+    // 切换内容参考文章：https://segmentfault.com/a/1190000014617129
+    layui.use(['element', 'layer', 'jquery'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var active = {
+            // 在这里给active绑定几项事件，后面可通过active调用这些事件
+            tabAdd: function (url, id, name) {
+                // 新增一个Tab项 传入三个参数，分别对应其标题，tab页面的地址，还有一个规定的id，是标签中data-id的属性值
+                // 关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
+                element.tabAdd('demo', {
+                    title: name,
+                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="' + url + '" style="width: 100%;"></iframe>',
+                    id: id // 规定好的id
+                });
+                FrameWH();  // 计算ifram层的大小
+            },
+            tabChange: function (id) {
+                //切换到指定Tab项
+                element.tabChange('demo', id); // 根据传入的id传入到指定的tab项
+            },
+            tabDelete: function (id) {
+                element.tabDelete("demo", id); // 删除
+            }
+        };
+
+        // 初始设置选中
+        active.tabAdd("http://www.baidu.com/", 999, "d淘宝");
+        active.tabChange(999);
+
+        $(window).resize(function () {
+            FrameWH();
+        });
+
+        // 配置tab实践在下面无法获取到菜单元素
+        $('.site-demo-active').on('click', function () {
+            var dataid = $(this);
+            // 这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
+            if ($(".layui-tab-title li[lay-id]").length <= 0) {
+                // 如果比零小，则直接打开新的tab项
+                active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr("data-title"));
+            } else {
+                //否则判断该tab项是否已经存在
+                var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
+                $.each($(".layui-tab-title li[lay-id]"), function () {
+                    // 如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
+                    if ($(this).attr("lay-id") == dataid.attr("data-id")) {
+                        isData = true;
+                    }
+                });
+                if (isData == false) {
+                    //标志为false 新增一个tab项
+                    active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr("data-title"));
+                }
+            }
+            // 最后不管是否新增tab，最后都转到要打开的选项页面上
+            active.tabChange(dataid.attr("data-id"));
+        });
+
+        function FrameWH() {
+            var h = $(window).height() - 160;
+            $("iframe").css("height", h + "px");
+        }
+
+        /*$("#donation").on("click", function () {
+            layer.open({
+                title: '捐赠',
+                content: "哈哈哈哈哈哈哈哈哈哈或好好"
+            });
+        });*/
+    });
+
+    function logout() {
+        layer.confirm('退出系统？', {
+            title: '系统提示',
+            btn: ['确定', '取消']
+        }, function () {
+            window.location.href = "/logout";
+        });
+    }
+</script>
+</body>
+</html>

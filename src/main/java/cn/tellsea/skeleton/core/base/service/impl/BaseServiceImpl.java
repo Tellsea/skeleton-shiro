@@ -2,13 +2,11 @@ package cn.tellsea.skeleton.core.base.service.impl;
 
 import cn.tellsea.skeleton.core.base.mapper.MyMapper;
 import cn.tellsea.skeleton.core.base.service.BaseService;
-import cn.tellsea.skeleton.core.common.enums.StatusEnums;
-import cn.tellsea.skeleton.core.common.exception.SkeletonException;
+import cn.tellsea.skeleton.core.global.enums.StatusEnums;
+import cn.tellsea.skeleton.core.global.exception.SkeletonException;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -26,137 +24,137 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public void insert(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.insert(record);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.SAVE_ERROR);
         }
-        baseMapper.insert(record);
     }
 
     @Override
     public void insertSelective(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.insertSelective(record);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.SAVE_ERROR);
         }
-        baseMapper.insertSelective(record);
     }
 
     @Override
     public void insertList(List<? extends T> recordList) {
-        if (CollectionUtils.isEmpty(recordList)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.insertList(recordList);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.SAVE_ERROR);
         }
-        baseMapper.insertList(recordList);
     }
 
     @Override
     public void insertUseGeneratedKeys(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.insertUseGeneratedKeys(record);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.SAVE_ERROR);
         }
-        baseMapper.insertUseGeneratedKeys(record);
     }
 
     @Override
     public void delete(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.delete(record);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.delete(record);
     }
 
     @Override
     public void deleteByPrimaryKey(Object key) {
-        if (ObjectUtils.isEmpty(key)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.deleteByPrimaryKey(key);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.deleteByPrimaryKey(key);
     }
 
     @Override
     public void deleteByIds(String ids) {
-        if (StringUtils.isEmpty(ids)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.deleteByIds(ids);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.deleteByIds(ids);
     }
 
     @Override
     public void deleteByExample(Object example) {
-        if (ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.deleteByExample(example);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.deleteByExample(example);
     }
 
     @Override
     public void updateByPrimaryKey(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.updateByPrimaryKey(record);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.updateByPrimaryKey(record);
     }
 
     @Override
     public void updateByPrimaryKeySelective(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.updateByPrimaryKeySelective(record);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public void updateByExample(T record, Object example) {
-        if (record == null || ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.updateByExample(record, example);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.updateByExample(record, example);
     }
 
     @Override
     public void updateByExampleSelective(T record, Object example) {
-        if (record == null || ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.updateByExampleSelective(record, example);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public void updateBatchByPrimaryKeySelective(List<? extends T> recordList) {
-        if (CollectionUtils.isEmpty(recordList)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        int count = baseMapper.updateBatchByPrimaryKeySelective(recordList);
+        if (count == 0) {
+            throw new SkeletonException(StatusEnums.DELETE_ERROR);
         }
-        baseMapper.updateBatchByPrimaryKeySelective(recordList);
     }
 
     @Override
     public T selectByPrimaryKey(Object key) {
-        if (ObjectUtils.isEmpty(key)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        T t = baseMapper.selectByPrimaryKey(key);
+        if (t == null) {
+            throw new SkeletonException(StatusEnums.NOT_FOUND);
         }
-        return baseMapper.selectByPrimaryKey(key);
+        return t;
     }
 
     @Override
     public T selectOne(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        T t = baseMapper.selectOne(record);
+        if (t == null) {
+            throw new SkeletonException(StatusEnums.NOT_FOUND);
         }
-        return baseMapper.selectOne(record);
+        return t;
     }
 
     @Override
     public T selectOneByExample(Object example) {
-        if (ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+        T t = baseMapper.selectOneByExample(example);
+        if (t == null) {
+            throw new SkeletonException(StatusEnums.NOT_FOUND);
         }
-        return baseMapper.selectOneByExample(example);
+        return t;
     }
 
     @Override
     public List<T> select(T record) {
-        if (record == null) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
-        }
         return baseMapper.select(record);
     }
 
