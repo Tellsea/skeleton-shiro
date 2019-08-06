@@ -18,14 +18,15 @@ public enum StatusEnums {
     /**
      * 业务枚举
      */
-    SUCCESS(200, "OK"),
     LAYUI_SUCCESS(0, "加载成功"),
     SAVE_SUCCESS(200, "新增成功"),
     DELETE_SUCCESS(200, "删除成功"),
     UPDATE_SUCCESS(200, "修改成功"),
+    SELECT_SUCCESS(200, "查询成功"),
     SAVE_ERROR(500, "新增失败"),
     DELETE_ERROR(500, "删除失败"),
     UPDATE_ERROR(500, "修改失败"),
+    SELECT_ERROR(500, "查询失败"),
     /**
      * 系统枚举
      */

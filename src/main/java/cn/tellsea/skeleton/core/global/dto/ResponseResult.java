@@ -17,22 +17,6 @@ public class ResponseResult {
     private Object data;
     private static volatile ResponseResult instance;
 
-    public static ResponseResult success() {
-        ResponseResult result = getInstance();
-        result.code = StatusEnums.SUCCESS.getCode();
-        result.message = StatusEnums.SUCCESS.getInfo();
-        result.data = null;
-        return result;
-    }
-
-    public static ResponseResult success(Object data) {
-        ResponseResult result = getInstance();
-        result.code = StatusEnums.SUCCESS.getCode();
-        result.message = StatusEnums.SUCCESS.getInfo();
-        result.data = data;
-        return result;
-    }
-
     public static ResponseResult build(StatusEnums enums) {
         ResponseResult result = getInstance();
         result.code = enums.getCode();
