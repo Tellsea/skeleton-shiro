@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.business.service.impl;
 
+import cn.tellsea.skeleton.business.dao.ResourceInfoDao;
 import cn.tellsea.skeleton.business.entity.ResourceInfo;
 import cn.tellsea.skeleton.business.service.ResourceInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Service;
 * @Description Created on 2019-08-06
 */
 @Service
-public class ResourceInfoServiceImpl extends BaseServiceImpl<ResourceInfo> implements ResourceInfoService {
+public class ResourceInfoServiceImpl extends BaseServiceImpl<ResourceInfo, ResourceInfoDao> implements ResourceInfoService {
 
 }

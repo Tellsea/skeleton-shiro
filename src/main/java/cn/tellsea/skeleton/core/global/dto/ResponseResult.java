@@ -21,6 +21,7 @@ public class ResponseResult {
         ResponseResult result = getInstance();
         result.code = StatusEnums.SUCCESS.getCode();
         result.message = StatusEnums.SUCCESS.getInfo();
+        result.data = null;
         return result;
     }
 
@@ -36,6 +37,7 @@ public class ResponseResult {
         ResponseResult result = getInstance();
         result.code = enums.getCode();
         result.message = enums.getInfo();
+        result.data = null;
         return result;
     }
 

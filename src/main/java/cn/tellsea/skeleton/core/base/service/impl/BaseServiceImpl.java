@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.core.base.service.impl;
 
+import cn.tellsea.skeleton.core.base.dao.BaseDao;
 import cn.tellsea.skeleton.core.base.mapper.MyMapper;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
@@ -13,14 +14,18 @@ import java.util.List;
 /**
  * 基类接口实现类
  *
- * @param <T> 不能为空
+ * @param <T>
+ * @param <D>
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/8/6
  */
-public class BaseServiceImpl<T> implements BaseService<T> {
+public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
 
     @Autowired
-    public MyMapper<T> baseMapper;
+    protected D baseDao;
+
+    @Autowired
+    protected MyMapper<T> baseMapper;
 
     @Override
     public void insert(T record) {

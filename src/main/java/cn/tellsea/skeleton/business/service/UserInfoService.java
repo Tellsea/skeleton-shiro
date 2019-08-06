@@ -11,5 +11,4 @@ import cn.tellsea.skeleton.core.base.service.BaseService;
 */
 public interface UserInfoService extends BaseService<UserInfo> {
 
-    void test();
 }

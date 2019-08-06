@@ -1,9 +1,9 @@
 package cn.tellsea.skeleton.business.controller;
 
-import cn.tellsea.skeleton.business.entity.UserInfo;
-import cn.tellsea.skeleton.core.base.controller.BaseController;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import cn.tellsea.skeleton.business.entity.UserInfo;
+import org.springframework.stereotype.Controller;
+    import cn.tellsea.skeleton.core.base.controller.BaseController;
 
 /**
 * 用户表 前端控制器

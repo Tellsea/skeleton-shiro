@@ -1,5 +1,6 @@
 package ${package.ServiceImpl};
 
+import ${cfg.Dao}.${entity}Dao;
 import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Service;
 * @Description Created on ${date}
 */
 @Service
-public class ${table.serviceImplName} extends ${superServiceImplClass}<${entity}> implements ${table.serviceName} {
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${entity}, ${entity}Dao> implements ${table.serviceName} {
 
 }

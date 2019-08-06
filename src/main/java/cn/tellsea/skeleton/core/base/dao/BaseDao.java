@@ -12,6 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class BaseDao {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    protected JdbcTemplate jdbcTemplate;
 
 }
