@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
  *
  * @author Tellsea
  * @Description Created on 2019/7/29
+ * 通常存放共有属性
  */
 @Data
 @AllArgsConstructor
@@ -17,9 +18,4 @@ public class BaseEntity {
 
     private int code;
 
-    private String msg;
-
-    private int count;
-
-    private Object data;
 }
