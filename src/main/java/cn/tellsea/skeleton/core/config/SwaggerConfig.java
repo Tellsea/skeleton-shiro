@@ -33,7 +33,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Skeleton 骨架系统")
+                .title("Skeleton API")
                 .description("来自懒惰小海绵")
                 .version("1.0")
                 .contact(new Contact("Tellsea", "https://github.com/Tellsea", "3210054449@qq.com"))
