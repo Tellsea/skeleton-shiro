@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * layui 固定格式
+ * 基类实体类
  *
  * @author Tellsea
  * @Description Created on 2019/7/29

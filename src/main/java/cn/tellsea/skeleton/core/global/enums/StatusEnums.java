@@ -1,8 +1,7 @@
 package cn.tellsea.skeleton.core.global.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import cn.tellsea.skeleton.core.base.enums.BaseEnums;
+import lombok.*;
 
 /**
  * 异常枚举类
@@ -10,10 +9,8 @@ import lombok.NoArgsConstructor;
  * @author Tellsea
  * @Description Created on 2019/7/13
  */
-@Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public enum StatusEnums {
+public enum StatusEnums implements BaseEnums {
 
     /**
      * 业务枚举
@@ -39,8 +36,20 @@ public enum StatusEnums {
     SERVER_ERROR(500, "服务器累了，休息一会吧!"),
     ;
 
+    @Setter
     private int code;
 
+    @Setter
     private String info;
 
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public String getInfo() {
+        return info;
+    }
 }

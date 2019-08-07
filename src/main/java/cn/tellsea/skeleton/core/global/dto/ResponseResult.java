@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.core.global.dto;
 
+import cn.tellsea.skeleton.core.base.enums.BaseEnums;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import lombok.Data;
 
@@ -17,7 +18,7 @@ public class ResponseResult {
     private Object data;
     private static volatile ResponseResult instance;
 
-    public static ResponseResult build(StatusEnums enums) {
+    public static ResponseResult build(BaseEnums enums) {
         ResponseResult result = getInstance();
         result.code = enums.getCode();
         result.message = enums.getInfo();
@@ -25,7 +26,7 @@ public class ResponseResult {
         return result;
     }
 
-    public static ResponseResult build(StatusEnums enums, Object data) {
+    public static ResponseResult build(BaseEnums enums, Object data) {
         ResponseResult result = getInstance();
         result.code = enums.getCode();
         result.message = enums.getInfo();

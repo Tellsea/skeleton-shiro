@@ -1,5 +1,7 @@
 package cn.tellsea;
 
+import cn.tellsea.skeleton.core.global.dto.ResponseResult;
+import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +13,7 @@ public class SkeletonApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println(ResponseResult.build(StatusEnums.SAVE_ERROR));
     }
 
 }
