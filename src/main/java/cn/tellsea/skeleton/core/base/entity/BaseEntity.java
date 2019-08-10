@@ -16,6 +16,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BaseEntity {
 
-    private int code;
+    /**
+     * Layui Page 分页参数：页数
+     */
+    private int page;
+
+    /**
+     * Layui Page 分页参数：条数
+     */
+    private int limit;
+
+    public int getPage() {
+        return (page - 1) * limit;
+    }
 
 }

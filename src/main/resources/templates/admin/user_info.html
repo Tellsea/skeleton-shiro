@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="layui-inline layui-show-xs-block">
-                    <button type="button" data-type="search" class="layui-btn layui-btn-sm layui-btn-normal bind-operation">
+                    <button type="button" data-type="search" class="layui-btn layui-btn-sm bind-operation">
                         <i class="layui-icon">&#xe615;</i>查询
                     </button>
                     <button type="button" data-type="reset" class="layui-btn layui-btn-sm layui-btn-primary bind-operation">
@@ -48,13 +48,13 @@
 <!-- 表格 -->
 <table class="layui-hide" id="dataTable" lay-filter="dataTableFilter"></table>
 <!-- 行按钮 -->
-<script type="text/html" id="dataOperation">
+<script type="text/html" id="rowBar">
     <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
 </script>
 <!-- 头按钮 -->
-<script type="text/html" id="headOperation">
+<script type="text/html" id="headBar">
     <div class="layui-card-header">
         <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon"></i>添加</button>
@@ -72,10 +72,6 @@
 
 <script src="/assets/lib/layui/layui.js"></script>
 <script th:inline="none">
-    layui.config({
-        version: '1560414887155' //为了更新 js 缓存，可忽略
-    });
-
     layui.use(['laydate', 'laypage', 'layer', 'table', 'element'], function () {
         var laydate = layui.laydate //日期
             , laypage = layui.laypage //分页
@@ -88,7 +84,7 @@
             , method: 'post'
             , url: '/userInfo/listUserInfo'
             , page: true
-            ,toolbar: '#toolBarDemo'
+            , toolbar: '#headBar'
             , cols: [[
                 {type: 'checkbox'}
                 , {type:'numbers', title: '序号'}
@@ -114,7 +110,7 @@
                 , {field: 'createUserName', title: '创建人'}
                 , {field: 'createTime', title: '创建时间'}
                 ,{field: 'status', title: '状态', templet: '#switchStatus',}
-                , {fixed: 'right', width: 200, align: 'center', toolbar: '#dataOperation'}
+                , {fixed: 'right', width: 200, align: 'center', toolbar: '#rowBar'}
             ]]
         });
 

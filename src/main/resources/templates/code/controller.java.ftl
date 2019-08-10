@@ -1,15 +1,17 @@
 package ${package.Controller};
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
+<#if superControllerClassPackage??>
+import ${superControllerClassPackage};
+</#if>
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-<#if superControllerClassPackage??>
-import ${superControllerClassPackage};
-</#if>
+
 
 /**
  * ${table.comment!} 前端控制器
@@ -19,7 +21,7 @@ import ${superControllerClassPackage};
  */
 @Controller
 @RequestMapping("${table.xmlName}")
-public class ${table.controllerName} extends ${superControllerClass}<${entity}> {
+public class ${table.controllerName} extends ${superControllerClass}<${table.serviceName}> {
 
     /**
      * 新增

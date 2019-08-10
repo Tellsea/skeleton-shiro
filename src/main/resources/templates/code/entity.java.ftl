@@ -1,5 +1,6 @@
 package ${package.Entity};
 
+import cn.tellsea.skeleton.core.base.entity.BaseEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 <#if entityLombokModel>
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Date;
  * @Description Created on ${date}
  */
 @Data
-public class ${entity} {
+public class ${entity} extends ${superEntityClass} {
 
 <#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>

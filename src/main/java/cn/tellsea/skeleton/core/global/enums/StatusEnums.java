@@ -16,6 +16,7 @@ public enum StatusEnums implements BaseEnums {
      * 业务枚举
      */
     LAYUI_SUCCESS(0, "加载成功"),
+    OK(200, "OK"),
     SAVE_SUCCESS(200, "新增成功"),
     DELETE_SUCCESS(200, "删除成功"),
     UPDATE_SUCCESS(200, "修改成功"),

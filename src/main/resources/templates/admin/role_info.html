@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>角色管理</title>
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all">
+</head>
+<body style="padding: 15px;">
+
+<!-- 搜索条件 -->
+<div class="layui-collapse">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">搜索条件</h2>
+        <div class="layui-colla-content">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">角色名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="name" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-show-xs-block">
+                    <button type="button" data-type="search" class="layui-btn layui-btn-sm bind-operation">
+                        <i class="layui-icon">&#xe615;</i>查询
+                    </button>
+                    <button type="button" data-type="reset" class="layui-btn layui-btn-sm layui-btn-primary bind-operation">
+                        <i class="layui-icon">&#xe666;</i>重置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 表格 -->
+<table class="layui-hide" id="dataTable" lay-filter="tableFilter"></table>
+<!-- 分配权限按钮 -->
+<script type="text/html" id="rowBar">
+    <a class="layui-btn layui-btn-sm" lay-event="edit">分配权限</a>
+</script>
+<!-- 分配权限表单 -->
+<div id="editorModal" style="display: none; padding: 15px;">
+    <form id="formCondition" class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="required" lay-reqtext="角色名称岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="description" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所有资源</label>
+            <div class="layui-input-block">
+                <div class="layui-btn-container">
+                    <button type="button" class="layui-btn layui-btn-sm" lay-demo="getChecked">获取选中节点数据</button>
+                    <button type="button" class="layui-btn layui-btn-sm" lay-demo="setChecked">勾选指定节点</button>
+                    <button type="button" class="layui-btn layui-btn-sm" lay-demo="reload">重载实例</button>
+                </div>
+
+                <div id="dataTree" class="demo-tree-more"></div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/assets/lib/layui/layui.js"></script>
+<script th:inline="none">
+    layui.config({
+        base: '/assets/lib/skeleton/js/modules/'
+    }).use(['layer', 'table', 'element', 'tree', 'eject'], function () {
+        var laydate = layui.laydate //日期
+            , layer = layui.layer //弹层
+            , table = layui.table //表格
+            , tree = layui.tree // 树结构
+            , eject = layui.eject
+            , $ = layui.jquery;
+
+        //执行一个 table 实例
+        table.render({
+            elem: '#dataTable'
+            , method: 'post'
+            , url: '/roleInfo/listRoleInfo'
+            , title: '角色管理'
+            , page: true
+            , cols: [[
+                {type: 'numbers', title: '序号'}
+                , {field: 'name', title: '角色名'}
+                , {field: 'description', title: '描述', sort: true, totalRow: true}
+                , {fixed: 'right', title: '操作', width: 100, toolbar: '#rowBar'}
+            ]]
+        });
+
+        //监听行工具事件
+        table.on('tool(tableFilter)', function (obj) {
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                var dataaa = $("#formCondition").serializeJson();
+                console.log(dataaa);
+               var index = eject.form('分配资源', 'editorModal','formCondition');
+               // layer.close(index);
+            }
+        });
+
+        var data = [{
+            title: '一级1'
+            ,id: 1
+            ,checked: true
+            ,spread: true
+            ,children: [{
+                title: '二级1-1 可允许跳转'
+                ,id: 3
+                ,href: 'https://www.layui.com/'
+                ,children: [{
+                    title: '三级1-1-3'
+                    ,id: 23
+                    ,children: [{
+                        title: '四级1-1-3-1'
+                        ,id: 24
+                        ,children: [{
+                            title: '五级1-1-3-1-1'
+                            ,id: 30
+                        },{
+                            title: '五级1-1-3-1-2'
+                            ,id: 31
+                        }]
+                    }]
+                },{
+                    title: '三级1-1-1'
+                    ,id: 7
+                    ,children: [{
+                        title: '四级1-1-1-1 可允许跳转'
+                        ,id: 15
+                        ,href: 'https://www.layui.com/doc/'
+                    }]
+                },{
+                    title: '三级1-1-2'
+                    ,id: 8
+                    ,children: [{
+                        title: '四级1-1-2-1'
+                        ,id: 32
+                    }]
+                }]
+            },{
+                title: '二级1-2'
+                ,id: 4
+                ,spread: true
+                ,children: [{
+                    title: '三级1-2-1'
+                    ,id: 9
+                    ,disabled: true
+                },{
+                    title: '三级1-2-2'
+                    ,id: 10
+                }]
+            },{
+                title: '二级1-3'
+                ,id: 20
+                ,children: [{
+                    title: '三级1-3-1'
+                    ,id: 21
+                },{
+                    title: '三级1-3-2'
+                    ,id: 22
+                }]
+            }]
+        },{
+            title: '一级2'
+            ,id: 2
+            ,spread: true
+            ,children: [{
+                title: '二级2-1'
+                ,id: 5
+                ,spread: true
+                ,children: [{
+                    title: '三级2-1-1'
+                    ,id: 11
+                },{
+                    title: '三级2-1-2'
+                    ,id: 12
+                }]
+            },{
+                title: '二级2-2'
+                ,id: 6
+                ,children: [{
+                    title: '三级2-2-1'
+                    ,id: 13
+                },{
+                    title: '三级2-2-2'
+                    ,id: 14
+                    ,disabled: true
+                }]
+            }]
+        },{
+            title: '一级3'
+            ,id: 16
+            ,children: [{
+                title: '二级3-1'
+                ,id: 17
+                ,fixed: true
+                ,children: [{
+                    title: '三级3-1-1'
+                    ,id: 18
+                },{
+                    title: '三级3-1-2'
+                    ,id: 19
+                }]
+            },{
+                title: '二级3-2'
+                ,id: 27
+                ,children: [{
+                    title: '三级3-2-1'
+                    ,id: 28
+                },{
+                    title: '三级3-2-2'
+                    ,id: 29
+                }]
+            }]
+        }];
+
+        // 基本演示
+        tree.render({
+            elem: '#dataTree'
+            , data: data
+            , showCheckbox: true  //是否显示复选框
+            , id: 'demoId1'
+            , isJump: true //是否允许点击节点时弹出新窗口跳转
+            , click: function (obj) {
+                var data = obj.data;  //获取当前点击的节点数据
+                layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+            }
+        });
+    });
+</script>
+</body>
+</html>

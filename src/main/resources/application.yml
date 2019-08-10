@@ -31,11 +31,11 @@ spring:
 
 # mybatis
 mybatis:
-  type-aliases-package: cn.tellsea.skeleton.business.entity
+  type-aliases-package: cn.tellsea.skeleton.*.entity
   configuration:
     map-underscore-to-camel-case: true
 
 # 日志
 logging:
   level:
-    cn.tellsea.skeleton.business.mapper: debug
+    cn.tellsea.skeleton.common.mapper: debug

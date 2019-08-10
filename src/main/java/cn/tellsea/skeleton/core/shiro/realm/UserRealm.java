@@ -43,7 +43,9 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         /*String username = (String) token.getPrincipal();
         log.info("认证用户：" + username);
-        UserInfo userInfo = userInfoService.getUserInfoByName(username);
+        UserInfo user = new UserInfo();
+        user.setUserName(username);
+        UserInfo userInfo = userInfoService.selectOne(user);
         if (userInfo == null) {
             throw new UnknownAccountException();
         }

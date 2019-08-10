@@ -45,6 +45,26 @@ public class ShiroUtils {
     }
 
     /**
+     * 获得session保存的数据
+     *
+     * @param sessionKey
+     * @return
+     */
+    public static Object getSessionAttribute(String sessionKey) {
+        return getSession().getAttribute(sessionKey);
+    }
+
+    /**
+     * 保存数据到session
+     *
+     * @param sessionKey
+     * @return
+     */
+    public static void setSessionAttribute(String sessionKey, Object sessionValue) {
+        getSession().setAttribute(sessionKey, sessionValue);
+    }
+
+    /**
      * 获得当前用户
      *
      * @return
