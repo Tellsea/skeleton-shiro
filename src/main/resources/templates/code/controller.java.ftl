@@ -12,11 +12,11 @@ import ${superControllerClassPackage};
 </#if>
 
 /**
-* ${table.comment!} 前端控制器
-*
-* @author ${author}
-* @Description Created on ${date}
-*/
+ * ${table.comment!} 前端控制器
+ *
+ * @author ${author}
+ * @Description Created on ${date}
+ */
 @Controller
 @RequestMapping("${table.xmlName}")
 public class ${table.controllerName} extends ${superControllerClass}<${entity}> {

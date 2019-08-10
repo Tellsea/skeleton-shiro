@@ -1,7 +1,6 @@
 package cn.tellsea.skeleton.core.global.dto;
 
 import cn.tellsea.skeleton.core.base.enums.BaseEnums;
-import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import lombok.Data;
 
 /**

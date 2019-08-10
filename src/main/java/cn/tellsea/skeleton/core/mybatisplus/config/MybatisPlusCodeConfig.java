@@ -41,7 +41,7 @@ public class MybatisPlusCodeConfig {
     /**
      * 生成文件位置
      */
-    private static final String javaLocation = projectPath + "/src/main/java/cn/tellsea/skeleton/business/";
+    private static final String javaLocation = projectPath + "/src/main/java/cn/tellsea/skeleton/";
     private static final String pageLocation = projectPath + "/src/main/resources/views/";
     /**
      * 基类路径
@@ -62,15 +62,7 @@ public class MybatisPlusCodeConfig {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("Tellsea");
         gc.setFileOverride(true);
-//        gc.setEnableCache(true);
         gc.setServiceName("%sService");
-        /*gc.setServiceName("%sService");*/
-        /*gc.setEntityName("%s");
-        gc.setMapperName("%sDaoImpl");
-        gc.setXmlName("%sDao");
-        gc.setServiceName("%sService");
-        gc.setServiceImplName("%sServiceImpl");
-        gc.setControllerName("%sController");*/
         gc.setFileOverride(false);
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
@@ -100,7 +92,7 @@ public class MybatisPlusCodeConfig {
         };
 
         // 自定义输出配置，配置会被优先输出
-        cfg.setFileOutConfigList(getFileOutConfig());
+        cfg.setFileOutConfigList(getFileOutConfig(model));
         mpg.setCfg(cfg);
 
         // 配置模板
@@ -132,14 +124,14 @@ public class MybatisPlusCodeConfig {
      *
      * @return
      */
-    private static List<FileOutConfig> getFileOutConfig() {
+    private static List<FileOutConfig> getFileOutConfig(String model) {
         List<FileOutConfig> focList = new ArrayList<>();
 
         // Entity
         focList.add(new FileOutConfig(templatePathEntity) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/entity/" + tableInfo.getEntityName() + StringPool.DOT_JAVA;
+                return javaLocation + model + "/entity/" + tableInfo.getEntityName() + StringPool.DOT_JAVA;
             }
         });
 
@@ -148,7 +140,7 @@ public class MybatisPlusCodeConfig {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 tableInfo.setXmlName(convertToLowercase(tableInfo.getEntityName()));
-                return javaLocation + "/controller/" + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/controller/" + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
             }
         });
 
@@ -156,7 +148,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathService) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/service/" + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/service/" + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
             }
         });
 
@@ -164,7 +156,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathServiceImpl) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/service/impl/" + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/service/impl/" + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
             }
         });
 
@@ -172,7 +164,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathMapper) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
             }
         });
 
@@ -180,18 +172,10 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathDao) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/dao/" + tableInfo.getEntityName() + "Dao" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/dao/" + tableInfo.getEntityName() + "Dao" + StringPool.DOT_JAVA;
             }
         });
 
-        // 生成页面
-        /*focList.add(new FileOutConfig(templatePathJsp) {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                String fileName = humpTurnUnderscore(new StringBuffer(convertToLowercase(tableInfo.getEntityName()))).toString();
-                return pageLocation + fileName + ".jsp";
-            }
-        });*/
         return focList;
     }
 

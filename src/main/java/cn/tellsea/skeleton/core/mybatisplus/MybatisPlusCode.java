@@ -14,12 +14,9 @@ import cn.tellsea.skeleton.core.mybatisplus.config.MybatisPlusCodeConfig;
 public class MybatisPlusCode {
 
     public static void main(String[] args) {
-        /*Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入表名：");
-        String tableName = scanner.next();*/
         String[] nameList = new String[]{"user_info", "map_user_role", "role_info", "map_role_resource", "resource_info", "login_log", "system_log"};
         for (int i = 0; i < nameList.length; i++) {
-            MybatisPlusCodeConfig.codeGenerator("business", nameList[i]);
+            MybatisPlusCodeConfig.codeGenerator("common", nameList[i]);
         }
     }
 }
