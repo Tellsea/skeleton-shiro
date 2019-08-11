@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>角色管理</title>
-    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all">
+    <div th:replace="/admin/common/head"></div>
 </head>
-<body style="padding: 15px;">
+<body class="body-main">
 
 <!-- 搜索条件 -->
 <div class="layui-collapse">
@@ -62,7 +60,7 @@
     </form>
 </div>
 
-<script src="/assets/lib/layui/layui.js"></script>
+<div th:replace="/admin/common/js"></div>
 <script th:inline="none">
     layui.config({
         base: '/assets/lib/skeleton/js/modules/'

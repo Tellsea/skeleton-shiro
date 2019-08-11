@@ -1,36 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Skeleton 骨架 - Tellsea</title>
-    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
-    <style type="text/css">
-        /* 侧边栏 */
-        .layui-nav-tree .layui-nav-child a {
-            margin-left: 20px;
-        }
-
-        .layui-nav-tree i {
-            margin-right: 5px;
-        }
-
-        /* tab */
-        .layui-tab-title {
-            position: fixed;
-            left: 200px;
-            right: 0;
-            top: 60px;
-        }
-
-        ul.layui-tab-title li:first-child {
-            padding: 0;
-        }
-
-        ul.layui-tab-title li:first-child i:last-child {
-            display: none;
-        }
-    </style>
+    <div th:replace="/admin/common/head"></div>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -63,8 +35,8 @@
                     小海绵
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="">绑定账号</a></dd>
+                    <dd><a href="">修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="javascript:;" onclick="logout()">臣退了</a></li>
@@ -96,6 +68,14 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a class="" href="javascript:;"><i class="layui-icon layui-icon-username"></i>个人中心</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="10" data-title="基本资料" data-url="/userInfo/init" data-type="tabAdd">基本资料</a></dd>
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="11" data-title="绑定账号" data-url="/userInfo/init" data-type="tabAdd">绑定账号</a></dd>
+                        <dd><a href="javascript:;" class="site-demo-active" data-id="12" data-title="修改密码" data-url="/loginLog/init" data-type="tabAdd">修改密码</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a href="javascript:;"><i class="layui-icon layui-icon-about"></i>查看更多</a>
                     <dl class="layui-nav-child">
                         <li class="layui-nav-item"><a href="javascript:;" class="site-demo-active" data-id="299" data-title="Druid" data-url="/druid/index.html" data-type="tabAdd">Druid</a></li>
@@ -123,7 +103,7 @@
         </button>
     </div>
 </div>
-<script src="/assets/lib/layui/layui.js"></script>
+<div th:replace="/admin/common/js"></div>
 <script>
     // 切换内容参考文章：https://segmentfault.com/a/1190000014617129，https://blog.csdn.net/yhflyl/article/details/79502469
     layui.use(['element', 'layer', 'jquery'], function () {

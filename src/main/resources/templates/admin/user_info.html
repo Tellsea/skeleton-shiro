@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>用户管理</title>
-    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all">
+    <div th:replace="/admin/common/head"></div>
 </head>
-<body style="padding: 15px;">
+<body class="body-main">
 
-<!-- 主体内容开始 -->
 <!-- 搜索条件 -->
 <div class="layui-collapse" lay-filter="search-box">
     <div class="layui-colla-item">
@@ -68,9 +65,8 @@
 <ul id="viewer" style="display: none;">
     <li><img class="viewer-img" src="<%=path%>/static/images/demo.jpg"></li>
 </ul>
-<!-- 主体内容结束 -->
 
-<script src="/assets/lib/layui/layui.js"></script>
+<div th:replace="/admin/common/js"></div>
 <script th:inline="none">
     layui.use(['laydate', 'laypage', 'layer', 'table', 'element'], function () {
         var laydate = layui.laydate //日期
@@ -109,8 +105,8 @@
                 , {field: 'description', title: '描述'}
                 , {field: 'createUserName', title: '创建人'}
                 , {field: 'createTime', title: '创建时间'}
-                ,{field: 'status', title: '状态', templet: '#switchStatus',}
-                , {fixed: 'right', width: 200, align: 'center', toolbar: '#rowBar'}
+                , {field: 'status', title: '状态', templet: '#switchStatus',}
+                , {fixed: 'right', width: 200, toolbar: '#rowBar'}
             ]]
         });
 
