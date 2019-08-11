@@ -33,8 +33,8 @@
     </div>
 </div>
 <!-- 表格 -->
-<table class="layui-hide" id="dataTable" lay-filter="tableFilter"></table>
-<!-- 分配权限按钮 -->
+<table class="layui-hide" id="dataTable" lay-filter="dataTableFilter"></table>
+<!-- 表格行按钮 -->
 <script type="text/html" id="rowBar">
     <a class="layui-btn layui-btn-sm" lay-event="edit">分配权限</a>
 </script>
@@ -56,12 +56,6 @@
         <div class="layui-form-item">
             <label class="layui-form-label">所有资源</label>
             <div class="layui-input-block">
-                <div class="layui-btn-container">
-                    <button type="button" class="layui-btn layui-btn-sm" lay-demo="getChecked">获取选中节点数据</button>
-                    <button type="button" class="layui-btn layui-btn-sm" lay-demo="setChecked">勾选指定节点</button>
-                    <button type="button" class="layui-btn layui-btn-sm" lay-demo="reload">重载实例</button>
-                </div>
-
                 <div id="dataTree" class="demo-tree-more"></div>
             </div>
         </div>
@@ -72,9 +66,10 @@
 <script th:inline="none">
     layui.config({
         base: '/assets/lib/skeleton/js/modules/'
-    }).use(['layer', 'table', 'element', 'tree', 'eject'], function () {
+    }).use(['layer', 'form', 'table', 'element', 'tree', 'eject'], function () {
         var layer = layui.layer //弹层
             , table = layui.table //表格
+            , form = layui.form // 表单
             , tree = layui.tree // 树结构
             , eject = layui.eject
             , $ = layui.jquery;
@@ -100,26 +95,28 @@
         // 执行一个 table 实例
         table.render({
             elem: '#dataTable'
+            , id: 'dataTable'
             , method: 'post'
             , url: '/roleInfo/listRoleInfo'
             , title: '角色管理'
+            , toolbar: true
             , page: true
             , cols: [[
                 {type: 'numbers', title: '序号'}
                 , {field: 'name', title: '角色名'}
-                , {field: 'description', title: '描述', sort: true, totalRow: true}
+                , {field: 'description', title: '描述'}
                 , {fixed: 'right', title: '操作', width: 100, toolbar: '#rowBar'}
             ]]
         });
 
         // 监听行工具事件
-        table.on('tool(tableFilter)', function (obj) {
+        table.on('tool(dataTableFilter)', function (obj) {
             var data = obj.data
                 , layEvent = obj.event;
+            console.log(data);
             if (layEvent === 'edit') {
                 $("#name").val(data.name);
                 $("#description").val(data.description);
-                $("#detailForm").removeClass("layui-hide");
                 $.ajax({
                     url: '/resourceInfo/listResourceInfoByRoleId',
                     type: 'post',
