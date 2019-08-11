@@ -6,10 +6,10 @@ import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 /**
  * 资源表 前端控制器
@@ -45,5 +45,28 @@ public class ResourceInfoController extends BaseController<ResourceInfoService> 
     public ResponseResult updateResourceInfo(ResourceInfo resourceInfo) {
         baseService.updateByPrimaryKeySelective(resourceInfo);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
+    }
+
+    /**
+     * 查询资源树
+     *
+     * @return
+     */
+    @GetMapping("listResourceInfoByTree")
+    @ResponseBody
+    public ResponseResult listResourceInfoByTree() {
+        return ResponseResult.build(StatusEnums.OK, baseService.listResourceInfoByTree());
+    }
+
+    /**
+     * 根据角色id查询所有资源
+     *
+     * @param roleId
+     * @return
+     */
+    @PostMapping("listResourceInfoByRoleId")
+    @ResponseBody
+    public ResponseResult listResourceInfoByRoleId(int roleId) {
+        return ResponseResult.build(StatusEnums.OK, baseService.listResourceInfoByRoleId(roleId));
     }
 }

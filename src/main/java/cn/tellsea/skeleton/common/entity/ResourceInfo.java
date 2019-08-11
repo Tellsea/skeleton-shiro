@@ -1,11 +1,11 @@
 package cn.tellsea.skeleton.common.entity;
 
 import cn.tellsea.skeleton.core.base.entity.BaseEntity;
-import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * 资源表 实体类
@@ -31,7 +31,7 @@ public class ResourceInfo extends BaseEntity {
     /**
      * 父级ID
      */
-    private Long parentId;
+    private Integer pid;
 
     /**
      * URL
@@ -56,17 +56,10 @@ public class ResourceInfo extends BaseEntity {
     /**
      * 排序
      */
-    private Integer priority;
+    private Integer sort;
 
     /**
-     * 创建时间
+     * 是否叶子节点，0 否，1 是
      */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    /**
-     * 状态 0锁定 1有效
-     */
-    private Boolean status;
-
+    private Boolean isLeaf;
 }

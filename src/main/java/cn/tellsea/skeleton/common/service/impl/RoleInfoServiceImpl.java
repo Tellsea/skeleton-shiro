@@ -30,4 +30,9 @@ public class RoleInfoServiceImpl extends BaseServiceImpl<RoleInfo, RoleInfoDao> 
         }
         return LayuiTable.build(count, list);
     }
+
+    @Override
+    public List<RoleInfo> listRoleInfoByUserId(int userId) {
+        return baseDao.listRoleInfoByUserId(userId);
+    }
 }

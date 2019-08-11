@@ -54,7 +54,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSuccessUrl("/");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
-        // 自定义拦截器限制并发人数
+        // 自定义拦截器
         LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
         shiroFilterFactoryBean.setFilters(filtersMap);
 

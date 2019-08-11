@@ -20,11 +20,10 @@ public enum StatusEnums implements BaseEnums {
     SAVE_SUCCESS(200, "新增成功"),
     DELETE_SUCCESS(200, "删除成功"),
     UPDATE_SUCCESS(200, "修改成功"),
-    SELECT_SUCCESS(200, "查询成功"),
-    SAVE_ERROR(500, "新增失败"),
-    DELETE_ERROR(500, "删除失败"),
-    UPDATE_ERROR(500, "修改失败"),
-    SELECT_ERROR(500, "查询失败"),
+    SAVE_ERROR(500, "新增失败，请检查网络是否稳定？"),
+    DELETE_ERROR(500, "删除失败，请检查网络是否稳定？"),
+    UPDATE_ERROR(500, "修改失败，请检查网络是否稳定？"),
+    SELECT_ERROR(500, "查询失败，请检查网络是否稳定？"),
     /**
      * 系统枚举
      */

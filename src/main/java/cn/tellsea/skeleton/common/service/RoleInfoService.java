@@ -4,6 +4,8 @@ import cn.tellsea.skeleton.common.entity.RoleInfo;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.core.layui.LayuiTable;
 
+import java.util.List;
+
 /**
  * 角色表 Service接口
  *
@@ -19,4 +21,12 @@ public interface RoleInfoService extends BaseService<RoleInfo> {
      * @return
      */
     LayuiTable listRoleInfo(RoleInfo roleInfo);
+
+    /**
+     * 根据用户 id 查询所有角色
+     *
+     * @param userId
+     * @return
+     */
+    List<RoleInfo> listRoleInfoByUserId(int userId);
 }

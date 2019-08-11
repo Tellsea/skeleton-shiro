@@ -66,11 +66,6 @@ public class UserInfo extends BaseEntity {
     private String description;
 
     /**
-     * 状态 0 锁定 1有效 2 删除
-     */
-    private Boolean status;
-
-    /**
      * 创建人
      */
     private Integer createUser;
@@ -81,4 +76,8 @@ public class UserInfo extends BaseEntity {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
+    /**
+     * 状态 0 锁定 1有效 2 删除
+     */
+    private Boolean status;
 }

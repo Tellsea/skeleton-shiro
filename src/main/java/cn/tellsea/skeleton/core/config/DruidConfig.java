@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.core.druid;
+package cn.tellsea.skeleton.core.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
