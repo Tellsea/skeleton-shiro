@@ -1,12 +1,14 @@
 package cn.tellsea.skeleton.core.shiro.realm;
 
+import cn.tellsea.skeleton.common.entity.UserInfo;
+import cn.tellsea.skeleton.common.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 认证授权验证域
@@ -17,8 +19,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
 
-    /*@Autowired
-    private UserInfoService userInfoService;*/
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -41,7 +43,7 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        /*String username = (String) token.getPrincipal();
+        String username = (String) token.getPrincipal();
         log.info("认证用户：" + username);
         UserInfo user = new UserInfo();
         user.setUserName(username);
@@ -49,8 +51,7 @@ public class UserRealm extends AuthorizingRealm {
         if (userInfo == null) {
             throw new UnknownAccountException();
         }
-        return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), ByteSource.Util.bytes(userInfo.getSalt()), getName());*/
-        return null;
+        return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), ByteSource.Util.bytes(userInfo.getSalt()), getName());
     }
 
     @Override

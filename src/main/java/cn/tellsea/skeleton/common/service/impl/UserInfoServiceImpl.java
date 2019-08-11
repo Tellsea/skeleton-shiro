@@ -21,6 +21,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo, UserInfoDao> 
 
     @Override
     public LayuiTable listUserInfo(UserInfo userInfo) {
+        // todo 不能模糊查询
         int count = baseMapper.selectCount(userInfo);
         List<UserInfoVO> list = null;
         if (0 < count) {

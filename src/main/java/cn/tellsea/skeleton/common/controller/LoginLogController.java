@@ -5,7 +5,9 @@ import cn.tellsea.skeleton.common.service.LoginLogService;
 import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,5 +46,22 @@ public class LoginLogController extends BaseController<LoginLogService> {
     public ResponseResult updateLoginLog(LoginLog loginLog) {
         baseService.updateByPrimaryKeySelective(loginLog);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
+    }
+
+    @GetMapping("init")
+    public String init() {
+        return "admin/login_log";
+    }
+
+    /**
+     * 列表
+     *
+     * @param loginLog
+     * @return
+     */
+    @PostMapping("listLoginLog")
+    @ResponseBody
+    public LayuiTable listLoginLog(LoginLog loginLog) {
+        return baseService.listLoginLog(loginLog);
     }
 }

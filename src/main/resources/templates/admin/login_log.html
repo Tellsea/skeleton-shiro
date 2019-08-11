@@ -8,7 +8,6 @@
 </head>
 <body style="padding: 15px;">
 
-<!-- 主体内容开始 -->
 <!-- 搜索条件 -->
 <div class="layui-collapse" lay-filter="search-box">
     <div class="layui-colla-item">
@@ -41,31 +40,20 @@
 </div>
 <!-- 表格 -->
 <table class="layui-hide" id="dataTable" lay-filter="dataTableFilter"></table>
-<!-- 行按钮 -->
-<script type="text/html" id="dataOperation">
-    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
-</script>
 <!-- 头按钮 -->
-<script type="text/html" id="headOperation">
+<script type="text/html" id="headBar">
     <div class="layui-card-header">
         <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete"><i class="layui-icon"></i>批量删除</button>
     </div>
 </script>
-<!-- 主体内容结束 -->
 
 <script src="/assets/lib/layui/layui.js"></script>
 <script th:inline="none">
-    layui.config({
-        version: '1560414887155' //为了更新 js 缓存，可忽略
-    });
-
     layui.use(['laydate', 'laypage', 'layer', 'table', 'element'], function () {
         var laydate = layui.laydate //日期
             , laypage = layui.laypage //分页
             , layer = layui.layer //弹层
-            , table = layui.table //表格
+            , table = layui.table; //表格
 
         //执行一个 table 实例
         table.render({
@@ -73,10 +61,19 @@
             , method: 'post'
             , url: '/loginLog/listLoginLog'
             , page: true
+            , toolbar: '#headBar'
             , cols: [[
                 {type: 'checkbox'}
-                , {type:'numbers', title: '序号'}
+                , {type: 'numbers', title: '序号'}
                 , {field: 'userName', title: '账户'}
+                , {field: 'code', title: '状态码', templet: function (d) {
+                        if (d.code == 200) {
+                            return '<span class="layui-badge layui-bg-green">' + d.code + '</span>';
+                        } else {
+                            return '<span class="layui-badge">' + d.code + '</span>';
+                        }
+                    }}
+                , {field: 'message', title: '消息'}
                 , {field: 'ip', title: 'IP地址'}
                 , {field: 'location', title: '登录地点'}
                 , {field: 'createTime', title: '登录时间'}

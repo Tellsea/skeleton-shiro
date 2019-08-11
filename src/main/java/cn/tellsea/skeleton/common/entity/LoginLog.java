@@ -49,4 +49,13 @@ public class LoginLog extends BaseEntity {
      */
     private String device;
 
+    /**
+     * 状态码
+     */
+    private Integer code;
+
+    /**
+     * 消息
+     */
+    private String message;
 }
