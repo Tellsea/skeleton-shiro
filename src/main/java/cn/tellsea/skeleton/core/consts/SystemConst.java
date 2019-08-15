@@ -8,5 +8,13 @@ package cn.tellsea.skeleton.core.consts;
  */
 public class SystemConst {
 
+    /**
+     * 用户信息 session
+     */
+    public static final String USER_INFO_SESSION = "USER_INFO_SESSION";
+
+    /**
+     * session 保存二维码
+     */
     public static final String KEY_CAPTCHA = "KEY_CAPTCHA";
 }

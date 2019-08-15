@@ -1,6 +1,7 @@
 package cn.tellsea.skeleton.core.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import cn.tellsea.skeleton.core.shiro.filter.UserInfoSessionFilter;
 import cn.tellsea.skeleton.core.shiro.realm.UserRealm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -56,6 +57,7 @@ public class ShiroConfig {
 
         // 自定义拦截器
         LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
+        filtersMap.put("userInfoSessionFilter", new UserInfoSessionFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
@@ -65,7 +67,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-        filterChainDefinitionMap.put("/**", "anon");
+        // filterChainDefinitionMap.put("/**", "user,userInfoSessionFilter");
+        filterChainDefinitionMap.put("/**", "anon,userInfoSessionFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
