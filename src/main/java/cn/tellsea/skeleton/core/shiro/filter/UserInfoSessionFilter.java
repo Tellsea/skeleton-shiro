@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 /**
  * 访问控制器
  *
- * @author: Tellsea
- * @date: 2019/08/15
- * https://www.cnblogs.com/sprinkle/p/6823965.html
+ * @author Tellsea
+ * @Description Created on 2019/8/15
+ * 参考文章：https://www.cnblogs.com/sprinkle/p/6823965.html
  */
 public class UserInfoSessionFilter extends AccessControlFilter {
 
@@ -26,8 +26,7 @@ public class UserInfoSessionFilter extends AccessControlFilter {
             Object userInfoSession = session.getAttribute(SystemConst.USER_INFO_SESSION);
             if (null == userInfoSession) {
                 // todo 查询用户信息保存在session
-                WebUtils.INCLUDE_CONTEXT_PATH_ATTRIBUTE
-                System.out.println("卧槽，还没写      查询用户信息保存在session");
+                System.out.println("卧槽，还没写，查询用户信息保存在session");
             }
         }
         return true;

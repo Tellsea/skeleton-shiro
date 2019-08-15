@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("userInfo")
 public class UserInfoController extends BaseController<UserInfoService> {
 
+    @GetMapping("init")
+    public String init() {
+        return "admin/user_info";
+    }
+
     /**
      * 新增
      *
@@ -46,11 +51,6 @@ public class UserInfoController extends BaseController<UserInfoService> {
     public ResponseResult updateUserInfo(UserInfo userInfo) {
         baseService.updateByPrimaryKeySelective(userInfo);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
-    }
-
-    @GetMapping("init")
-    public String init() {
-        return "admin/user_info";
     }
 
     /**
