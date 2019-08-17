@@ -1,77 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>角色管理</title>
+    <title>角色管理 - Skeleton</title>
     <div th:replace="/admin/common/head"></div>
 </head>
-<body class="body-main">
+<body>
 
-<!-- 搜索条件 -->
-<div class="layui-collapse">
-    <div class="layui-colla-item">
-        <h2 class="layui-colla-title">搜索条件</h2>
-        <div class="layui-colla-content">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">角色名称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="name" lay-verify="name" autocomplete="off" class="layui-input">
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">角色管理</div>
+
+        <div class="layui-card-body">
+            <table id="dataTable" lay-filter="dataTableFilter"></table>
+            <!-- 头按钮 -->
+            <script type="text/html" id="headBar">
+                <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh">
+                    <i class="layui-icon layui-icon-refresh"></i>刷新
+                </button>
+            </script>
+            <!-- 行按钮 -->
+            <script type="text/html" id="rowBar">
+                <a class="layui-btn layui-btn-sm" lay-event="edit">
+                    <i class="layui-icon layui-icon-edit"></i>分配权限
+                </a>
+            </script>
+            <div id="editModel" style="display: none; padding: 15px;">
+                <form id="editForm" class="layui-form" action="" lay-filter="editFormFilter">
+                    <input type="hidden" name="id">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">角色名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="required" lay-reqtext="角色名称岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-inline layui-show-xs-block">
-                    <button type="button" data-type="search" class="layui-btn layui-btn-sm layui-btn-normal bind-operation">
-                        <i class="layui-icon">&#xe615;</i>查询
-                    </button>
-                    <button type="button" data-type="reset" class="layui-btn layui-btn-sm layui-btn-primary bind-operation">
-                        <i class="layui-icon">&#xe666;</i>重置
-                    </button>
-                </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">角色描述</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="description" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分配资源</label>
+                        <div class="layui-input-block">
+                            <div id="dataTree"></div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="submitFilter">
+                                <i class="layui-icon layui-icon-ok"></i>更新
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-<!-- 表格 -->
-<table class="layui-hide" id="dataTable" lay-filter="dataTableFilter"></table>
-<!-- 表格行按钮 -->
-<script type="text/html" id="rowBar">
-    <a class="layui-btn layui-btn-sm" lay-event="edit">分配权限</a>
-</script>
-<!-- 分配权限表单 -->
-<div id="editorModal" style="display: none; padding: 15px;">
-    <form id="formCondition" class="layui-form" action="">
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色名称</label>
-            <div class="layui-input-block">
-                <input type="text" name="name" id="name" lay-verify="required" lay-reqtext="角色名称岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色描述</label>
-            <div class="layui-input-block">
-                <input type="text" name="description" id="description" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">所有资源</label>
-            <div class="layui-input-block">
-                <div id="dataTree" class="demo-tree-more"></div>
-            </div>
-        </div>
-    </form>
 </div>
 
 <div th:replace="/admin/common/js"></div>
 <script th:inline="none">
     layui.config({
-        base: '/assets/lib/skeleton/js/modules/'
-    }).use(['layer', 'form', 'table', 'element', 'tree', 'eject'], function () {
-        var layer = layui.layer //弹层
-            , table = layui.table //表格
-            , form = layui.form // 表单
-            , tree = layui.tree // 树结构
+        base: '/assets/lib/layuiadmin/' //静态资源所在路径
+    }).config({
+        base: '/assets/lib/tellsea/js/modules/'
+    }).use(['form', 'table', 'element', 'tree', 'eject'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , tree = layui.tree
             , eject = layui.eject
-            , $ = layui.jquery;
-
+            , table = layui.table;
         // 初始加载树
         $.ajax({
             url: '/resourceInfo/listResourceInfoByTree',
@@ -86,35 +84,76 @@
                 });
             },
             error: function () {
-                layer.msg('加载树出错了，请稍后再试!', {time: 1000, icon: 2});
+                layer.msg('加载树出错了，请稍后再试!');
             }
         });
 
-        // 执行一个 table 实例
+        //执行一个 table 实例
         table.render({
             elem: '#dataTable'
             , id: 'dataTable'
             , method: 'post'
             , url: '/roleInfo/listRoleInfo'
             , title: '角色管理'
-            , toolbar: true
+            , toolbar: '#headBar'
             , page: true
             , cols: [[
                 {type: 'numbers', title: '序号'}
                 , {field: 'name', title: '角色名'}
                 , {field: 'description', title: '描述'}
-                , {fixed: 'right', title: '操作', width: 100, toolbar: '#rowBar'}
+                , {fixed: 'right', title: '操作', width: 150, toolbar: '#rowBar'}
             ]]
+        });
+
+        var active = {
+            refresh: function () {
+                table.reload('dataTable', {
+                    where: {
+
+                    }
+                });
+            }
+        };
+
+        // 监听提交
+        form.on('submit(submitFilter)', function (data) {
+            data.field = tree.getChecked('myTree');
+            console.log(data.field);
+            /*$.ajax({
+                url: '/roleInfo/updateRoleInfo',
+                type: 'post',
+                data: data.field,
+                dataType: 'json',
+                success: function (res) {
+                    layer.msg(res.message);
+                    active.refresh();
+                },
+                error: function () {
+                    layer.msg('请求失败，请稍后再试!');
+                }
+            });*/
+            return false;
+        });
+
+        // 监听头工具栏事件
+        table.on('toolbar(dataTableFilter)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            if (obj.event === "refresh") {
+                active.refresh();
+            }
         });
 
         // 监听行工具事件
         table.on('tool(dataTableFilter)', function (obj) {
-            var data = obj.data
-                , layEvent = obj.event;
-            console.log(data);
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'edit') {
-                $("#name").val(data.name);
-                $("#description").val(data.description);
+                form.val('editFormFilter', {
+                    "id": data.id,
+                    "name": data.name,
+                    "description": data.description
+                });
                 $.ajax({
                     url: '/resourceInfo/listResourceInfoByRoleId',
                     type: 'post',
@@ -133,12 +172,16 @@
                         layer.msg('设置树选中出错了,请稍后再试!', {time: 1000, icon: 2});
                     }
                 });
-
-                var dataaa = $("#formCondition").serializeJson();
-                console.log(dataaa);
-                var index = eject.form('分配资源', 'editorModal','formCondition');
+                var index = eject.form('分配资源', 'editModel', 'editForm', true, 500);
+                var entity = $("#editForm").serializeJson();
                 // layer.close(index);
             }
+        });
+
+        // 全局按钮监听
+        $('.bind-event').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
     });
 </script>

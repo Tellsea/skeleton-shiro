@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>权限管理 - Skeleton</title>
+    <div th:replace="/admin/common/head"></div>
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">权限管理</div>
+
+        <div class="layui-card-body">
+            <div class="layui-row">
+                <div class="layui-col-md5 layui-col-xs12">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>预览</legend>
+                    </fieldset>
+                    <div class="layui-btn-container">
+                        <button type="button" class="layui-btn layui-btn-sm bind-event" data-type="add">
+                            <i class="layui-icon layui-icon-add-1"></i>新增根节点
+                        </button>
+                    </div>
+                    <div id="dataTree"></div>
+                </div>
+                <div class="layui-col-md7 layui-col-xs12">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>更新</legend>
+                    </fieldset>
+                    <form class="layui-form" action="" lay-filter="dataFormFilter">
+                        <input type="hidden" name="id">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">请求路径</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="url" autocomplete="off" placeholder="请输入" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限标识</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="perms" lay-verify="required" autocomplete="off" placeholder="请输入" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限类型</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="type" value="1" title="链接" checked="">
+                                <input type="radio" name="type" value="2" title="按钮">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示图标</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="icon" autocomplete="off" placeholder="请输入" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sort" lay-verify="required|number" value="0" autocomplete="off" placeholder="请输入" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">叶子节点</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="isLeaf" value="1" title="是" checked="">
+                                <input type="radio" name="isLeaf" value="0" title="否">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="submitFilter">
+                                    <i class="layui-icon layui-icon-ok"></i>更新
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/admin/common/js"></div>
+<script th:inline="none">
+    layui.config({
+        base: '/assets/lib/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['form', 'table', 'tree'], function () {
+        var $ = layui.$
+            , tree = layui.tree
+            , form = layui.form
+            , table = layui.table;
+
+        initDataTree();
+
+        // 加载树数据
+        function initDataTree() {
+            $.ajax({
+                url: '/resourceInfo/listResourceInfoByTree',
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    tree.render({
+                        elem: '#dataTree'
+                        , data: res.data
+                        , id: 'myTree'
+                        , edit: ['add', 'del']
+                        , onlyIconControl: tree
+                        , click: function (obj) {
+                            var data = obj.data;
+                            active.get(data.id);
+                        }
+                        , operate: function (obj) {
+                            var type = obj.type; // 得到操作类型：add、edit、del
+                            var data = obj.data; // 得到当前节点的数据
+                            var elem = obj.elem; // 得到当前节点元素
+                            var id = data.id; // 得到节点索引
+                            if (type === 'add') {
+                                active.add(id);
+                            } else if (type === 'del') {
+                                active.del(id);
+                            }
+                        }
+                    });
+                },
+                error: function () {
+                    layer.msg('加载树出错了，请稍后再试!', {time: 1000, icon: 2});
+                }
+            });
+        }
+
+        var active = {
+            add: function (pid) {
+                if("undefined" == typeof pid) pid = 0;
+                $.ajax({
+                    url: '/resourceInfo/saveResourceInfo',
+                    type: 'post',
+                    data: {name: '未命名', type: 1, pid: pid},
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 200) {
+                            initDataTree();
+                        }
+                    },
+                    error: function () {
+                        layer.msg('请求失败，请稍后再试!');
+                    }
+                });
+            },
+            del: function (id) {
+                layer.confirm('确定删除权限信息？', {
+                    title: '系统提示'
+                    , btn: ['确定', '取消']
+                    , yes: function () {
+                        $.ajax({
+                            url: '/resourceInfo/deleteResourceInfo',
+                            type: 'post',
+                            data: {id: id},
+                            dataType: 'json',
+                            success: function (res) {
+                                if (res.code == 200) {
+                                    initDataTree();
+                                }
+                                layer.msg(res.message);
+                            },
+                            error: function () {
+                                layer.msg('请求失败，请稍后再试!');
+                            }
+                        });
+                    }
+                });
+            },
+            get: function (id) {
+                $.ajax({
+                    url: '/resourceInfo/getResourceInfo',
+                    type: 'post',
+                    data: {id: id},
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 200) {
+                            var entity = res.data;
+                            // 表单初始赋值
+                            form.val('dataFormFilter', {
+                                "id": entity.id,
+                                "name": entity.name,
+                                "url": entity.url,
+                                "perms": entity.perms,
+                                "icon": entity.icon,
+                                "sort": entity.sort,
+                                "type": entity.type,
+                                "isLeaf": entity.isLeaf
+                            });
+                        } else {
+                            layer.msg(res.message);
+                        }
+                    },
+                    error: function () {
+                        layer.msg('请求失败，请稍后再试!');
+                    }
+                });
+            }
+        };
+
+        // 监听提交
+        form.on('submit(submitFilter)', function (data) {
+            if (validator.isEmpty($("input[name='id']").val())) {
+                layer.msg('请先选择左侧资源，再进行更新操作');
+                return false;
+            }
+            $.ajax({
+                url: '/resourceInfo/updateResourceInfo',
+                type: 'post',
+                data: data.field,
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        initDataTree();
+                    }
+                    layer.msg(res.message);
+                },
+                error: function () {
+                    layer.msg('请求失败，请稍后再试!');
+                }
+            });
+            return false;
+        });
+
+        // 全局按钮监听
+        $('.bind-event').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>

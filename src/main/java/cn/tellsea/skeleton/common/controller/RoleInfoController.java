@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("roleInfo")
 public class RoleInfoController extends BaseController<RoleInfoService> {
 
+    @GetMapping("init")
+    public String init() {
+        return "admin/role_info";
+    }
+
     /**
      * 新增
      *
@@ -46,11 +51,6 @@ public class RoleInfoController extends BaseController<RoleInfoService> {
     public ResponseResult updateRoleInfo(RoleInfo roleInfo) {
         baseService.updateByPrimaryKeySelective(roleInfo);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
-    }
-
-    @GetMapping("init")
-    public String init() {
-        return "admin/role_info";
     }
 
     /**

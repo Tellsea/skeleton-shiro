@@ -21,6 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("resourceInfo")
 public class ResourceInfoController extends BaseController<ResourceInfoService> {
 
+    @GetMapping("init")
+    public String init() {
+        return "admin/resource_info";
+    }
+
     /**
      * 新增
      *
@@ -45,6 +50,32 @@ public class ResourceInfoController extends BaseController<ResourceInfoService> 
     public ResponseResult updateResourceInfo(ResourceInfo resourceInfo) {
         baseService.updateByPrimaryKeySelective(resourceInfo);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
+    }
+
+    /**
+     * 删除
+     *
+     * @param resourceInfo
+     * @return
+     */
+    @PostMapping("deleteResourceInfo")
+    @ResponseBody
+    public ResponseResult deleteResourceInfo(ResourceInfo resourceInfo) {
+        baseService.delete(resourceInfo);
+        return ResponseResult.build(StatusEnums.DELETE_SUCCESS);
+    }
+
+    /**
+     * 查询单条
+     *
+     * @param resourceInfo
+     * @return
+     */
+    @PostMapping("getResourceInfo")
+    @ResponseBody
+    public ResponseResult getResourceInfo(ResourceInfo resourceInfo) {
+        baseService.select(resourceInfo);
+        return ResponseResult.build(StatusEnums.OK, baseService.selectOne(resourceInfo));
     }
 
     /**

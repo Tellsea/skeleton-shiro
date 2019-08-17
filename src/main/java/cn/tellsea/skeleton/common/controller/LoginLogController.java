@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("loginLog")
 public class LoginLogController extends BaseController<LoginLogService> {
 
+    @GetMapping("init")
+    public String init() {
+        return "admin/login_log";
+    }
+
     /**
      * 新增
      *
@@ -46,11 +51,6 @@ public class LoginLogController extends BaseController<LoginLogService> {
     public ResponseResult updateLoginLog(LoginLog loginLog) {
         baseService.updateByPrimaryKeySelective(loginLog);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
-    }
-
-    @GetMapping("init")
-    public String init() {
-        return "admin/login_log";
     }
 
     /**

@@ -16,4 +16,9 @@ public class CommonPageController {
     public String index() {
         return "admin/index";
     }
+
+    @GetMapping("/console")
+    public String console() {
+        return "admin/console";
+    }
 }
