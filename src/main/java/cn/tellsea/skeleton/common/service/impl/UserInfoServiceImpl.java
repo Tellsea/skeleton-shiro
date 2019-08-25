@@ -5,8 +5,11 @@ import cn.tellsea.skeleton.common.entity.UserInfo;
 import cn.tellsea.skeleton.common.entity.vo.UserInfoVO;
 import cn.tellsea.skeleton.common.service.UserInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
+import cn.tellsea.skeleton.core.global.enums.StatusEnums;
+import cn.tellsea.skeleton.core.global.exception.SkeletonException;
 import cn.tellsea.skeleton.core.layui.LayuiTable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,5 +31,13 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo, UserInfoDao> 
             list = baseDao.listUserInfo(userInfo);
         }
         return LayuiTable.build(count, list);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList) {
+        baseMapper.insertSelective(userInfo);
+        System.out.println(1 / 0);
+        baseMapper.insertList(userInfoList);
     }
 }

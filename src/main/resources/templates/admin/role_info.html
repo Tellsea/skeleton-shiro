@@ -105,6 +105,7 @@
             ]]
         });
 
+        var treeCheckedIdss = [];
         var active = {
             refresh: function () {
                 table.reload('dataTable', {
@@ -112,28 +113,22 @@
 
                     }
                 });
+            },
+            treeCheckedId: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    treeCheckedIdss.push(data[i].id);
+                }
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].children.length > 0) {
+                        active.treeCheckedId(data[i].children);
+                    }
+                }
+            },
+            treeCheckedIds: function (data) {
+                active.treeCheckedId(data);
+                return treeCheckedIdss;
             }
         };
-
-        // 监听提交
-        form.on('submit(submitFilter)', function (data) {
-            data.field = tree.getChecked('myTree');
-            console.log(data.field);
-            /*$.ajax({
-                url: '/roleInfo/updateRoleInfo',
-                type: 'post',
-                data: data.field,
-                dataType: 'json',
-                success: function (res) {
-                    layer.msg(res.message);
-                    active.refresh();
-                },
-                error: function () {
-                    layer.msg('请求失败，请稍后再试!');
-                }
-            });*/
-            return false;
-        });
 
         // 监听头工具栏事件
         table.on('toolbar(dataTableFilter)', function (obj) {
@@ -172,9 +167,29 @@
                         layer.msg('设置树选中出错了,请稍后再试!', {time: 1000, icon: 2});
                     }
                 });
-                var index = eject.form('分配资源', 'editModel', 'editForm', true, 500);
-                var entity = $("#editForm").serializeJson();
-                // layer.close(index);
+                var index = eject.form('分配资源', 'editModel', 'editForm', function () {
+                    alert('点击确定');
+                    // var entity = $("#editForm").serializeJson();
+                    var checkedData = tree.getChecked('myTree');
+                    // 获得所有选中节点的id
+                    console.log(checkedData);
+                    var resourceIds = active.treeCheckedIds(checkedData);
+                    console.log(resourceIds.join(','));
+                    /*$.ajax({
+                        url: '/roleInfo/updateRoleInfo',
+                        type: 'post',
+                        data: data.field,
+                        dataType: 'json',
+                        success: function (res) {
+                            layer.msg(res.message);
+                            active.refresh();
+                        },
+                        error: function () {
+                            layer.msg('请求失败，请稍后再试!');
+                        }
+                    });*/
+                    // layer.close(index);
+                }, false, 500);
             }
         });
 

@@ -79,7 +79,7 @@ layui.define(["layer"], function (exports) {
          * @param h       高度
          * @returns {s.index}
          */
-        form: (title = false, pageId, formId, isMax = true, w = calc.width(), h = calc.height()) => {
+        form: (title = false, pageId, formId, yesFunc, isMax = true, w = calc.width(), h = calc.height()) => {
             var index = layer.open({
                 type: 1,
                 title: title,
@@ -90,6 +90,8 @@ layui.define(["layer"], function (exports) {
                 shadeClose: true,
                 scrollbar: false, // 是否带滚动 true 带滚动 false 不带滚动
                 shade: 0.4,
+                btn: ["确定", "取消"],
+                yes: yesFunc,
                 end: function () {
                     $("#" + formId)[0].reset();
                     $("[name='sizeDiv']").remove();

@@ -4,6 +4,8 @@ import cn.tellsea.skeleton.common.entity.UserInfo;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.core.layui.LayuiTable;
 
+import java.util.List;
+
 /**
  * 用户表 Service接口
  *
@@ -19,4 +21,6 @@ public interface UserInfoService extends BaseService<UserInfo> {
      * @return
      */
     LayuiTable listUserInfo(UserInfo userInfo);
+
+    void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList);
 }
