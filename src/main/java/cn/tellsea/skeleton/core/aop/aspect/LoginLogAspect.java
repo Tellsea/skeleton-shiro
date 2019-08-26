@@ -4,7 +4,7 @@ import cn.tellsea.skeleton.common.entity.LoginLog;
 import cn.tellsea.skeleton.common.service.LoginLogService;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
-import cn.tellsea.skeleton.core.global.exception.SkeletonException;
+import cn.tellsea.skeleton.core.global.exception.GlobalException;
 import cn.tellsea.skeleton.core.util.AddressUtils;
 import cn.tellsea.skeleton.core.util.HttpContextUtils;
 import cn.tellsea.skeleton.core.util.IpUtils;
@@ -69,7 +69,7 @@ public class LoginLogAspect {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             log.error("环绕切入异常");
-            throw new SkeletonException(StatusEnums.SERVER_ERROR);
+            throw new GlobalException(StatusEnums.SERVER_ERROR);
         }
         String ip = IpUtils.getIpAddr(request);
         loginLog.setIp(ip);

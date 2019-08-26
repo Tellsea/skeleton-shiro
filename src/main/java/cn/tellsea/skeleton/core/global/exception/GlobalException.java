@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SkeletonException extends RuntimeException {
+public class GlobalException extends RuntimeException {
 
     private StatusEnums statusEnums;
 }

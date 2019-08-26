@@ -4,7 +4,7 @@ import cn.tellsea.skeleton.core.base.dao.BaseDao;
 import cn.tellsea.skeleton.core.base.mapper.MyMapper;
 import cn.tellsea.skeleton.core.base.service.BaseService;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
-import cn.tellsea.skeleton.core.global.exception.SkeletonException;
+import cn.tellsea.skeleton.core.global.exception.GlobalException;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -31,7 +31,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void insert(T record) {
         int count = baseMapper.insert(record);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.SAVE_ERROR);
+            throw new GlobalException(StatusEnums.SAVE_ERROR);
         }
     }
 
@@ -39,7 +39,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void insertSelective(T record) {
         int count = baseMapper.insertSelective(record);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.SAVE_ERROR);
+            throw new GlobalException(StatusEnums.SAVE_ERROR);
         }
     }
 
@@ -47,7 +47,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void insertList(List<? extends T> recordList) {
         int count = baseMapper.insertList(recordList);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.SAVE_ERROR);
+            throw new GlobalException(StatusEnums.SAVE_ERROR);
         }
     }
 
@@ -55,7 +55,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void insertUseGeneratedKeys(T record) {
         int count = baseMapper.insertUseGeneratedKeys(record);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.SAVE_ERROR);
+            throw new GlobalException(StatusEnums.SAVE_ERROR);
         }
     }
 
@@ -63,7 +63,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void delete(T record) {
         int count = baseMapper.delete(record);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -71,7 +71,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void deleteByPrimaryKey(Object key) {
         int count = baseMapper.deleteByPrimaryKey(key);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -79,7 +79,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void deleteByIds(String ids) {
         int count = baseMapper.deleteByIds(ids);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -87,7 +87,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void deleteByExample(Object example) {
         int count = baseMapper.deleteByExample(example);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -95,7 +95,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void updateByPrimaryKey(T record) {
         int count = baseMapper.updateByPrimaryKey(record);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -103,7 +103,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void updateByPrimaryKeySelective(T record) {
         int count = baseMapper.updateByPrimaryKeySelective(record);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -111,7 +111,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void updateByExample(T record, Object example) {
         int count = baseMapper.updateByExample(record, example);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -119,7 +119,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void updateByExampleSelective(T record, Object example) {
         int count = baseMapper.updateByExampleSelective(record, example);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -127,7 +127,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public void updateBatchByPrimaryKeySelective(List<? extends T> recordList) {
         int count = baseMapper.updateBatchByPrimaryKeySelective(recordList);
         if (0 == count) {
-            throw new SkeletonException(StatusEnums.DELETE_ERROR);
+            throw new GlobalException(StatusEnums.DELETE_ERROR);
         }
     }
 
@@ -135,7 +135,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public T selectByPrimaryKey(Object key) {
         T t = baseMapper.selectByPrimaryKey(key);
         if (null == t) {
-            throw new SkeletonException(StatusEnums.NOT_FOUND);
+            throw new GlobalException(StatusEnums.NOT_FOUND);
         }
         return t;
     }
@@ -144,7 +144,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public T selectOne(T record) {
         T t = baseMapper.selectOne(record);
         if (null == t) {
-            throw new SkeletonException(StatusEnums.NOT_FOUND);
+            throw new GlobalException(StatusEnums.NOT_FOUND);
         }
         return t;
     }
@@ -153,7 +153,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     public T selectOneByExample(Object example) {
         T t = baseMapper.selectOneByExample(example);
         if (null == t) {
-            throw new SkeletonException(StatusEnums.NOT_FOUND);
+            throw new GlobalException(StatusEnums.NOT_FOUND);
         }
         return t;
     }
@@ -171,7 +171,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     @Override
     public List<T> selectByExample(Object example) {
         if (ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+            throw new GlobalException(StatusEnums.PARAM_NOT_NULL);
         }
         return baseMapper.selectByExample(example);
     }
@@ -179,7 +179,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     @Override
     public List<T> selectByRowBounds(T record, RowBounds rowBounds) {
         if (null == record || null == rowBounds) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+            throw new GlobalException(StatusEnums.PARAM_NOT_NULL);
         }
         return baseMapper.selectByRowBounds(record, rowBounds);
     }
@@ -187,7 +187,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     @Override
     public List<T> selectByExampleAndRowBounds(Object example, RowBounds rowBounds) {
         if (null == rowBounds || ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+            throw new GlobalException(StatusEnums.PARAM_NOT_NULL);
         }
         return baseMapper.selectByExampleAndRowBounds(example, rowBounds);
     }
@@ -195,7 +195,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     @Override
     public int selectCount(T record) {
         if (ObjectUtils.isEmpty(record)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+            throw new GlobalException(StatusEnums.PARAM_NOT_NULL);
         }
         return baseMapper.selectCount(record);
     }
@@ -203,7 +203,7 @@ public class BaseServiceImpl<T, D extends BaseDao> implements BaseService<T> {
     @Override
     public int selectCountByExample(Object example) {
         if (ObjectUtils.isEmpty(example)) {
-            throw new SkeletonException(StatusEnums.PARAM_NOT_NULL);
+            throw new GlobalException(StatusEnums.PARAM_NOT_NULL);
         }
         return baseMapper.selectCountByExample(example);
     }

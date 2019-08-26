@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>出错了</title>
+    <div th:replace="/admin/common/head"></div>
+</head>
+<body>
+
+
+<div class="layui-fluid">
+    <div class="layadmin-tips">
+        <i class="layui-icon" face>&#xe664;</i>
+
+        <div class="layui-text" style="font-size: 20px;">
+            好像出错了呢
+        </div>
+
+    </div>
+</div>
+
+
+<div th:replace="/admin/common/js"></div>
+<script th:inline="none">
+    layui.config({
+        base: '/assets/lib/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index']);
+</script>
+</body>
+</html>

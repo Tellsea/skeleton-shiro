@@ -2,14 +2,15 @@ package cn.tellsea.skeleton.core.global.handle;
 
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
-import cn.tellsea.skeleton.core.global.exception.SkeletonException;
+import cn.tellsea.skeleton.core.global.exception.GlobalException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 全局异常处理
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description Created on 2019/7/13
  */
 @Slf4j
-@RestControllerAdvice
+@ControllerAdvice
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class GlobalExceptionHandle {
 
@@ -30,11 +31,12 @@ public class GlobalExceptionHandle {
         return ResponseResult.build(StatusEnums.SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = SkeletonException.class)
-    public ResponseResult globalExceptionHandle(SkeletonException e) {
+    @ExceptionHandler(value = GlobalException.class)
+    public String globalExceptionHandle(GlobalException e, Model model) {
+        model.addAttribute("test", "123456");
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return ResponseResult.build(StatusEnums.SERVER_ERROR);
+        return "admin/404";
     }
 }

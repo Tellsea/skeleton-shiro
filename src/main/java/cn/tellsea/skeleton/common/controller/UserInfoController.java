@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 用户表 前端控制器
  *
@@ -63,5 +66,16 @@ public class UserInfoController extends BaseController<UserInfoService> {
     @ResponseBody
     public LayuiTable listUserInfo(UserInfo userInfo) {
         return baseService.listUserInfo(userInfo);
+    }
+
+    @GetMapping("testTr")
+    @ResponseBody
+    public void testTr() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName("test user 1");
+        userInfo.setSalt("aaaaa");
+        List<UserInfo> list = new ArrayList<>();
+        list.add(userInfo);
+        baseService.saveUserInfo(userInfo, list);
     }
 }

@@ -138,7 +138,7 @@
         "name": "404"
         ,"title": "404"
       },{
-        "name": "error"
+        "name": "templates.admin.error"
         ,"title": "错误提示"
       }]
     }, {

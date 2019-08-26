@@ -4,23 +4,23 @@
  @Author：贤心
  @Site：http://layim.layui.com
  @License：LGPL
-    
+
  */
- 
+
 layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(exports){
-  
+
   var v = '2.1.0';
   var $ = layui.zepto;
   var laytpl = layui.laytpl;
   var layer = layui['layer-mobile'];
   var upload = layui['upload-mobile'];
   var device = layui.device();
-  
+
   var SHOW = 'layui-show', THIS = 'layim-this', MAX_ITEM = 20;
 
   //回调
   var call = {};
-  
+
   //对外API
   var LAYIM = function(){
     this.v = v;
@@ -29,7 +29,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       events[methid] ? events[methid].call(this, othis, e) : '';
     });
   };
-  
+
   //避免tochmove触发touchend
   var touch = function(obj, child, fn){
     var move, type = typeof child === 'function', end = function(e){
@@ -70,10 +70,10 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       }).on('touchend', child, end);
     }
   };
-  
+
   //是否支持Touch
   var isTouch = /Android|iPhone|SymbianOS|Windows Phone|iPad|iPod/.test(navigator.userAgent);
-  
+
   //底部弹出
   layer.popBottom = function(options){
     layer.close(layer.popBottom.index);
@@ -84,7 +84,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,className: 'layim-layer'
     }, options));
   };
-  
+
   //基础配置
   LAYIM.prototype.config = function(options){
     options = options || {};
@@ -97,7 +97,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     }, options);
     init(options);
   };
-  
+
   //监听事件
   LAYIM.prototype.on = function(events, callback){
     if(typeof callback === 'function'){
@@ -105,13 +105,13 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     }
     return this;
   };
-  
+
   //打开一个自定义的会话界面
   LAYIM.prototype.chat = function(data){
     if(!window.JSON || !window.JSON.parse) return;
     return popchat(data, -1), this;
   };
-  
+
   //打开一个自定义面板
   LAYIM.prototype.panel = function(options){
     return popPanel(options);
@@ -121,44 +121,44 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
   LAYIM.prototype.cache = function(){
     return cache;
   };
-  
+
   //接受消息
   LAYIM.prototype.getMessage = function(data){
     return getMessage(data), this;
   };
-  
+
   //添加好友/群
   LAYIM.prototype.addList = function(data){
     return addList(data), this;
   };
-  
+
   //删除好友/群
   LAYIM.prototype.removeList = function(data){
     return removeList(data), this;
   };
-  
+
   //设置好友在线/离线状态
   LAYIM.prototype.setFriendStatus = function(id, type){
     var list = $('.layim-friend'+ id);
     list[type === 'online' ? 'removeClass' : 'addClass']('layim-list-gray');
   };
-  
+
   //设置当前会话状态
   LAYIM.prototype.setChatStatus = function(str){
     var thatChat = thisChat(), status = thatChat.elem.find('.layim-chat-status');
     return status.html(str), this;
   };
-  
+
   //标记新动态
   LAYIM.prototype.showNew = function(alias, show){
     showNew(alias, show);
   };
-  
+
   //解析聊天内容
   LAYIM.prototype.content = function(content){
     return layui.data.content(content);
   };
-  
+
   //列表内容模板
   var listTpl = function(options){
     var nodata = {
@@ -168,25 +168,25 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     };
 
     options = options || {};
-    
+
     //如果是历史记录，则读取排序好的数据
     if(options.type === 'history'){
       options.item = options.item || 'd.sortHistory';
     }
-    
+
     return ['{{# var length = 0; layui.each('+ options.item +', function(i, data){ length++; }}'
       ,'<li layim-event="chat" data-type="'+ options.type +'" data-index="'+ (options.index ? '{{'+ options.index +'}}' : (options.type === 'history' ? '{{data.type}}' : options.type) +'{{data.id}}') +'" class="layim-'+ (options.type === 'history' ? '{{data.type}}' : options.type) +'{{data.id}} {{ data.status === "offline" ? "layim-list-gray" : "" }}"><div><img src="{{data.avatar}}"></div><span>{{ data.username||data.groupname||data.name||"佚名" }}</span><p>{{ data.remark||data.sign||"" }}</p><span class="layim-msg-status">new</span></li>'
     ,'{{# }); if(length === 0){ }}'
       ,'<li class="layim-null">'+ (nodata[options.type] || "暂无数据") +'</li>'
     ,'{{# } }}'].join('');
   };
-  
+
   //公共面板
   var comTpl = function(tpl, anim, back){
     return ['<div class="layim-panel'+ (anim ? ' layui-m-anim-left' : '') +'">'
       ,'<div class="layim-title" style="background-color: {{d.base.chatTitleColor}};">'
         ,'<p>'
-          ,(back ? '<i class="layui-icon layim-chat-back" layim-event="back">&#xe603;</i>' : '') 
+          ,(back ? '<i class="layui-icon layim-chat-back" layim-event="back">&#xe603;</i>' : '')
           ,'{{ d.title || d.base.title }}<span class="layim-chat-status"></span>'
           ,'{{# if(d.data){ }}'
             ,'{{# if(d.data.type === "group"){ }}'
@@ -200,7 +200,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,'</div>'
     ,'</div>'].join('');
   };
-  
+
   //主界面模版
   var elemTpl = ['<div class="layui-layim">'
     ,'<div class="layim-tab-content layui-show">'
@@ -256,7 +256,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     ,'<li title="联系人" layim-event="tab" lay-type="friend"><i class="layui-icon">&#xe612;</i><span>联系人</span><i class="layim-new" id="LAY_layimNewList"></i></li>'
     ,'<li title="更多" layim-event="tab" lay-type="more"><i class="layui-icon">&#xe670;</i><span>更多</span><i class="layim-new" id="LAY_layimNewMore"></i></li>'
   ,'</ul>'].join('');
-  
+
   //聊天主模板
   var elemChatTpl = ['<div class="layim-chat layim-chat-{{d.data.type}}">'
     ,'<div class="layim-chat-main">'
@@ -278,19 +278,19 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,'</div>'
     ,'</div>'
   ,'</div>'].join('');
-  
+
   //补齐数位
   var digit = function(num){
     return num < 10 ? '0' + (num|0) : num;
   };
-  
+
   //转换时间
   layui.data.date = function(timestamp){
     var d = new Date(timestamp||new Date());
     return digit(d.getMonth() + 1) + '-' + digit(d.getDate())
     + ' ' + digit(d.getHours()) + ':' + digit(d.getMinutes());
   };
-  
+
   //转换内容
   layui.data.content = function(content){
     //支持的html标签
@@ -300,7 +300,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     content = (content||'').replace(/&(?!#?[a-zA-Z0-9]+;)/g, '&amp;')
     .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/"/g, '&quot;') //XSS
     .replace(/@(\S+)(\s+?|$)/g, '@<a href="javascript:;">$1</a>$2') //转义@
-    
+
     .replace(/face\[([^\s\[\]]+?)\]/g, function(face){  //转义表情
       var alt = face.replace(/^face/g, '');
       return '<img alt="'+ alt +'" title="'+ alt +'" src="' + faces[alt] + '">';
@@ -320,24 +320,24 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     .replace(/video\[([^\s]+?)\]/g, function(video){  //转义音频
       return '<div class="layui-unselect layui-layim-video" layim-event="playVideo" data-src="' + video.replace(/(^video\[)|(\]$)/g, '') + '"><i class="layui-icon">&#xe652;</i></div>';
     })
-    
+
     .replace(/a\([\s\S]+?\)\[[\s\S]*?\]/g, function(str){ //转义链接
       var href = (str.match(/a\(([\s\S]+?)\)\[/)||[])[1];
       var text = (str.match(/\)\[([\s\S]*?)\]/)||[])[1];
       if(!href) return str;
       return '<a href="'+ href +'" target="_blank">'+ (text||href) +'</a>';
     }).replace(html(), '\<$1 $2\>').replace(html('/'), '\</$1\>') //转移HTML代码
-    .replace(/\n/g, '<br>') //转义换行 
+    .replace(/\n/g, '<br>') //转义换行
     return content;
   };
-  
+
   var elemChatMain = ['<li class="layim-chat-li{{ d.mine ? " layim-chat-mine" : "" }}">'
     ,'<div class="layim-chat-user"><img src="{{ d.avatar }}"><cite>'
       ,'{{ d.username||"佚名" }}'
     ,'</cite></div>'
     ,'<div class="layim-chat-text">{{ layui.data.content(d.content||"&nbsp;") }}</div>'
   ,'</li>'].join('');
-  
+
   //处理初始化信息
   var cache = {message: {}, chat: []}, init = function(options){
     var init = options.init || {}
@@ -391,7 +391,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       }
     });
   };
-  
+
   //弹出公共面板
   var popPanel = function(options, anim){
     options = options || {};
@@ -414,7 +414,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,end: options.end
     });
   }
-  
+
   //显示聊天面板
   var layimChat, layimMin, To = {}, popchat = function(data, anim, back){
     data = data || {};
@@ -422,7 +422,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     if(!data.id){
       return layer.msg('非法用户');
     }
-    
+
     layer.close(popchat.index);
 
     return popchat.index = popPanel({
@@ -435,18 +435,18 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
 
         hotkeySend();
         viewChatlog();
-        
+
         delete cache.message[data.type + data.id]; //剔除缓存消息
         showNew('Msg');
-        
+
         //聊天窗口的切换监听
         var thatChat = thisChat(), chatMain = thatChat.elem.find('.layim-chat-main');
         layui.each(call.chatChange, function(index, item){
           item && item(thatChat);
         });
-        
+
         fixIosScroll(chatMain);
-        
+
         //输入框获取焦点
         thatChat.textarea.on('focus', function(){
           setTimeout(function(){
@@ -461,13 +461,13 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     }, anim);
 
   };
-  
+
   //修复IOS设备在边界引发无法滚动的问题
   var fixIosScroll = function(othis){
     if(device.ios){
       othis.on('touchmove', function(e){
         var top = othis.scrollTop();
-        if(top <= 0){ 
+        if(top <= 0){
           othis.scrollTop(1);
           e.preventDefault(e);
         }
@@ -478,16 +478,16 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       });
     }
   };
-  
+
   //同步置灰状态
   var syncGray = function(data){
     $('.layim-'+data.type+data.id).each(function(){
       if($(this).hasClass('layim-list-gray')){
-        layui.layim.setFriendStatus(data.id, 'offline'); 
+        layui.layim.setFriendStatus(data.id, 'offline');
       }
     });
   };
-  
+
   //获取当前聊天面板
   var thisChat = function(){
     if(!layimChat) return {};
@@ -499,20 +499,20 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,textarea: cont.find('input')
     };
   };
-  
+
   //将对象按子对象的某个key排序
   var sort = function(data, key, asc){
     var arr = []
-    ,compare = function (obj1, obj2) { 
-      var value1 = obj1[key]; 
-      var value2 = obj2[key]; 
-      if (value2 < value1) { 
-        return -1; 
-      } else if (value2 > value1) { 
-        return 1; 
-      } else { 
-        return 0; 
-      } 
+    ,compare = function (obj1, obj2) {
+      var value1 = obj1[key];
+      var value2 = obj2[key];
+      if (value2 < value1) {
+        return -1;
+      } else if (value2 > value1) {
+        return 1;
+      } else {
+        return 0;
+      }
     };
     layui.each(data, function(index, item){
       arr.push(item);
@@ -521,28 +521,28 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     if(asc) arr.reverse();
     return arr;
   };
-  
+
   //记录历史会话
   var setHistory = function(data){
     var local = layui.data('layim-mobile')[cache.mine.id] || {};
     var obj = {}, history = local.history || {};
     var is = history[data.type + data.id];
-    
+
     if(!layimMain) return;
-    
+
     var historyElem = layimMain.find('.layim-list-history');
 
     data.historyTime = new Date().getTime();
     data.sign = data.content;
     history[data.type + data.id] = data;
-  
+
     local.history = history;
-    
+
     layui.data('layim-mobile', {
       key: cache.mine.id
       ,value: local
     });
-    
+
     var msgItem = historyElem.find('.layim-'+ data.type + data.id)
     ,msgNums = (cache.message[data.type+data.id]||[]).length //未读消息数
     ,showMsg = function(){
@@ -570,7 +570,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
 
     showNew('Msg');
   };
-  
+
   //标注底部导航新动态徽章
   var showNew = function(alias, show){
     if(!show){
@@ -582,7 +582,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     }
     $('#LAY_layimNew'+alias)[show ? 'addClass' : 'removeClass'](SHOW);
   };
-  
+
   //发送消息
   var sendMessage = function(){
     var data = {
@@ -594,21 +594,21 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     var thatChat = thisChat(), ul = thatChat.elem.find('.layim-chat-main ul');
     var To = thatChat.data, maxLength = cache.base.maxLength || 3000;
     var time =  new Date().getTime(), textarea = thatChat.textarea;
-    
+
     data.content = textarea.val();
-    
+
     if(data.content === '') return;
 
     if(data.content.length > maxLength){
       return layer.msg('内容最长不能超过'+ maxLength +'个字符')
     }
-    
+
     if(time - (sendMessage.time||0) > 60*1000){
       ul.append('<li class="layim-chat-system"><span>'+ layui.data.date() +'</span></li>');
       sendMessage.time = time;
     }
     ul.append(laytpl(elemChatMain).render(data));
-    
+
     var param = {
       mine: data
       ,to: To
@@ -622,37 +622,37 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,mine: true
     };
     pushChatlog(message);
-    
+
     layui.each(call.sendMessage, function(index, item){
       item && item(param);
     });
-    
+
     To.content = data.content;
     setHistory(To);
     chatListMore();
     textarea.val('');
-    
+
     textarea.next().addClass('layui-disabled');
   };
-  
+
   //消息声音提醒
   var voice = function() {
     var audio = document.createElement("audio");
     audio.src = layui.cache.dir+'css/modules/layim/voice/'+ cache.base.voice;
     audio.play();
   };
-  
+
   //接受消息
   var messageNew = {}, getMessage = function(data){
     data = data || {};
-    
+
     var group = {}, thatChat = thisChat(), thisData = thatChat.data || {}
     ,isThisData = thisData.id == data.id && thisData.type == data.type; //是否当前打开联系人的消息
-    
+
     data.timestamp = data.timestamp || new Date().getTime();
     data.system || pushChatlog(data);
     messageNew = JSON.parse(JSON.stringify(data));
-    
+
     if(cache.base.voice){
       voice();
     }
@@ -701,12 +701,12 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       delete newData.username;
     }
     setHistory(newData);
-    
+
     if(!layimChat || !isThisData) return;
 
     var cont = layimChat.find('.layim-chat')
     ,ul = cont.find('.layim-chat-main ul');
-    
+
     //系统消息
     if(data.system){
       ul.append('<li class="layim-chat-system"><span>'+ data.content +'</span></li>');
@@ -719,7 +719,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     }
     chatListMore();
   };
-  
+
   //存储最近MAX_ITEM条聊天记录到本地
   var pushChatlog = function(message){
     var local = layui.data('layim-mobile')[cache.mine.id] || {};
@@ -738,7 +738,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       ,value: local
     });
   };
-  
+
   //渲染本地最新聊天记录到相应面板
   var viewChatlog = function(){
     var local = layui.data('layim-mobile')[cache.mine.id] || {};
@@ -753,11 +753,11 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     });
     chatListMore();
   };
-  
+
   //添加好友或群
   var addList = function(data){
     var obj = {}, has, listElem = layimMain.find('.layim-list-'+ data.type);
-    
+
     if(cache[data.type]){
       if(data.type === 'friend'){
         layui.each(cache.friend, function(index, item){
@@ -788,7 +788,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         cache.group.push(data);
       }
     }
-    
+
     if(has) return;
 
     var list = laytpl(listTpl({
@@ -813,7 +813,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       }
     }
   };
-  
+
   //移出好友或群
   var removeList = function(data){
     var listElem = layimMain.find('.layim-list-'+ data.type);
@@ -827,7 +827,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
               var list = li.find('.layui-layim-list').children('li');
               li.find('.layui-layim-list').children('li').eq(index).remove();
               cache.friend[index1].list.splice(index, 1); //从cache的friend里面也删除掉好友
-              li.find('.layim-count').html(cache.friend[index1].list.length); //刷新好友数量  
+              li.find('.layim-count').html(cache.friend[index1].list.length); //刷新好友数量
               //如果一个好友都没了
               if(cache.friend[index1].list.length === 0){
                 li.find('.layui-layim-list').html('<li class="layim-null">该分组下已无好友了</li>');
@@ -851,12 +851,12 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       }
     }
   };
-  
+
   //查看更多记录
   var chatListMore = function(){
     var thatChat = thisChat(), chatMain = thatChat.elem.find('.layim-chat-main');
-    var ul = chatMain.find('ul'), li = ul.children('.layim-chat-li'); 
-    
+    var ul = chatMain.find('ul'), li = ul.children('.layim-chat-li');
+
     if(li.length >= MAX_ITEM){
       var first = li.eq(0);
       first.prev().remove();
@@ -867,7 +867,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     }
     chatMain.scrollTop(chatMain[0].scrollHeight + 1000);
   };
-  
+
   //快捷键发送
   var hotkeySend = function(){
     var thatChat = thisChat(), textarea = thatChat.textarea;
@@ -881,7 +881,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       btn[textarea.val() === '' ? 'addClass' : 'removeClass']('layui-disabled');
     });
   };
-  
+
   //表情库
   var faces = function(){
     var alt = ["[微笑]", "[嘻嘻]", "[哈哈]", "[可爱]", "[可怜]", "[挖鼻]", "[吃惊]", "[害羞]", "[挤眼]", "[闭嘴]", "[鄙视]", "[爱你]", "[泪]", "[偷笑]", "[亲亲]", "[生病]", "[太开心]", "[白眼]", "[右哼哼]", "[左哼哼]", "[嘘]", "[衰]", "[委屈]", "[吐]", "[哈欠]", "[抱抱]", "[怒]", "[疑问]", "[馋嘴]", "[拜拜]", "[思考]", "[汗]", "[困]", "[睡]", "[钱]", "[失望]", "[酷]", "[色]", "[哼]", "[鼓掌]", "[晕]", "[悲伤]", "[抓狂]", "[黑线]", "[阴险]", "[怒骂]", "[互粉]", "[心]", "[伤心]", "[猪头]", "[熊猫]", "[兔子]", "[ok]", "[耶]", "[good]", "[NO]", "[赞]", "[来]", "[弱]", "[草泥马]", "[神马]", "[囧]", "[浮云]", "[给力]", "[围观]", "[威武]", "[奥特曼]", "[礼物]", "[钟]", "[话筒]", "[蜡烛]", "[蛋糕]"], arr = {};
@@ -890,27 +890,27 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
     });
     return arr;
   }();
-  
-  
+
+
   var stope = layui.stope; //组件事件冒泡
-  
+
   //在焦点处插入内容
   var focusInsert = function(obj, str, nofocus){
     var result, val = obj.value;
     nofocus || obj.focus();
     if(document.selection){ //ie
-      result = document.selection.createRange(); 
-      document.selection.empty(); 
-      result.text = str; 
+      result = document.selection.createRange();
+      document.selection.empty();
+      result.text = str;
     } else {
       result = [val.substring(0, obj.selectionStart), str, val.substr(obj.selectionEnd)];
       nofocus || obj.focus();
       obj.value = result.join('');
     }
   };
-  
+
   //事件
-  var anim = 'layui-anim-upbit', events = { 
+  var anim = 'layui-anim-upbit', events = {
     //弹出聊天面板
     chat: function(othis){
       var local = layui.data('layim-mobile')[cache.mine.id] || {};
@@ -930,7 +930,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       popchat(data, true);
       $('.layim-'+ data.type + data.id).find('.layim-msg-status').removeClass(SHOW);
     }
-    
+
     //展开联系人分组
     ,spread: function(othis){
       var type = othis.attr('lay-type');
@@ -945,14 +945,14 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       othis.attr('lay-type', spread);
       othis.find('.layui-icon').html(spread === 'true' ? '&#xe61a;' : '&#xe602;');
     }
-    
+
     //底部导航切换
     ,tab: function(othis){
       var index = othis.index(), main = '.layim-tab-content';
       othis.addClass(THIS).siblings().removeClass(THIS);
       layimMain.find(main).eq(index).addClass(SHOW).siblings(main).removeClass(SHOW);
     }
-    
+
     //返回到上一个面板
     ,back: function(othis){
       var layero = othis.parents('.layui-m-layer').eq(0)
@@ -969,12 +969,12 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         }, 200);
       });
     }
-    
+
     //发送聊天内容
     ,send: function(){
       sendMessage();
     }
-    
+
     //表情
     ,face: function(othis, e){
       var content = '', thatChat = thisChat(), input = thatChat.textarea;
@@ -1005,7 +1005,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
       $(document).off('touchend', events.faceHide)
       .off('click', events.faceHide);
     }
-    
+
     //图片或一般文件
     ,image: function(othis){
       var type = othis.data('type') || 'images', api = {
@@ -1034,26 +1034,26 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         }
       });
     }
-    
+
     //扩展工具栏
     ,extend: function(othis){
       var filter = othis.attr('lay-filter')
       ,thatChat = thisChat();
-      
+
       layui.each(call['tool('+ filter +')'], function(index, item){
         item && item.call(othis, function(content){
           focusInsert(thatChat.textarea[0], content);
         }, sendMessage, thatChat);
       });
     }
-    
+
     //弹出新的朋友面板
     ,newFriend: function(){
       layui.each(call.newFriend, function(index, item){
         item && item();
       });
     }
-    
+
     //弹出群组面板
     ,group: function(){
       popPanel({
@@ -1067,7 +1067,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         ,data: {}
       });
     }
-    
+
     //查看群组成员
     ,detail: function(){
       var thatChat = thisChat();
@@ -1075,7 +1075,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         item && item(thatChat.data);
       });
     }
-    
+
     //播放音频
     ,playAudio: function(othis){
       var audioData = othis.data('audio')
@@ -1085,13 +1085,13 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         othis.removeAttr('status');
         othis.find('i').html('&#xe652;');
       };
-      if(othis.data('error')){
+      if(othis.data('templates.admin.error')){
         return layer.msg('播放音频源异常');
       }
       if(!audio.play){
         return layer.msg('您的浏览器不支持audio');
       }
-      if(othis.attr('status')){   
+      if(othis.attr('status')){
         pause();
       } else {
         audioData || (audio.src = othis.data('src'));
@@ -1106,12 +1106,12 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         //播放异常
         audio.onerror = function(){
           layer.msg('播放音频源异常');
-          othis.data('error', true);
+          othis.data('templates.admin.error', true);
           pause();
         };
-      } 
+      }
     }
-    
+
     //播放视频
     ,playVideo: function(othis){
       var videoData = othis.data('src')
@@ -1127,7 +1127,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         ,content: '<div style="background-color: #000; height: 100%;"><video style="position: absolute; width: 100%; height: 100%;" src="'+ videoData +'" autoplay="autoplay"></video></div>'
       });
     }
-    
+
     //聊天记录
     ,chatLog: function(othis){
       var thatChat = thisChat();
@@ -1135,7 +1135,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         item && item(thatChat.data, thatChat.elem.find('.layim-chat-main>ul'));
       });
     }
-    
+
     //更多列表
     ,moreList: function(othis){
       var filter = othis.attr('lay-filter');
@@ -1145,7 +1145,7 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         });
       });
     }
-    
+
     //关于
     ,about: function(){
       layer.open({
@@ -1155,9 +1155,9 @@ layui.define(['laytpl', 'upload-mobile', 'layer-mobile', 'zepto'], function(expo
         ,btn: '我知道了'
       });
     }
-    
+
   };
-  
+
   //暴露接口
   exports('layim-mobile', new LAYIM());
 

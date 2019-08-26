@@ -1,7 +1,7 @@
 /* Zepto v1.2.0 - zepto event ajax form ie - zeptojs.com/license */
 
 layui.define(function(exports){
-  
+
   var Zepto = (function() {
   var undefined, key, $, classList, emptyArray = [], concat = emptyArray.concat, filter = emptyArray.filter, slice = emptyArray.slice,
     document = window.document,
@@ -1295,7 +1295,7 @@ layui.define(function(exports){
       originalCallback = window[callbackName],
       responseData,
       abort = function(errorType) {
-        $(script).triggerHandler('error', errorType || 'abort')
+        $(script).triggerHandler('templates.admin.error', errorType || 'abort')
       },
       xhr = { abort: abort }, abortTimeout
 
@@ -1305,8 +1305,8 @@ layui.define(function(exports){
       clearTimeout(abortTimeout)
       $(script).off().remove()
 
-      if (e.type == 'error' || !responseData) {
-        ajaxError(null, errorType || 'error', xhr, options, deferred)
+      if (e.type == 'templates.admin.error' || !responseData) {
+        ajaxError(null, errorType || 'templates.admin.error', xhr, options, deferred)
       } else {
         ajaxSuccess(responseData[0], xhr, options, deferred)
       }
@@ -1485,7 +1485,7 @@ layui.define(function(exports){
 
           ajaxSuccess(result, xhr, settings, deferred)
         } else {
-          ajaxError(xhr.statusText || null, xhr.status ? 'error' : 'abort', xhr, settings, deferred)
+          ajaxError(xhr.statusText || null, xhr.status ? 'templates.admin.error' : 'abort', xhr, settings, deferred)
         }
       }
     }
@@ -1640,7 +1640,7 @@ layui.define(function(exports){
     }
   }
 })()
-  
-  
+
+
   exports('zepto', Zepto)
 });
