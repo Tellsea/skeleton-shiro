@@ -28,15 +28,11 @@ spring:
   # jpa
   jpa:
     show-sql: true
-  transaction:
-    rollback-on-commit-failure: true
-
 # mybatis
 mybatis:
   type-aliases-package: cn.tellsea.skeleton.*.entity
   configuration:
     map-underscore-to-camel-case: true
-
 # 日志
 logging:
   level:

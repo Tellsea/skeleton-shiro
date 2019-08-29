@@ -1,6 +1,6 @@
-package cn.tellsea.skeleton.core.mybatisplus;
+package cn.tellsea.skeleton.plugins.mybatisplus;
 
-import cn.tellsea.skeleton.core.mybatisplus.config.MybatisPlusCodeConfig;
+import cn.tellsea.skeleton.plugins.mybatisplus.config.MybatisPlusCodeConfig;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.core.mybatisplus.config;
+package cn.tellsea.skeleton.plugins.mybatisplus.config;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;

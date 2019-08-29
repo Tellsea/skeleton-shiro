@@ -5,8 +5,6 @@ import cn.tellsea.skeleton.common.entity.UserInfo;
 import cn.tellsea.skeleton.common.entity.vo.UserInfoVO;
 import cn.tellsea.skeleton.common.service.UserInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
-import cn.tellsea.skeleton.core.global.enums.StatusEnums;
-import cn.tellsea.skeleton.core.global.exception.GlobalException;
 import cn.tellsea.skeleton.core.layui.LayuiTable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,10 +35,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo, UserInfoDao> 
     @Override
     public void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList) {
         baseMapper.insertSelective(userInfo);
-        // System.out.println(1 / 0);
-        if (1 == 1) {
-            throw new GlobalException(StatusEnums.SAVE_ERROR);
-        }
+         System.out.println(1 / 0);
         baseMapper.insertList(userInfoList);
     }
 }
