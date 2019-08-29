@@ -9,16 +9,23 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * 认证授权验证域
  *
  * @author Tellsea
  * @Description Created on 2019/7/13
+ * Shiro 事物失效问题：https://blog.csdn.net/finalcola/article/details/81197584
  */
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
 
+    /**
+     * 在Realm中Service声明上加入@Lazy注解，延迟Realm实现中Service对象的初始化时间，
+     * 这样就可以保证Service实际初始化的时候会被BeanPostProcessor拦截，创建具有事务功能的代理对象
+     */
+    @Lazy
     @Autowired
     private UserInfoService userInfoService;
 

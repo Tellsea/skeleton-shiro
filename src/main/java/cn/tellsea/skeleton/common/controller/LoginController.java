@@ -37,7 +37,7 @@ public class LoginController {
      *
      * @return
      */
-    @GetMapping("/login")
+    @GetMapping("login")
     public String login() {
         return "admin/login";
     }
@@ -52,7 +52,7 @@ public class LoginController {
      * @param request
      * @return
      */
-    @PostMapping("/login")
+    @PostMapping("login")
     @ResponseBody
     @LoginLog
     public ResponseResult login(@RequestParam("username") String username,
