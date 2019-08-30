@@ -6,6 +6,7 @@ import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import cn.tellsea.skeleton.core.layui.LayuiTable;
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author Tellsea
  * @Description Created on 2019-08-10
  */
+@Api("用户管理")
 @Controller
 @RequestMapping("userInfo")
 public class UserInfoController extends BaseController<UserInfoService> {

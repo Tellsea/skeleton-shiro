@@ -26,7 +26,7 @@ public class CaptchaController {
      * @param request
      * @param response
      */
-    @GetMapping("/Captcha.jpg")
+    @GetMapping("Captcha.jpg")
     public void getCaptcha(HttpServletRequest request, HttpServletResponse response) {
         // 设置相应类型,告诉浏览器输出的内容为图片
         response.setContentType("image/jpeg");
