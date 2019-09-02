@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.core.layui;
+package cn.tellsea.skeleton.layui;
 
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import lombok.AllArgsConstructor;

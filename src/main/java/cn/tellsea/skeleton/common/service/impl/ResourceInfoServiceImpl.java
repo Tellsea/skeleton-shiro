@@ -4,10 +4,8 @@ import cn.tellsea.skeleton.common.dao.ResourceInfoDao;
 import cn.tellsea.skeleton.common.entity.ResourceInfo;
 import cn.tellsea.skeleton.common.service.ResourceInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
-import cn.tellsea.skeleton.core.layui.LayuiTree;
-import org.apache.commons.lang3.StringUtils;
+import cn.tellsea.skeleton.layui.LayuiTree;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;

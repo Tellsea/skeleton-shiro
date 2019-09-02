@@ -4,7 +4,7 @@ import cn.tellsea.skeleton.common.dao.RoleInfoDao;
 import cn.tellsea.skeleton.common.entity.RoleInfo;
 import cn.tellsea.skeleton.common.service.RoleInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
-import cn.tellsea.skeleton.core.layui.LayuiTable;
+import cn.tellsea.skeleton.layui.LayuiTable;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;

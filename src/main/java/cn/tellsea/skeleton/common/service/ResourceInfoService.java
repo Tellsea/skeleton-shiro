@@ -2,7 +2,7 @@ package cn.tellsea.skeleton.common.service;
 
 import cn.tellsea.skeleton.common.entity.ResourceInfo;
 import cn.tellsea.skeleton.core.base.service.BaseService;
-import cn.tellsea.skeleton.core.layui.LayuiTree;
+import cn.tellsea.skeleton.layui.LayuiTree;
 
 import java.util.List;
 

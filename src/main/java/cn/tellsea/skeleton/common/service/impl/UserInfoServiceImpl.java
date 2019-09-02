@@ -5,7 +5,7 @@ import cn.tellsea.skeleton.common.entity.UserInfo;
 import cn.tellsea.skeleton.common.entity.vo.UserInfoVO;
 import cn.tellsea.skeleton.common.service.UserInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
-import cn.tellsea.skeleton.core.layui.LayuiTable;
+import cn.tellsea.skeleton.layui.LayuiTable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
