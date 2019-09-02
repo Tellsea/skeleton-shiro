@@ -8,7 +8,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * 项目启动类
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @SpringBootApplication
 @MapperScan("cn.tellsea.skeleton.*.mapper")

@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * Mybatis plus 代码生成器配置
  *
  * @author Tellsea
- * @Description Created on 2019/7/18
+ * @date 2019/7/18
  * Mybatis plus 官网：https://mp.baomidou.com/guide/generator.html
  */
 public class MybatisPlusCodeConfig {

@@ -10,7 +10,7 @@ import tk.mybatis.mapper.common.ids.DeleteByIdsMapper;
  *
  * @param <T> 不能为空
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 public interface MyMapper<T> extends Mapper<T>, DeleteByIdsMapper<T>, MySqlMapper<T>, BatchMapper<T> {
 

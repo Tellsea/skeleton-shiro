@@ -16,7 +16,7 @@ import java.util.Map;
  * Whitelabel Error Page 处理器
  *
  * @author Tellsea
- * @Description Created on 2019/8/27
+ * @date 2019/8/27
  */
 @Controller
 public class WhitelabelErrorPageConfig extends BasicErrorController {

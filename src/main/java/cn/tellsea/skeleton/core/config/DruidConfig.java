@@ -20,7 +20,7 @@ import java.sql.SQLException;
  * Druid 连接池配置
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @Slf4j
 @Configuration

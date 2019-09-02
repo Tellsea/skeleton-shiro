@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * 角色资源关联表 实体类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Data
 public class MapRoleResource extends BaseEntity {

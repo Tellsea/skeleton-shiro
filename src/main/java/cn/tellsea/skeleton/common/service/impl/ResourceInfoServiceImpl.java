@@ -14,7 +14,7 @@ import java.util.List;
  * 资源表 Service接口实现类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Service
 public class ResourceInfoServiceImpl extends BaseServiceImpl<ResourceInfo, ResourceInfoDao> implements ResourceInfoService {

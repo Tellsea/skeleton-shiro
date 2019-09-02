@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  * Layui Table 固定格式
  *
  * @author Tellsea
- * @Description Created on 2019/8/4
+ * @date 2019/8/4
  */
 @Data
 @AllArgsConstructor

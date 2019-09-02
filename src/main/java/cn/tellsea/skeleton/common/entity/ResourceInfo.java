@@ -11,7 +11,7 @@ import javax.persistence.Id;
  * 资源表 实体类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Data
 public class ResourceInfo extends BaseEntity {

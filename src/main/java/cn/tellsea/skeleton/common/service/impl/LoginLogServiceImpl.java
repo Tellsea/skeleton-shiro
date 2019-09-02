@@ -17,7 +17,7 @@ import java.util.List;
  * Service接口实现类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Service
 public class LoginLogServiceImpl extends BaseServiceImpl<LoginLog, LoginLogDao> implements LoginLogService {

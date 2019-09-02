@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 接口文档
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @EnableSwagger2
 @Configuration

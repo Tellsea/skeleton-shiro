@@ -7,7 +7,7 @@ import lombok.Data;
  * 全局返回结果集
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @Data
 public class ResponseResult {

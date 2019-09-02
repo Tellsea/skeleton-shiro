@@ -8,7 +8,7 @@ import javax.swing.*;
  * 代码生成器
  *
  * @author Tellsea
- * @Description Created on 2019/7/22
+ * @date 2019/7/22
  * 数据库时区问题解决方案
  * SHOW VARIABLES LIKE '%time_zone%'
  * SET GLOBAL time_zone='+8:00'

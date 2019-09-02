@@ -32,7 +32,7 @@ import java.util.Map;
  * shiro 权限配置
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @Slf4j
 @Configuration

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Lazy;
  * 认证授权验证域
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  * Shiro 事物失效问题：https://blog.csdn.net/finalcola/article/details/81197584
  */
 @Slf4j

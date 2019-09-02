@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @param <T> 不能为空
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @RegisterMapper
 public interface UpdateBatchByPrimaryKeySelectiveMapper<T> {

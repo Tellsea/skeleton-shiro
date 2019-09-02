@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * 根据IP查询详细的地址位置
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  * 使用开源的ip2region库，开源地址：https://github.com/lionsoul2014/ip2region
  */
 public class AddressUtils {

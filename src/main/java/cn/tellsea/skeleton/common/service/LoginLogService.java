@@ -8,7 +8,7 @@ import cn.tellsea.skeleton.layui.LayuiTable;
  * Service接口
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 public interface LoginLogService extends BaseService<LoginLog> {
 

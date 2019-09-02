@@ -13,7 +13,7 @@ import java.util.Set;
  * 批量更新的SqlProvider
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 public class BatchExampleProvider extends ExampleProvider {
 

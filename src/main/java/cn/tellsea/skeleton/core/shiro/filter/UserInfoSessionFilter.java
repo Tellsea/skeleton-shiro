@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * 访问控制器
  *
  * @author Tellsea
- * @Description Created on 2019/8/15
+ * @date 2019/8/15
  * 参考文章：https://www.cnblogs.com/sprinkle/p/6823965.html
  */
 public class UserInfoSessionFilter extends AccessControlFilter {

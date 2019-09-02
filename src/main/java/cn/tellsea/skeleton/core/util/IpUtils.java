@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
  * 获取IP地址工具类
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 public class IpUtils {
 

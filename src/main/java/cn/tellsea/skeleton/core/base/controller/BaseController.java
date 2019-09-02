@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @param <S> 不能为空
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 public class BaseController<S extends BaseService> {
 

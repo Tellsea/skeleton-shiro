@@ -13,7 +13,7 @@ import java.util.Date;
  * 用户表 实体类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Data
 public class UserInfo extends BaseEntity {

@@ -13,7 +13,7 @@ import java.util.List;
  * 用户表 Dao 实现类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Repository
 public class UserInfoDao extends BaseDao {

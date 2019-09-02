@@ -6,7 +6,7 @@ import lombok.Data;
  * 基类实体类, 实体公共属性
  *
  * @author Tellsea
- * @Description Created on 2019/7/29
+ * @date 2019/7/29
  */
 @Data
 public class BaseEntity {

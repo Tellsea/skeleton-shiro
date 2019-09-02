@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 全局异常处理
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @Slf4j
 @ControllerAdvice

@@ -4,7 +4,7 @@ package cn.tellsea.skeleton.core.base.enums;
  * 枚举根接口
  *
  * @author Tellsea
- * @Description Created on 2019/8/5
+ * @date 2019/8/5
  */
 public interface BaseEnums {
 

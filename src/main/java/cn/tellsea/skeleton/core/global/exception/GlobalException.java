@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  * 全局异常
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @Getter
 @AllArgsConstructor

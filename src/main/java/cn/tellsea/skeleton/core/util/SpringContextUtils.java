@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * Spring 工具类
  *
  * @author Tellsea
- * @Description Created on 2019/8/11
+ * @date 2019/8/11
  */
 @Slf4j
 @Component

@@ -7,7 +7,7 @@ import tk.mybatis.mapper.annotation.RegisterMapper;
  *
  * @param <T> 不能为空
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @RegisterMapper
 public interface BatchMapper<T> extends UpdateBatchByPrimaryKeySelectiveMapper<T> {

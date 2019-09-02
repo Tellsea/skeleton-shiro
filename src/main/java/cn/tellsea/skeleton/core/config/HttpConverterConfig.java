@@ -16,7 +16,7 @@ import java.util.List;
  * Http FastJSON 转换器
  *
  * @author Tellsea
- * @Description Created on 2019/8/4
+ * @date 2019/8/4
  */
 @Configuration
 public class HttpConverterConfig {

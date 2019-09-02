@@ -7,7 +7,7 @@ import cn.tellsea.skeleton.core.base.mapper.MyMapper;
  *  Mapper接口
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 public interface LoginLogMapper extends MyMapper<LoginLog> {
 

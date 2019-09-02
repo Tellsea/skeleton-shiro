@@ -7,7 +7,7 @@ import lombok.*;
  * 异常枚举类
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @AllArgsConstructor
 public enum StatusEnums implements BaseEnums {

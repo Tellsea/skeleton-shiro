@@ -19,7 +19,7 @@ import java.util.Map;
  * 全局事物配置
  *
  * @author Tellsea
- * @Description Created on 2019/8/15
+ * @date 2019/8/15
  * REQUIRED ：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
  * SUPPORTS ：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
  * MANDATORY ：如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 解决跨域访问
  *
  * @author Tellsea
- * @Description Created on 2019/7/20
+ * @date 2019/7/20
  * 参考文章：https://segmentfault.com/a/1190000018554528?utm_source=tag-newest
  */
 @Configuration

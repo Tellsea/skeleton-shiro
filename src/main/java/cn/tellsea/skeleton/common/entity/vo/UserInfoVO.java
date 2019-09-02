@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @author Tellsea
- * @Description Created on 2019/8/10
+ * @date 2019/8/10
  */
 @Data
 public class UserInfoVO extends UserInfo {

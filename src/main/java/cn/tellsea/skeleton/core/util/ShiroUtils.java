@@ -12,7 +12,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
  * Shiro 工具类
  *
  * @author Tellsea
- * @Description Created on 2019/7/19
+ * @date 2019/7/19
  */
 public class ShiroUtils {
 

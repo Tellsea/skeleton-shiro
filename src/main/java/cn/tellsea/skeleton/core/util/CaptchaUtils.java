@@ -11,7 +11,7 @@ import java.util.Random;
  * 验证码工具类
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 public class CaptchaUtils {
 

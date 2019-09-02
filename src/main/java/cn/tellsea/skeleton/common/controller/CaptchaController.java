@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
  * 验证码控制器
  *
  * @author Tellsea
- * @Description Created on 2019/7/13
+ * @date 2019/7/13
  */
 @Controller
 public class CaptchaController {

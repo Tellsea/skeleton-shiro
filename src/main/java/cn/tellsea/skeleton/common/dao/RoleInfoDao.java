@@ -11,7 +11,7 @@ import java.util.List;
  * 角色表 Dao 实现类
  *
  * @author Tellsea
- * @Description Created on 2019-08-10
+ * @date 2019-08-10
  */
 @Repository
 public class RoleInfoDao extends BaseDao {
