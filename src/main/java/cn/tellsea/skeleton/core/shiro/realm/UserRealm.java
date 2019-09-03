@@ -31,8 +31,8 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        /*log.info("授权用户：");
-        User user = (User) principalCollection.getPrimaryPrincipal();
+        log.info("授权用户：");
+        /*User user = (User) principalCollection.getPrimaryPrincipal();
         // 查找角色和权限
         List<Role> roleList = roleService.listRoleByUserId(user.getId());
         List<Resource> resourceList = resourceService.listResourceByUserId(user.getId());

@@ -2,7 +2,7 @@ package cn.tellsea.skeleton.common.service;
 
 import cn.tellsea.skeleton.common.entity.LoginLog;
 import cn.tellsea.skeleton.core.base.service.BaseService;
-import cn.tellsea.skeleton.layui.LayuiTable;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 
 /**
  * Service接口

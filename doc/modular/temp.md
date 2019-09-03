@@ -1,3 +1,6 @@
+Shiro几大拦截器
+https://blog.csdn.net/fenglixiong123/article/details/77119857
+
 Shiro的常用注解以及jsp中Shiro使用的标签
 
 @RequiresPermissions ：要求当前Subject在执行被注解的方法时具备一个或多个对应的权限。

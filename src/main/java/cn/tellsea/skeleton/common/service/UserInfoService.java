@@ -2,7 +2,7 @@ package cn.tellsea.skeleton.common.service;
 
 import cn.tellsea.skeleton.common.entity.UserInfo;
 import cn.tellsea.skeleton.core.base.service.BaseService;
-import cn.tellsea.skeleton.layui.LayuiTable;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 
 import java.util.List;
 
@@ -22,5 +22,11 @@ public interface UserInfoService extends BaseService<UserInfo> {
      */
     LayuiTable listUserInfo(UserInfo userInfo);
 
+    /**
+     * 保存用户信息（测试事物回滚）
+     *
+     * @param userInfo
+     * @param userInfoList
+     */
     void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList);
 }

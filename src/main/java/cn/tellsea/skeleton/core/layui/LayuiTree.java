@@ -1,4 +1,4 @@
-package cn.tellsea.skeleton.layui;
+package cn.tellsea.skeleton.core.layui;
 
 import lombok.Data;
 

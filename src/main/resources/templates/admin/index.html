@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <title>首页 - Skeleton</title>
     <div th:replace="/admin/common/head"></div>
@@ -81,8 +81,11 @@
         <!-- 侧边菜单 -->
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
-                <div class="layui-logo" lay-href="/home/console">
-                    <span>layuiAdmin</span>
+                <div class="layui-logo" lay-href="/console/console">
+                    <span>Skeleton</span>
+                    <div shiro:hasPermission="user">
+                        用户添加页面<a href="add">用户添加</a><br>
+                    </div>
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
@@ -130,6 +133,20 @@
                                     <dd><a lay-href="set/user/info.html">基本资料</a></dd>
                                     <dd><a lay-href="set/user/password.html">修改密码</a></dd>
                                 </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li data-name="user" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="用户" lay-direction="2">
+                            <i class="layui-icon layui-icon-user"></i>
+                            <cite>其他</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a lay-href="/druid">数据监控</a>
+                            </dd>
+                            <dd>
+                                <a lay-href="/swagger-ui.html">接口文档</a>
                             </dd>
                         </dl>
                     </li>

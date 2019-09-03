@@ -4,7 +4,7 @@ import cn.tellsea.skeleton.common.dao.LoginLogDao;
 import cn.tellsea.skeleton.common.entity.LoginLog;
 import cn.tellsea.skeleton.common.service.LoginLogService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
-import cn.tellsea.skeleton.layui.LayuiTable;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 import cn.tellsea.skeleton.core.util.SqlUtils;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;

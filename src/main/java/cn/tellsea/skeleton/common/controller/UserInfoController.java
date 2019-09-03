@@ -5,7 +5,7 @@ import cn.tellsea.skeleton.common.service.UserInfoService;
 import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
-import cn.tellsea.skeleton.layui.LayuiTable;
+import cn.tellsea.skeleton.core.layui.LayuiTable;
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
