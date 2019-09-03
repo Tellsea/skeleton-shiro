@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>用户管理 - Skeleton</title>
+    <title>首页 - Skeleton</title>
     <div th:replace="/admin/common/head"></div>
 </head>
 <body class="layui-layout-body">
@@ -85,13 +85,23 @@
                     <span>layuiAdmin</span>
                 </div>
 
-                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu"
-                    lay-filter="layadmin-system-side-menu">
-                    <li data-name="get" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="/console" lay-tips="控制台" lay-direction="2">
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+                    <li data-name="home" class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;" lay-tips="主页" lay-direction="2">
                             <i class="layui-icon layui-icon-home"></i>
-                            <cite>控制台</cite>
+                            <cite>主页</cite>
                         </a>
+                        <dl class="layui-nav-child">
+                            <dd data-name="console" class="layui-this">
+                                <a lay-href="/console/console">控制台</a>
+                            </dd>
+                            <dd data-name="console">
+                                <a lay-href="/console/console2">主页一</a>
+                            </dd>
+                            <dd data-name="console">
+                                <a lay-href="/console/console3">主页二</a>
+                            </dd>
+                        </dl>
                     </li>
                     <li data-name="set" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="设置" lay-direction="2">
@@ -145,7 +155,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="home/console.html" lay-attr="home/console.html" class="layui-this"><i
+                    <li lay-id="/console/console" lay-attr="/console/console" class="layui-this"><i
                             class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
@@ -155,7 +165,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <iframe src="/console" frameborder="0" class="layadmin-iframe"></iframe>
+                <iframe src="/console/console" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 
@@ -165,11 +175,11 @@
 </div>
 
 <div th:replace="/admin/common/js"></div>
-<script>
+<script th:inline="none">
     layui.config({
-        base: '/assets/lib/layuiadmin/' //静态资源所在路径
+        base: '/assets/lib/layuiadmin/'
     }).extend({
-        index: 'lib/index' //主入口模块
+        index: 'lib/index'
     }).use('index');
 </script>
 </body>

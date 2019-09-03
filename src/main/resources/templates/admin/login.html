@@ -83,9 +83,7 @@
     layui.config({
         base: '/assets/lib/layuiadmin/'
     }).extend({
-        index: 'lib/index' //主入口模块
-    }).config({
-        base: '/assets/lib/tellsea/js/modules/'
+        index: 'lib/index'
     }).use(['index', 'user', 'sliderVerify'], function () {
         var $ = layui.$
             , setter = layui.setter
@@ -94,6 +92,7 @@
             , router = layui.router()
             , sliderVerify = layui.sliderVerify
             , search = router.search;
+
         var slider = sliderVerify.render({
             elem: '#slider',
             onOk: function(){//当验证通过回调

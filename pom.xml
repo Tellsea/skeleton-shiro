@@ -112,7 +112,7 @@
             <artifactId>thymeleaf-extras-shiro</artifactId>
             <version>2.0.0</version>
         </dependency>
-
+        
         <!-- thymeleaf 模板引擎 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

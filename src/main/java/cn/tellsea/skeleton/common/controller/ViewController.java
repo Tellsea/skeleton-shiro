@@ -2,6 +2,7 @@ package cn.tellsea.skeleton.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * 页面跳转控制器
@@ -10,15 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @date 2019/8/10
  */
 @Controller
-public class CommonPageController {
+public class ViewController {
 
     @GetMapping("/")
     public String index() {
         return "admin/index";
     }
 
-    @GetMapping("/console")
-    public String console() {
-        return "admin/console";
+    @GetMapping("/console/{name}")
+    public String console(@PathVariable String name) {
+        return "admin/" + name;
     }
 }
