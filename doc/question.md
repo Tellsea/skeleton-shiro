@@ -16,3 +16,8 @@ https://www.cnblogs.com/javastack/p/9153948.html
 - java读取解析application.yml
 
 https://www.cnblogs.com/lixingwu/p/11176942.html
+
+# TKMybatis 坑
+
+中间表必须有一个字段使用 @Id 标识
+调用 insertList 必须主键自增

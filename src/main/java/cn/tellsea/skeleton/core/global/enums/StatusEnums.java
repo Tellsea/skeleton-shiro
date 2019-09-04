@@ -19,10 +19,10 @@ public enum StatusEnums implements BaseEnums {
     OK(200, "OK"),
     SAVE_SUCCESS(200, "新增成功"),
     DELETE_SUCCESS(200, "删除成功"),
-    UPDATE_SUCCESS(200, "修改成功"),
+    UPDATE_SUCCESS(200, "更新成功"),
     SAVE_ERROR(500, "新增失败，请检查网络是否稳定？"),
     DELETE_ERROR(500, "删除失败，请检查网络是否稳定？"),
-    UPDATE_ERROR(500, "修改失败，请检查网络是否稳定？"),
+    UPDATE_ERROR(500, "更新失败，请检查网络是否稳定？"),
     SELECT_ERROR(500, "查询失败，请检查网络是否稳定？"),
     /**
      * 系统枚举
@@ -41,7 +41,6 @@ public enum StatusEnums implements BaseEnums {
 
     @Setter
     private String info;
-
 
     @Override
     public int getCode() {

@@ -6,6 +6,7 @@ import cn.tellsea.skeleton.core.base.controller.BaseController;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("mapRoleResource")
 public class MapRoleResourceController extends BaseController<MapRoleResourceService> {
+
+    @GetMapping("init")
+    public String init() {
+        return "admin/map_role_resource";
+    }
 
     /**
      * 新增

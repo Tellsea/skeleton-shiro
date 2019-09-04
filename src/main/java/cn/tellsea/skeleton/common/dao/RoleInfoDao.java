@@ -18,7 +18,7 @@ public class RoleInfoDao extends BaseDao {
 
     public List<RoleInfo> listRoleInfoByUserId(int userId) {
         StringBuilder sql = new StringBuilder();
-        sql.append(" select ri.id,ri.`name`,ri.description from user_info as ui ");
+        sql.append(" select distinct ri.id,ri.`name`,ri.description from user_info as ui ");
         sql.append(" left join map_user_role as mur on ui.id = mur.user_id ");
         sql.append(" left join role_info as ri on mur.role_id = ri.id ");
         sql.append(" where ui.id = ? ");

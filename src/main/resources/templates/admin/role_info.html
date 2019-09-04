@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <title>角色管理 - Skeleton</title>
     <div th:replace="/admin/common/head"></div>
@@ -46,13 +46,6 @@
                             <div id="dataTree"></div>
                         </div>
                     </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="submitFilter">
-                                <i class="layui-icon layui-icon-ok"></i>更新
-                            </button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -64,12 +57,13 @@
     layui.config({
         base: '/assets/lib/layuiadmin/'
     }).config({
-        base: '/assets/lib/tellsea/js/modules/'
-    }).use(['form', 'table', 'element', 'tree', 'eject'], function () {
+        base: '/assets/lib/skeleton/modules/'
+    }).use(['form', 'table', 'element', 'tree', 'open'], function () {
         var $ = layui.$
+            , layer = layui.layer
             , form = layui.form
             , tree = layui.tree
-            , eject = layui.eject
+            , open = layui.open
             , table = layui.table;
         // 初始加载树
         $.ajax({
@@ -168,29 +162,31 @@
                         layer.msg('设置树选中出错了,请稍后再试!', {time: 1000, icon: 2});
                     }
                 });
-                var index = eject.form('分配资源', 'editModel', 'editForm', function () {
-                    alert('点击确定');
-                    // var entity = $("#editForm").serializeJson();
+                var index = open.form('分配资源', 'editModel', 'editForm', function () {
+                    var entity = $("#editForm").serializeJson();
                     var checkedData = tree.getChecked('myTree');
-                    // 获得所有选中节点的id
-                    console.log(checkedData);
                     var resourceIds = active.treeCheckedIds(checkedData);
-                    console.log(resourceIds.join(','));
-                    /*$.ajax({
+                    entity.resourceIds = resourceIds.join(',');
+                    $.ajax({
                         url: '/roleInfo/updateRoleInfo',
                         type: 'post',
-                        data: data.field,
+                        data: entity,
                         dataType: 'json',
                         success: function (res) {
-                            layer.msg(res.message);
-                            active.refresh();
+                            if (res.code == 200) {
+                                layer.msg(res.message, {icon: 1, time: 2000});
+                                treeCheckedIdss = [];
+                                layer.close(index);
+                                active.refresh();
+                            } else {
+                                layer.msg(res.message, {icon: 2, time: 2000});
+                            }
                         },
                         error: function () {
                             layer.msg('请求失败，请稍后再试!');
                         }
-                    });*/
-                    // layer.close(index);
-                }, false, 500);
+                    });
+                }, false, 600);
             }
         });
 

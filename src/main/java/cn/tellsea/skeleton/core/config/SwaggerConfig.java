@@ -33,8 +33,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(basePackage("cn.tellsea.skeleton.common.controller".concat(SPLITOR).concat("")))
-                // .apis(RequestHandlerSelectors.basePackage("cn.tellsea.skeleton.*.controller"))
+                // .apis(basePackage("cn.tellsea.skeleton.common.controller".concat(SPLITOR).concat("")))
+                 .apis(RequestHandlerSelectors.basePackage("cn.tellsea.skeleton.*.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

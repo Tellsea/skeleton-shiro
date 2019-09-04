@@ -27,6 +27,7 @@ import java.util.Map;
  *
  * @author Tellsea
  * @date 2019/7/13
+ * 参考文章：https://blog.csdn.net/qq_34021712/column/info/26947
  */
 @Slf4j
 @Configuration
@@ -61,11 +62,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-        // filterChainDefinitionMap.put("/**", "user,userInfoSessionFilter");
+         filterChainDefinitionMap.put("/**", "user,userInfoSessionFilter");
         // filterChainDefinitionMap.put("/add", "perms[user:add]");
-        filterChainDefinitionMap.put("/**", "anon,userInfoSessionFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-
         return shiroFilterFactoryBean;
     }
 

@@ -1,15 +1,15 @@
 package cn.tellsea.skeleton.core.consts;
 
 /**
- * 系统常量
+ * session 常量
  *
  * @author Tellsea
  * @date 2019/8/11
  */
-public class SystemConst {
+public class SessionConst {
 
     /**
-     * 用户信息 session
+     * 当前用户信息 session
      */
     public static final String USER_INFO_SESSION = "USER_INFO_SESSION";
 

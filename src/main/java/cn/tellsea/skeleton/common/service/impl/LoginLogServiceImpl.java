@@ -29,6 +29,7 @@ public class LoginLogServiceImpl extends BaseServiceImpl<LoginLog, LoginLogDao> 
         if (!StringUtils.isEmpty(loginLog.getUserName())) {
             criteria.andLike("userName", SqlUtils.like(loginLog.getUserName()));
         }
+        example.orderBy("createTime").desc();
         int count = baseMapper.selectCountByExample(example);
         List<LoginLog> list = null;
         if (0 < count) {

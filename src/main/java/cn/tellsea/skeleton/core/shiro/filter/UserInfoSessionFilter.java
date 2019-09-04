@@ -1,6 +1,6 @@
 package cn.tellsea.skeleton.core.shiro.filter;
 
-import cn.tellsea.skeleton.core.consts.SystemConst;
+import cn.tellsea.skeleton.core.consts.SessionConst;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -23,7 +23,7 @@ public class UserInfoSessionFilter extends AccessControlFilter {
         Subject subject = getSubject(request, response);
         if (null != subject) {
             HttpSession session = WebUtils.toHttp(request).getSession();
-            Object userInfoSession = session.getAttribute(SystemConst.USER_INFO_SESSION);
+            Object userInfoSession = session.getAttribute(SessionConst.USER_INFO_SESSION);
             if (null == userInfoSession) {
                 // todo 查询用户信息保存在session
                 System.out.println("卧槽，还没写，查询用户信息保存在session");

@@ -3,6 +3,8 @@ package cn.tellsea.skeleton.common.entity;
 import cn.tellsea.skeleton.core.base.entity.BaseEntity;
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,9 +17,15 @@ import javax.persistence.Id;
 public class MapUserRole extends BaseEntity {
 
     /**
-     * 用户ID
+     * 主键
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    /**
+     * 用户ID
+     */
     private Integer userId;
 
     /**

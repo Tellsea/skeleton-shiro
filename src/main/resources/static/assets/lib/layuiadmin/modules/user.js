@@ -57,7 +57,7 @@ layui.define('form', function(exports){
   //更换图形验证码
   $body.on('click', '#LAY-user-get-vercode', function(){
     var othis = $(this);
-    this.src = 'https://www.oschina.net/action/user/captcha?t='+ new Date().getTime()
+    this.src = '/Captcha.jpg?t='+ new Date().getTime()
   });
   
   //对外暴露的接口

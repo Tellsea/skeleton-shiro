@@ -1,15 +1,23 @@
 package cn.tellsea.skeleton.core.shiro.realm;
 
+import cn.tellsea.skeleton.common.entity.ResourceInfo;
+import cn.tellsea.skeleton.common.entity.RoleInfo;
 import cn.tellsea.skeleton.common.entity.UserInfo;
+import cn.tellsea.skeleton.common.service.ResourceInfoService;
+import cn.tellsea.skeleton.common.service.RoleInfoService;
 import cn.tellsea.skeleton.common.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 /**
  * 认证授权验证域
@@ -28,36 +36,42 @@ public class UserRealm extends AuthorizingRealm {
     @Lazy
     @Autowired
     private UserInfoService userInfoService;
+    @Lazy
+    @Autowired
+    private RoleInfoService roleInfoService;
+    @Lazy
+    @Autowired
+    private ResourceInfoService resourceInfoService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        log.info("授权用户：");
-        /*User user = (User) principalCollection.getPrimaryPrincipal();
-        // 查找角色和权限
-        List<Role> roleList = roleService.listRoleByUserId(user.getId());
-        List<Resource> resourceList = resourceService.listResourceByUserId(user.getId());
-        // 授权
+        UserInfo user = (UserInfo) principalCollection.getPrimaryPrincipal();
+        log.info("授权用户{}", user.getUserName());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        if (null == roleList || roleList.size() == 0) {
-            roleList.forEach(role -> info.addRole(role.getName()));
+        List<RoleInfo> roleInfoList = roleInfoService.listRoleInfoByUserId(user.getId());
+        List<ResourceInfo> resourceInfoList = resourceInfoService.listResourceInfoByUserId(user.getId());
+        if (!CollectionUtils.isEmpty(roleInfoList)) {
+            roleInfoList.forEach(roleInfo -> info.addRole(roleInfo.getName()));
         }
-        if (null == resourceList || resourceList.size() == 0) {
-            resourceList.forEach(resource -> info.addStringPermission(resource.getName()));
+        if (!CollectionUtils.isEmpty(resourceInfoList)) {
+            resourceInfoList.forEach(resourceInfo -> info.addStringPermission(resourceInfo.getPerms()));
         }
-        return info;*/
-        return null;
+        return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username = (String) token.getPrincipal();
-        log.info("认证用户：" + username);
+        String userName = (String) token.getPrincipal();
+        log.info("认证用户：{}", userName);
         UserInfo user = new UserInfo();
-        user.setUserName(username);
+        user.setUserName(userName);
         UserInfo userInfo = userInfoService.selectOne(user);
         if (userInfo == null) {
             throw new UnknownAccountException();
         }
+        // 防止泄露，shiro将SimpleAuthenticationInfo的第一个参数存入标签中
+        user.setPassword("");
+        user.setSalt("");
         return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), ByteSource.Util.bytes(userInfo.getSalt()), getName());
     }
 

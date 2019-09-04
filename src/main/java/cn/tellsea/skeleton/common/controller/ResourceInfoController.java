@@ -90,7 +90,7 @@ public class ResourceInfoController extends BaseController<ResourceInfoService> 
     }
 
     /**
-     * 根据角色id查询所有资源
+     * 根据角色id查询所有资源，叶子
      *
      * @param roleId
      * @return

@@ -43,7 +43,7 @@ layui.define(["layer"], function (exports) {
      *      iframe: (function(*=, *=, *=, *=): s.index),
      *      close: close}}
      */
-    var eject = {
+    var open = {
         /**
          * 普通弹出层
          *
@@ -129,5 +129,5 @@ layui.define(["layer"], function (exports) {
             parent.layer.close(index);
         }
     };
-    exports("eject", eject);
+    exports("open", open);
 });

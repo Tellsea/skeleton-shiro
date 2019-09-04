@@ -1,7 +1,7 @@
 package cn.tellsea.skeleton.common.controller;
 
 import cn.tellsea.skeleton.core.aop.annotation.LoginLog;
-import cn.tellsea.skeleton.core.consts.SystemConst;
+import cn.tellsea.skeleton.core.consts.SessionConst;
 import cn.tellsea.skeleton.core.global.dto.ResponseResult;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import cn.tellsea.skeleton.core.util.ShiroUtils;
@@ -45,7 +45,7 @@ public class LoginController {
     /**
      * 登录
      *
-     * @param username
+     * @param userName
      * @param password
      * @param rememberMe
      * @param captcha
@@ -55,18 +55,18 @@ public class LoginController {
     @PostMapping("login")
     @ResponseBody
     @LoginLog
-    public ResponseResult login(@RequestParam("username") String username,
+    public ResponseResult login(@RequestParam("userName") String userName,
                                 @RequestParam("password") String password,
                                 @RequestParam(value = "rememberMe", required = false) boolean rememberMe,
                                 @RequestParam("captcha") String captcha,
                                 HttpServletRequest request) {
         // 校验验证码
-        String sessionCaptcha = (String) ShiroUtils.getSessionAttribute(SystemConst.KEY_CAPTCHA);
+        String sessionCaptcha = (String) ShiroUtils.getSessionAttribute(SessionConst.KEY_CAPTCHA);
         if (null == captcha || !captcha.equalsIgnoreCase(sessionCaptcha)) {
             return ResponseResult.build(StatusEnums.CAPTCHA_ERROR);
         }
 
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password, rememberMe);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
@@ -79,11 +79,11 @@ public class LoginController {
             return ResponseResult.build(StatusEnums.OK, loginSuccessUrl);
 
         } catch (DisabledAccountException e) {
-            return ResponseResult.build(StatusEnums.UNAUTHORIZED, username);
+            return ResponseResult.build(StatusEnums.UNAUTHORIZED, userName);
         } catch (UnknownAccountException e) {
-            return ResponseResult.build(StatusEnums.USER_NOT_FOUND, username);
+            return ResponseResult.build(StatusEnums.USER_NOT_FOUND, userName);
         } catch (IncorrectCredentialsException e) {
-            return ResponseResult.build(StatusEnums.PASSWORD_ERROR, username);
+            return ResponseResult.build(StatusEnums.PASSWORD_ERROR, userName);
         }
     }
 }

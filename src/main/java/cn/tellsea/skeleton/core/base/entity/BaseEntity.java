@@ -11,10 +11,19 @@ import lombok.Data;
 @Data
 public class BaseEntity {
 
+    /**
+     * 当前页数
+     */
     private int page;
 
+    /**
+     * 计算后的页数
+     */
     private int offset;
 
+    /**
+     * 总条数
+     */
     private int limit;
 
     public int getOffset() {

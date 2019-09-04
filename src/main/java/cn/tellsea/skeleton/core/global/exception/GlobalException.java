@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.core.global.exception;
 
+import cn.tellsea.skeleton.core.base.enums.BaseEnums;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,5 +17,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GlobalException extends RuntimeException {
 
-    private StatusEnums statusEnums;
+    private BaseEnums baseEnums;
 }

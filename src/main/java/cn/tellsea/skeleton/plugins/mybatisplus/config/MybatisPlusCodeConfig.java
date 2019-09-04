@@ -85,7 +85,7 @@ public class MybatisPlusCodeConfig {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>(16);
                 map.put("Dao", "cn.tellsea.skeleton.".concat(model).concat(".dao"));
                 this.setMap(map);
             }

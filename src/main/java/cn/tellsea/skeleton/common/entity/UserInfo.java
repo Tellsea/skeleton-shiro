@@ -1,5 +1,6 @@
 package cn.tellsea.skeleton.common.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.tellsea.skeleton.core.base.entity.BaseEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.Data;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,23 +18,26 @@ import java.util.Date;
  * @date 2019-08-10
  */
 @Data
-public class UserInfo extends BaseEntity {
+public class UserInfo extends BaseEntity implements Serializable {
 
     /**
      * 用户ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Excel(name = "id")
     private Integer id;
 
     /**
      * 用户名
      */
+    @Excel(name = "用户名")
     private String userName;
 
     /**
-     * 账户，登录名，不可更改
+     * 昵称
      */
+    @Excel(name = "昵称")
     private String nickName;
 
     /**
@@ -58,6 +63,7 @@ public class UserInfo extends BaseEntity {
     /**
      * 性别 1男 2女
      */
+    @Excel(name = "性别", replace = {"男_1", "女_2"})
     private Integer sex;
 
     /**

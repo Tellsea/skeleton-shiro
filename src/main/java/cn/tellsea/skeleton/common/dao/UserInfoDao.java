@@ -1,7 +1,7 @@
 package cn.tellsea.skeleton.common.dao;
 
 import cn.tellsea.skeleton.common.entity.UserInfo;
-import cn.tellsea.skeleton.common.entity.vo.UserInfoVO;
+import cn.tellsea.skeleton.common.vo.UserInfoVo;
 import cn.tellsea.skeleton.core.base.dao.BaseDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class UserInfoDao extends BaseDao {
 
-    public List<UserInfoVO> listUserInfo(UserInfo userInfo) {
+    public List<UserInfoVo> listUserInfo(UserInfo userInfo) {
         StringBuffer sql = new StringBuffer();
         sql.append(" select ui.id,ui.user_name,ui.nick_name,ui.`password`,ui.salt,ui.avatar,ui.phone,ui.sex,ui.description,ui.`status`,ui.create_user,ui.create_time,ui1.user_name create_user_name from user_info as ui ");
         sql.append(" left join user_info as ui1 on ui.create_user = ui1.id ");
@@ -27,6 +27,6 @@ public class UserInfoDao extends BaseDao {
             sql.append(" and ui.user_name like '%").append(userInfo.getUserName()).append("%'");
         }
         sql.append(" limit ?,? ");
-        return jdbcTemplate.query(sql.toString(), new Object[]{userInfo.getPage(), userInfo.getLimit()}, new BeanPropertyRowMapper<>(UserInfoVO.class));
+        return jdbcTemplate.query(sql.toString(), new Object[]{userInfo.getPage(), userInfo.getLimit()}, new BeanPropertyRowMapper<>(UserInfoVo.class));
     }
 }

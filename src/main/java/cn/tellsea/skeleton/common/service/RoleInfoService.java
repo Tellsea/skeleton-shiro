@@ -15,6 +15,14 @@ import java.util.List;
 public interface RoleInfoService extends BaseService<RoleInfo> {
 
     /**
+     * 更新角色以及区权限
+     *
+     * @param roleInfo
+     * @param resourceIds
+     */
+    void updateRoleInfo(RoleInfo roleInfo, String resourceIds);
+
+    /**
      * 列表
      *
      * @param roleInfo
@@ -29,4 +37,5 @@ public interface RoleInfoService extends BaseService<RoleInfo> {
      * @return
      */
     List<RoleInfo> listRoleInfoByUserId(int userId);
+
 }

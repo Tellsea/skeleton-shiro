@@ -34,7 +34,7 @@ public class CaptchaUtils {
     /**
      * 干扰线数量
      */
-    private int lineNum = 50;
+    private int lineNum = 20;
     /**
      * 随机产生字符数量
      */

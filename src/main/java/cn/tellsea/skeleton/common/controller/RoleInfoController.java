@@ -48,8 +48,8 @@ public class RoleInfoController extends BaseController<RoleInfoService> {
      */
     @PostMapping("updateRoleInfo")
     @ResponseBody
-    public ResponseResult updateRoleInfo(RoleInfo roleInfo) {
-        baseService.updateByPrimaryKeySelective(roleInfo);
+    public ResponseResult updateRoleInfo(RoleInfo roleInfo, String resourceIds) {
+        baseService.updateRoleInfo(roleInfo, resourceIds);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
     }
 

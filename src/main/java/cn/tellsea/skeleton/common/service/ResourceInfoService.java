@@ -30,7 +30,7 @@ public interface ResourceInfoService extends BaseService<ResourceInfo> {
     List<ResourceInfo> listResourceInfoByUserId(int userId);
 
     /**
-     * 根据角色id查询所有资源
+     * 根据角色id查询所有资源，叶子
      *
      * @param roleId
      * @return

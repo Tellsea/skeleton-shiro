@@ -2,7 +2,7 @@ package cn.tellsea.skeleton.common.service.impl;
 
 import cn.tellsea.skeleton.common.dao.UserInfoDao;
 import cn.tellsea.skeleton.common.entity.UserInfo;
-import cn.tellsea.skeleton.common.entity.vo.UserInfoVO;
+import cn.tellsea.skeleton.common.vo.UserInfoVo;
 import cn.tellsea.skeleton.common.service.UserInfoService;
 import cn.tellsea.skeleton.core.base.service.impl.BaseServiceImpl;
 import cn.tellsea.skeleton.core.layui.LayuiTable;
@@ -23,7 +23,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo, UserInfoDao> 
     public LayuiTable listUserInfo(UserInfo userInfo) {
         // todo 不能模糊查询
         int count = baseMapper.selectCount(userInfo);
-        List<UserInfoVO> list = null;
+        List<UserInfoVo> list = null;
         if (0 < count) {
             list = baseDao.listUserInfo(userInfo);
         }

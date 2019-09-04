@@ -1,6 +1,6 @@
 package cn.tellsea.skeleton.common.controller;
 
-import cn.tellsea.skeleton.core.consts.SystemConst;
+import cn.tellsea.skeleton.core.consts.SessionConst;
 import cn.tellsea.skeleton.core.util.CaptchaUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +41,8 @@ public class CaptchaController {
             CaptchaUtils tool = new CaptchaUtils();
             StringBuffer code = new StringBuffer();
             BufferedImage image = tool.genRandomCodeImage(code);
-            session.removeAttribute(SystemConst.KEY_CAPTCHA);
-            session.setAttribute(SystemConst.KEY_CAPTCHA, code.toString());
+            session.removeAttribute(SessionConst.KEY_CAPTCHA);
+            session.setAttribute(SessionConst.KEY_CAPTCHA, code.toString());
 
             // 将内存中的图片通过流动形式输出到客户端
             ImageIO.write(image, "JPEG", response.getOutputStream());

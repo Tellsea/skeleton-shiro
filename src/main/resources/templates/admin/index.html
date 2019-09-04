@@ -58,13 +58,13 @@
                 </li>
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;">
-                        <cite>贤心</cite>
+                        <cite><shiro:principal property="userName"/></cite>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a lay-href="set/user/info.html">基本资料</a></dd>
                         <dd><a lay-href="set/user/password.html">修改密码</a></dd>
                         <hr>
-                        <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+                        <dd layadmin-event="logout" style="text-align: center;"><a href="/logout">退出</a></dd>
                     </dl>
                 </li>
 
@@ -83,9 +83,6 @@
             <div class="layui-side-scroll">
                 <div class="layui-logo" lay-href="/console/console">
                     <span>Skeleton</span>
-                    <div shiro:hasPermission="user">
-                        用户添加页面<a href="add">用户添加</a><br>
-                    </div>
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
