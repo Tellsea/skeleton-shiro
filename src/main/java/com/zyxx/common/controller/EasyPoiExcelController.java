@@ -40,7 +40,7 @@ public class EasyPoiExcelController {
         EasyPoiExcelUtils.exportExcel(list, "easypoi导出功能", "导出sheet1", UserInfo.class, "系统用户表.xls", response);
     }
 
-    @PostMapping("/import")
+    @PostMapping("import")
     public String importTest(@RequestParam("file") MultipartFile file) {
         ImportParams importParams = new ImportParams();
         // 数据处理

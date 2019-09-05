@@ -1,12 +1,9 @@
 package com.zyxx.skeleton.core.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.zyxx.common.entity.ResourceInfo;
-import com.zyxx.common.service.ResourceInfoService;
-import com.zyxx.skeleton.core.shiro.filter.UserInfoSessionFilter;
-import com.zyxx.skeleton.core.shiro.realm.UserRealm;
+import com.zyxx.common.service.ShiroService;
+import com.zyxx.skeleton.core.shiro.realm.ShiroRealm;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -14,7 +11,6 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -22,12 +18,6 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-
-import javax.servlet.Filter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * shiro 权限配置
@@ -40,9 +30,8 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Lazy
     @Autowired
-    private ResourceInfoService resourceInfoService;
+    private ShiroService shiroService;
 
     /**
      * 过滤规则
@@ -52,38 +41,7 @@ public class ShiroConfig {
      */
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
-        log.info("Start loading Shiro ...");
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
-        // 必须设置 SecurityManager
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setSuccessUrl("/");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-
-        // 自定义拦截器
-        LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
-        filtersMap.put("userInfoSessionFilter", new UserInfoSessionFilter());
-        shiroFilterFactoryBean.setFilters(filtersMap);
-
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        //  静态资源
-        filterChainDefinitionMap.put("/favicon.ico", "anon");
-        filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/Captcha.jpg", "anon");
-        filterChainDefinitionMap.put("/assets/**", "anon");
-        // 动态拦截
-        List<ResourceInfo> list = resourceInfoService.selectAll();
-        list.forEach(resourceInfo -> {
-            if (!StringUtils.isEmpty(resourceInfo.getUrl()) && !StringUtils.isEmpty(resourceInfo.getPerms())) {
-                filterChainDefinitionMap.put(resourceInfo.getUrl(), "user,perms[\"" + resourceInfo.getPerms() + "\"]");
-            }
-        });
-        log.info("ShiroConfig：动态加载 shiro 成功");
-        filterChainDefinitionMap.put("/**", "user,userInfoSessionFilter");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-        return shiroFilterFactoryBean;
+        return shiroService.loadShiroFilterFactoryBean();
     }
 
     /**
@@ -95,7 +53,7 @@ public class ShiroConfig {
     public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //  自定义realm
-        securityManager.setRealm(getUserRealm());
+        securityManager.setRealm(getShiroRealm());
         // 配置记住我
         securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
@@ -145,10 +103,10 @@ public class ShiroConfig {
      * 自定义的认证类
      */
     @Bean
-    public Realm getUserRealm() {
-        UserRealm userRealm = new UserRealm();
-        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-        return userRealm;
+    public Realm getShiroRealm() {
+        ShiroRealm shiroRealm = new ShiroRealm();
+        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return shiroRealm;
     }
 
     /**

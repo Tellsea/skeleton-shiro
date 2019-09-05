@@ -70,6 +70,9 @@ public class UserInfoController extends BaseController<UserInfoService> {
         return baseService.listUserInfo(userInfo);
     }
 
+    /**
+     * 测试事物回滚
+     */
     @GetMapping("testTr")
     @ResponseBody
     public void testTr() {

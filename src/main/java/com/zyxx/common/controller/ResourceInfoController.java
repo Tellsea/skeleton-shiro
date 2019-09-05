@@ -2,6 +2,7 @@ package com.zyxx.common.controller;
 
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.service.ResourceInfoService;
+import com.zyxx.skeleton.core.aop.annotation.DynamicShiro;
 import com.zyxx.skeleton.core.base.controller.BaseController;
 import com.zyxx.skeleton.core.global.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
@@ -34,6 +35,7 @@ public class ResourceInfoController extends BaseController<ResourceInfoService> 
      */
     @PostMapping("saveResourceInfo")
     @ResponseBody
+    @DynamicShiro
     public ResponseResult saveResourceInfo(ResourceInfo resourceInfo) {
         baseService.insertSelective(resourceInfo);
         return ResponseResult.build(StatusEnums.SAVE_SUCCESS);
@@ -47,6 +49,7 @@ public class ResourceInfoController extends BaseController<ResourceInfoService> 
      */
     @PostMapping("updateResourceInfo")
     @ResponseBody
+    @DynamicShiro
     public ResponseResult updateResourceInfo(ResourceInfo resourceInfo) {
         baseService.updateByPrimaryKeySelective(resourceInfo);
         return ResponseResult.build(StatusEnums.UPDATE_SUCCESS);
@@ -60,6 +63,7 @@ public class ResourceInfoController extends BaseController<ResourceInfoService> 
      */
     @PostMapping("deleteResourceInfo")
     @ResponseBody
+    @DynamicShiro
     public ResponseResult deleteResourceInfo(ResourceInfo resourceInfo) {
         baseService.delete(resourceInfo);
         return ResponseResult.build(StatusEnums.DELETE_SUCCESS);

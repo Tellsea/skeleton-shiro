@@ -1,7 +1,5 @@
 package com.zyxx.common.controller;
 
-import com.zyxx.skeleton.core.global.enums.StatusEnums;
-import com.zyxx.skeleton.core.global.exception.GlobalException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

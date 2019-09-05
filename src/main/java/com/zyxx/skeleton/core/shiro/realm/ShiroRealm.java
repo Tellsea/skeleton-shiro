@@ -28,7 +28,7 @@ import java.util.List;
  * Shiro 事物失效问题：https://blog.csdn.net/finalcola/article/details/81197584
  */
 @Slf4j
-public class UserRealm extends AuthorizingRealm {
+public class ShiroRealm extends AuthorizingRealm {
 
     /**
      * 在Realm中Service声明上加入@Lazy注解，延迟Realm实现中Service对象的初始化时间，
@@ -83,33 +83,5 @@ public class UserRealm extends AuthorizingRealm {
         user.setPassword("");
         user.setSalt("");
         return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), ByteSource.Util.bytes(userInfo.getSalt()), getName());
-    }
-
-    @Override
-    public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
-        super.clearCachedAuthorizationInfo(principals);
-    }
-
-    @Override
-    public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
-        super.clearCachedAuthenticationInfo(principals);
-    }
-
-    @Override
-    public void clearCache(PrincipalCollection principals) {
-        super.clearCache(principals);
-    }
-
-    public void clearAllCachedAuthorizationInfo() {
-        getAuthorizationCache().clear();
-    }
-
-    public void clearAllCachedAuthenticationInfo() {
-        getAuthenticationCache().clear();
-    }
-
-    public void clearAllCache() {
-        clearAllCachedAuthenticationInfo();
-        clearAllCachedAuthorizationInfo();
     }
 }

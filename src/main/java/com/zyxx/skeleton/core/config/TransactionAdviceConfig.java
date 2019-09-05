@@ -47,7 +47,7 @@ public class TransactionAdviceConfig {
      * 4.第二个*号:表示实现包
      * 5.*(..)*号表示所有方法名,..表示所有类型的参数
      */
-    private static final String POITCUT_EXPRESSION = "execution(* com.zyxx.skeleton.*.service.*.*(..))";
+    private static final String POITCUT_EXPRESSION = "execution(* com.zyxx.*.service.*.*(..))";
     @Autowired
     private PlatformTransactionManager platformTransactionManager;
 
