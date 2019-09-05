@@ -224,7 +224,7 @@
                     if (res.code == 200) {
                         initDataTree();
                     }
-                    layer.msg(res.message);
+                    layer.msg(res.message, {time: 2000, icon: 1});
                 },
                 error: function () {
                     layer.msg('请求失败，请稍后再试!');

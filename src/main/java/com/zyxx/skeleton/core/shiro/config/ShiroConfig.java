@@ -1,9 +1,12 @@
 package com.zyxx.skeleton.core.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.zyxx.common.entity.ResourceInfo;
+import com.zyxx.common.service.ResourceInfoService;
 import com.zyxx.skeleton.core.shiro.filter.UserInfoSessionFilter;
 import com.zyxx.skeleton.core.shiro.realm.UserRealm;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -11,15 +14,19 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +39,10 @@ import java.util.Map;
 @Slf4j
 @Configuration
 public class ShiroConfig {
+
+    @Lazy
+    @Autowired
+    private ResourceInfoService resourceInfoService;
 
     /**
      * 过滤规则
@@ -62,8 +73,15 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-         filterChainDefinitionMap.put("/**", "user,userInfoSessionFilter");
-        // filterChainDefinitionMap.put("/add", "perms[user:add]");
+        // 动态拦截
+        List<ResourceInfo> list = resourceInfoService.selectAll();
+        list.forEach(resourceInfo -> {
+            if (!StringUtils.isEmpty(resourceInfo.getUrl()) && !StringUtils.isEmpty(resourceInfo.getPerms())) {
+                filterChainDefinitionMap.put(resourceInfo.getUrl(), "user,perms[\"" + resourceInfo.getPerms() + "\"]");
+            }
+        });
+        log.info("ShiroConfig：动态加载 shiro 成功");
+        filterChainDefinitionMap.put("/**", "user,userInfoSessionFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
@@ -122,7 +140,6 @@ public class ShiroConfig {
     }
 
     /** ===================================================================================================== 以下基础配置 */
-
 
     /**
      * 自定义的认证类

@@ -26,7 +26,6 @@ public class UserInfoSessionFilter extends AccessControlFilter {
             Object userInfoSession = session.getAttribute(SessionConst.USER_INFO_SESSION);
             if (null == userInfoSession) {
                 // todo 查询用户信息保存在session
-                System.out.println("卧槽，还没写，查询用户信息保存在session");
             }
         }
         return true;

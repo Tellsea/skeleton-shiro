@@ -1,7 +1,5 @@
 package com.zyxx.skeleton.core.global.handle;
 
-import com.zyxx.skeleton.core.global.dto.ResponseResult;
-import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import com.zyxx.skeleton.core.global.exception.GlobalException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -22,19 +20,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandle {
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseResult exception(Exception e) {
+    public String exception(Exception e, Model model) {
+        model.addAttribute("class", e.getClass());
+        model.addAttribute("message", e.getMessage());
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return ResponseResult.build(StatusEnums.SERVER_ERROR);
+        return "admin/error";
     }
 
     @ExceptionHandler(value = GlobalException.class)
     public String globalExceptionHandle(GlobalException e, Model model) {
-        model.addAttribute("test", "123456");
+        model.addAttribute("class", e.getClass());
+        model.addAttribute("message", e.getMessage());
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
-        return "admin/404";
+        return "admin/error";
     }
 }

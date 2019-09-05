@@ -60,7 +60,7 @@ public class LoginLogAspect {
         loginLog.setCreateTime(new Date());
         Map<String, Object> fieldsName = getFieldsName(proceedingJoinPoint);
         fieldsName.entrySet().forEach(temp -> {
-            if (StringUtils.equals("username", temp.getKey())) {
+            if (StringUtils.equals("userName", temp.getKey())) {
                 loginLog.setUserName(temp.getValue().toString());
             }
         });

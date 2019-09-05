@@ -7,6 +7,7 @@ import com.zyxx.common.service.ResourceInfoService;
 import com.zyxx.common.service.RoleInfoService;
 import com.zyxx.common.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -46,15 +47,22 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         UserInfo user = (UserInfo) principalCollection.getPrimaryPrincipal();
-        log.info("授权用户{}", user.getUserName());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         List<RoleInfo> roleInfoList = roleInfoService.listRoleInfoByUserId(user.getId());
         List<ResourceInfo> resourceInfoList = resourceInfoService.listResourceInfoByUserId(user.getId());
         if (!CollectionUtils.isEmpty(roleInfoList)) {
-            roleInfoList.forEach(roleInfo -> info.addRole(roleInfo.getName()));
+            roleInfoList.forEach(roleInfo -> {
+                if (!StringUtils.isEmpty(roleInfo.getName())) {
+                    info.addRole(roleInfo.getName());
+                }
+            });
         }
         if (!CollectionUtils.isEmpty(resourceInfoList)) {
-            resourceInfoList.forEach(resourceInfo -> info.addStringPermission(resourceInfo.getPerms()));
+            resourceInfoList.forEach(resourceInfo -> {
+                if (!StringUtils.isEmpty(resourceInfo.getPerms())) {
+                    info.addStringPermission(resourceInfo.getPerms());
+                }
+            });
         }
         return info;
     }
@@ -62,7 +70,6 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userName = (String) token.getPrincipal();
-        log.info("认证用户：{}", userName);
         UserInfo user = new UserInfo();
         user.setUserName(userName);
         UserInfo userInfo = userInfoService.selectOne(user);
