@@ -25,7 +25,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class SwaggerConfig {
 
-    // 定义分隔符
+    /**
+     * 定义分隔符
+     */
     private static final String SPLITOR = ";";
 
     @Bean
@@ -33,8 +35,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                 .apis(basePackage("com.zyxx.skeleton.common.controller".concat(SPLITOR).concat("")))
-                // .apis(RequestHandlerSelectors.basePackage("cn.tellsea.skeleton.*.controller"))
+                 .apis(basePackage("com.zyxx.common.controller".concat(SPLITOR).concat("")))
                 .paths(PathSelectors.any())
                 .build();
     }

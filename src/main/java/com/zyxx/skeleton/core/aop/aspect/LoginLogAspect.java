@@ -1,7 +1,7 @@
 package com.zyxx.skeleton.core.aop.aspect;
 
-import com.zyxx.skeleton.common.entity.LoginLog;
-import com.zyxx.skeleton.common.service.LoginLogService;
+import com.zyxx.common.entity.LoginLog;
+import com.zyxx.common.service.LoginLogService;
 import com.zyxx.skeleton.core.global.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import com.zyxx.skeleton.core.global.exception.GlobalException;

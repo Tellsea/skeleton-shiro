@@ -1,11 +1,11 @@
 package com.zyxx.skeleton.core.shiro.realm;
 
-import com.zyxx.skeleton.common.entity.ResourceInfo;
-import com.zyxx.skeleton.common.entity.RoleInfo;
-import com.zyxx.skeleton.common.entity.UserInfo;
-import com.zyxx.skeleton.common.service.ResourceInfoService;
-import com.zyxx.skeleton.common.service.RoleInfoService;
-import com.zyxx.skeleton.common.service.UserInfoService;
+import com.zyxx.common.entity.ResourceInfo;
+import com.zyxx.common.entity.RoleInfo;
+import com.zyxx.common.entity.UserInfo;
+import com.zyxx.common.service.ResourceInfoService;
+import com.zyxx.common.service.RoleInfoService;
+import com.zyxx.common.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

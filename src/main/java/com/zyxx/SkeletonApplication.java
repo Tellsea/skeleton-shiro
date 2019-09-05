@@ -11,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @date 2019/7/13
  */
 @SpringBootApplication
-@MapperScan("com.zyxx.skeleton.*.mapper")
+@MapperScan("com.zyxx.*.mapper")
 public class SkeletonApplication {
 
     public static void main(String[] args) {

@@ -41,7 +41,7 @@ public class MybatisPlusCodeConfig {
     /**
      * 生成文件位置
      */
-    private static final String javaLocation = projectPath + "/src/main/java/com/zyxx/skeleton/";
+    private static final String javaLocation = projectPath + "/src/main/java/com/zyxx/";
     private static final String pageLocation = projectPath + "/src/main/resources/views/";
     /**
      * 基类路径
@@ -78,7 +78,7 @@ public class MybatisPlusCodeConfig {
         // 基础包配置
         final PackageConfig pc = new PackageConfig();
         pc.setModuleName(model);
-        pc.setParent("com.zyxx.skeleton");
+        pc.setParent("com.zyxx");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
