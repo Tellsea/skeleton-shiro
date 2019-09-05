@@ -158,6 +158,13 @@
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.1.0</version>
         </dependency>
+
+        <!-- java 读取 yml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.25</version>
+        </dependency>
     </dependencies>
 
     <build>

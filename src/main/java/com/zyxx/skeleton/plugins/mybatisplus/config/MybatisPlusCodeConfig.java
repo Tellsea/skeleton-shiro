@@ -7,7 +7,10 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.yaml.snakeyaml.Yaml;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,10 +72,10 @@ public class MybatisPlusCodeConfig {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://47.107.171.232:3306/skeleton?useUnicode=true&characterEncoding=utf-8&useSSL=false");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("Root123!@#");
+        dsc.setUrl(getApplicationYml("url"));
+        dsc.setDriverName(getApplicationYml("driver-class-name"));
+        dsc.setUsername(getApplicationYml("username"));
+        dsc.setPassword(getApplicationYml("password"));
         mpg.setDataSource(dsc);
 
         // 基础包配置
@@ -214,5 +217,35 @@ public class MybatisPlusCodeConfig {
             return sb;
         }
         return humpTurnUnderscore(sb);
+    }
+
+    /**
+     * 读取 application.yml
+     *
+     * @param key
+     * @return
+     */
+    public static String getApplicationYml(String key) {
+        Yaml yaml = new Yaml();
+        InputStream resourceAsStream = null;
+        Map map = null;
+        Map datasource = null;
+        try {
+            resourceAsStream = MybatisPlusCodeConfig.class.getClassLoader().getResourceAsStream("application.yml");
+            map = yaml.load(resourceAsStream);
+            Map spring = (Map) map.get("spring");
+            datasource = (Map) spring.get("datasource");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resourceAsStream != null) {
+                try {
+                    resourceAsStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return (String) datasource.get(key);
     }
 }
