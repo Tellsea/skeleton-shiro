@@ -1,0 +1,18 @@
+package com.zyxx.skeleton.core.base.controller;
+
+import com.zyxx.skeleton.core.base.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * 基类控制器
+ *
+ * @param <S> 不能为空
+ * @author Tellsea
+ * @date 2019/7/13
+ */
+public class BaseController<S extends BaseService> {
+
+    @Autowired
+    protected S baseService;
+
+}

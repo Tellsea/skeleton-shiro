@@ -8,7 +8,7 @@
         <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cn.tellsea</groupId>
+    <groupId>com.zyxx</groupId>
     <artifactId>skeleton</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>skeleton</name>

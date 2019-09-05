@@ -32,10 +32,10 @@ spring:
     show-sql: true
 # mybatis
 mybatis:
-  type-aliases-package: cn.tellsea.skeleton.*.entity
+  type-aliases-package: com.zyxx.skeleton.*.entity
   configuration:
     map-underscore-to-camel-case: true
 # 日志
 logging:
   level:
-    cn.tellsea.skeleton.common.mapper: debug
+    com.zyxx.skeleton.common.mapper: debug

@@ -15,7 +15,7 @@
             <div class="layui-collapse" lay-filter="test">
                 <div class="layui-colla-item">
                     <h2 class="layui-colla-title">搜索条件</h2>
-                    <div class="layui-colla-content">
+                    <div class="layui-colla-content layui-show">
                         <form class="layui-form" action="" lay-filter="component-form-group">
                             <div class="layui-form-item">
                                 <div class="layui-inline">
@@ -34,11 +34,11 @@
                                 </div>
                                 <div class="layui-inline">
                                     <div class="layui-input-block" style="margin-left: 0;">
-                                        <button class="layui-btn layui-btn-normal layui-btn-sm bind-event" data-type="query">
-                                            <i class="layui-icon layui-icon-search"></i>查询
+                                        <button class="layui-btn layui-btn-normal layui-btn-sm bind-event" data-type="query" title="查询">
+                                            <i class="layui-icon layui-icon-search"></i>
                                         </button>
-                                        <button class="layui-btn layui-btn-primary layui-btn-sm bind-event" data-type="reset">
-                                            <i class="layui-icon layui-icon-refresh"></i>重置
+                                        <button class="layui-btn layui-btn-primary layui-btn-sm bind-event" data-type="reset" title="重置">
+                                            <i class="layui-icon layui-icon-refresh"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -56,31 +56,27 @@
             </script>
             <!-- 头按钮 -->
             <script type="text/html" id="headBar">
-                <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh">
-                    <i class="layui-icon layui-icon-refresh"></i>刷新
+                <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh" title="刷新">
+                    <i class="layui-icon layui-icon-refresh"></i>
                 </button>
-                <button class="layui-btn layui-btn-sm" lay-event="add">
-                    <i class="layui-icon layui-icon-add-1"></i>新增
+                <button class="layui-btn layui-btn-sm" lay-event="add" title="新增">
+                    <i class="layui-icon layui-icon-add-1"></i>
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">
-                    <i class="layui-icon layui-icon-close"></i>批量删除
+                <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel" title="批量删除">
+                    <i class="layui-icon layui-icon-close"></i>
                 </button>
             </script>
             <!-- 行按钮 -->
             <script type="text/html" id="rowBar">
-                <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">
-                    <i class="layui-icon layui-icon-note"></i>查看
+                <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail" title="查看">
+                    <i class="layui-icon layui-icon-note"></i>
                 </a>
-                <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit">
-                    <i class="layui-icon layui-icon-edit"></i>编辑
+                <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit" title="编辑">
+                    <i class="layui-icon layui-icon-edit"></i>
                 </a>
-                <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">
-                    <i class="layui-icon layui-icon-delete"></i>删除
+                <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del" title="删除">
+                    <i class="layui-icon layui-icon-delete"></i>
                 </a>
-            </script>
-            <!-- 开启关闭 -->
-            <script type="text/html" id="switchStatus">
-                <input type="checkbox" name="status" value="{{d.id}}" lay-skin="switch" lay-text="有效|锁定" lay-filter="statusDemo" {{ d.status == 1 ? 'checked' : '' }}>
             </script>
         </div>
     </div>
@@ -103,7 +99,6 @@
             , url: '/userInfo/listUserInfo'
             , page: true
             , toolbar: '#headBar'
-            , height: 'full-220'
             , cols: [[
                 {type: 'checkbox'}
                 , {type:'numbers', title: '序号'}
@@ -124,8 +119,16 @@
                 , {field: 'description', title: '描述'}
                 , {field: 'createUserName', title: '创建人'}
                 , {field: 'createTime', title: '创建时间'}
-                , {field: 'status', title: '状态', templet: '#switchStatus',}
-                , {fixed: 'right', width: 250, toolbar: '#rowBar'}
+                , {field: 'status', title: '状态', templet: function (d) {
+                    if (d.status == 0) {
+                        return '<span class="layui-badge layui-bg-green">正常</span>'
+                    } else if (d.status == 1) {
+                        return '<span class="layui-badge layui-bg-orange">锁定</span>'
+                    } else if (d.status == 2) {
+                        return '<span class="layui-badge layui-bg-green">删除</span>'
+                    }
+                }}
+                , {fixed: 'right', width: 180, toolbar: '#rowBar'}
             ]]
         });
 

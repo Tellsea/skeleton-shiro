@@ -40,5 +40,5 @@ public class ${entity} extends ${superEntityClass} {
     </#if>
 
 </#list>
-<#------------  END 字段循环遍历  ---------->
+<#------------  END 字段循环遍历  tinyint 转 Integer ---------->
 }

@@ -14,15 +14,15 @@
             <table id="dataTable" lay-filter="dataTableFilter"></table>
             <!-- 头按钮 -->
             <script type="text/html" id="headBar">
-                <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh">
-                    <i class="layui-icon layui-icon-refresh"></i>刷新
+                <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh" title="刷新">
+                    <i class="layui-icon layui-icon-refresh"></i>
                 </button>
             </script>
             <!-- 行按钮 -->
             <script type="text/html" id="rowBar">
-                <a class="layui-btn layui-btn-sm" lay-event="edit">
-                    <i class="layui-icon layui-icon-edit"></i>分配权限
-                </a>
+                <button class="layui-btn layui-btn-sm" lay-event="edit" title="分配权限">
+                    <i class="layui-icon layui-icon-edit"></i>
+                </button>
             </script>
             <!-- 编辑区 -->
             <div id="editModel" style="display: none; padding: 15px;">
@@ -96,7 +96,7 @@
                 {type: 'numbers', title: '序号'}
                 , {field: 'name', title: '角色名'}
                 , {field: 'description', title: '描述'}
-                , {fixed: 'right', title: '操作', width: 150, toolbar: '#rowBar'}
+                , {fixed: 'right', title: '操作', width: 80, toolbar: '#rowBar'}
             ]]
         });
 
