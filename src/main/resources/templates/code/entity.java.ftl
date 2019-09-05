@@ -1,6 +1,6 @@
 package ${package.Entity};
 
-import cn.tellsea.skeleton.core.base.entity.BaseEntity;
+import com.zyxx.skeleton.core.base.entity.BaseEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 <#if entityLombokModel>
 import lombok.Data;
@@ -35,6 +35,8 @@ public class ${entity} extends ${superEntityClass} {
     </#if>
     <#if field.propertyType == "LocalDateTime">
     private Date ${field.propertyName};
+    <#elseif field.name == "status">
+    private Integer ${field.propertyName};
     <#else>
     private ${field.propertyType} ${field.propertyName};
     </#if>

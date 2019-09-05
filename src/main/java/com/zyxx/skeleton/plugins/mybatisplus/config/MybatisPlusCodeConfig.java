@@ -87,6 +87,7 @@ public class MybatisPlusCodeConfig {
             public void initMap() {
                 Map<String, Object> map = new HashMap<>(16);
                 map.put("Dao", "com.zyxx.skeleton.".concat(model).concat(".dao"));
+                map.put("tableName", tableName);
                 this.setMap(map);
             }
         };

@@ -1,6 +1,6 @@
 package ${cfg.Dao};
 
-import cn.tellsea.skeleton.core.base.dao.BaseDao;
+import com.zyxx.skeleton.core.base.dao.BaseDao;
 import org.springframework.stereotype.Repository;
 
 /**

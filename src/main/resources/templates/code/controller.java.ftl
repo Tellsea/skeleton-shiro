@@ -5,9 +5,10 @@ import ${package.Service}.${table.serviceName};
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
-import cn.tellsea.skeleton.core.global.dto.ResponseResult;
-import cn.tellsea.skeleton.core.global.enums.StatusEnums;
+import com.zyxx.skeleton.core.global.dto.ResponseResult;
+import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("${table.xmlName}")
 public class ${table.controllerName} extends ${superControllerClass}<${table.serviceName}> {
+
+    @GetMapping("init")
+    public String init() {
+        return "admin/${cfg.tableName}";
+    }
 
     /**
      * 新增

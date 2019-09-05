@@ -18,9 +18,10 @@ public class MybatisPlusCode {
     public static void main(String[] args) {
         int showConfirmDialog = JOptionPane.showConfirmDialog(null, "当前操作: 生成代码，请确保生成的文件不存在，否则会覆盖！", "请选择", JOptionPane.YES_NO_OPTION);
         if (0 == showConfirmDialog) {
-             String[] nameList = new String[]{"map_user_role", "role_info", "map_role_resource", "resource_info", "login_log", "system_log"};
+             //String[] nameList = new String[]{"map_user_role", "role_info", "map_role_resource", "resource_info", "login_log", "system_log"};
+             String[] nameList = new String[]{"user_info"};
             for (int i = 0; i < nameList.length; i++) {
-                MybatisPlusCodeConfig.codeGenerator("common", nameList[i]);
+                MybatisPlusCodeConfig.codeGenerator("business", nameList[i]);
             }
         }
     }
