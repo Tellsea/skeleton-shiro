@@ -4,7 +4,7 @@ import com.zyxx.common.dao.ResourceInfoDao;
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.service.ResourceInfoService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
-import com.zyxx.skeleton.core.layui.LayuiTree;
+import com.zyxx.skeleton.assembly.layui.LayuiTree;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

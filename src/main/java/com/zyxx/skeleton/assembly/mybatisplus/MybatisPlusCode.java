@@ -1,6 +1,6 @@
-package com.zyxx.skeleton.plugins.mybatisplus;
+package com.zyxx.skeleton.assembly.mybatisplus;
 
-import com.zyxx.skeleton.plugins.mybatisplus.config.MybatisPlusCodeConfig;
+import com.zyxx.skeleton.assembly.mybatisplus.config.MybatisPlusCodeConfig;
 
 import javax.swing.*;
 

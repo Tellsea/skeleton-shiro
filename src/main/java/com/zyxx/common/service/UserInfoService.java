@@ -2,7 +2,7 @@ package com.zyxx.common.service;
 
 import com.zyxx.common.entity.UserInfo;
 import com.zyxx.skeleton.core.base.service.BaseService;
-import com.zyxx.skeleton.core.layui.LayuiTable;
+import com.zyxx.skeleton.assembly.layui.LayuiTable;
 
 import java.util.List;
 

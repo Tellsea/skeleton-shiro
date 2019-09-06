@@ -5,7 +5,7 @@ import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.vo.UserInfoVo;
 import com.zyxx.common.service.UserInfoService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
-import com.zyxx.skeleton.core.layui.LayuiTable;
+import com.zyxx.skeleton.assembly.layui.LayuiTable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

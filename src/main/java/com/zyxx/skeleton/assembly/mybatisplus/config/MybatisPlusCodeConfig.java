@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.plugins.mybatisplus.config;
+package com.zyxx.skeleton.assembly.mybatisplus.config;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
