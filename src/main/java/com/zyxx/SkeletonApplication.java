@@ -2,6 +2,7 @@ package com.zyxx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -10,6 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @author Tellsea
  * @date 2019/7/13
  */
+@EnableAsync
 @SpringBootApplication
 @MapperScan("com.zyxx.*.mapper")
 public class SkeletonApplication {
