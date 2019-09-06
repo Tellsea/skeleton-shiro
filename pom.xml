@@ -12,7 +12,7 @@
     <artifactId>skeleton</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>skeleton</name>
-    <description>Project skeleton based on Spring Boot</description>
+    <description>Framework for rapid modular development</description>
 
     <properties>
         <java.version>1.8</java.version>

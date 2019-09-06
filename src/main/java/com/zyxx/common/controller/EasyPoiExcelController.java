@@ -5,7 +5,7 @@ import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
 import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.service.UserInfoService;
-import com.zyxx.skeleton.core.util.EasyPoiExcelUtils;
+import com.zyxx.skeleton.assembly.easypoi.util.EasyPoiExcelUtils;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

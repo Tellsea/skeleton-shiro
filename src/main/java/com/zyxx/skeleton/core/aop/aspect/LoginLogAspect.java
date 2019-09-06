@@ -1,14 +1,14 @@
 package com.zyxx.skeleton.core.aop.aspect;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zyxx.common.entity.LoginLog;
 import com.zyxx.common.service.LoginLogService;
 import com.zyxx.skeleton.core.global.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import com.zyxx.skeleton.core.global.exception.GlobalException;
 import com.zyxx.skeleton.core.util.AddressUtils;
-import com.zyxx.skeleton.core.util.HttpContextUtils;
 import com.zyxx.skeleton.core.util.IpUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.zyxx.skeleton.core.util.SpringContextUtils;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -55,7 +55,7 @@ public class LoginLogAspect {
     @Around("loginLogAspect()")
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws JsonProcessingException {
         Object result = null;
-        HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+        HttpServletRequest request = SpringContextUtils.getHttpServletRequest();
         LoginLog loginLog = new LoginLog();
         loginLog.setCreateTime(new Date());
         Map<String, Object> fieldsName = getFieldsName(proceedingJoinPoint);

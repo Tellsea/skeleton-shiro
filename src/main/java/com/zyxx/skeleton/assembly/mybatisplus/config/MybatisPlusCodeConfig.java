@@ -172,7 +172,7 @@ public class MybatisPlusCodeConfig {
             }
         });
 
-        // Mapper.xml
+        // Dao.java
         focList.add(new FileOutConfig(templatePathDao) {
             @Override
             public String outputFile(TableInfo tableInfo) {

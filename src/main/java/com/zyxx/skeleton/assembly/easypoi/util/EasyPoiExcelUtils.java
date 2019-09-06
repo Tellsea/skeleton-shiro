@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.core.util;
+package com.zyxx.skeleton.assembly.easypoi.util;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
@@ -50,8 +50,6 @@ public class EasyPoiExcelUtils {
     private static void defaultExport(List<?> list, Class<?> pojoClass, String fileName, HttpServletResponse response,
                                       ExportParams exportParams) {
         Workbook workbook = ExcelExportUtil.exportExcel(exportParams, pojoClass, list);
-        if (workbook != null)
-            ;
         downLoadExcel(fileName, response, workbook);
     }
 
