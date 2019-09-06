@@ -1,9 +1,11 @@
 package com.zyxx.skeleton.core.aop.aspect;
 
+import com.zyxx.common.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,6 +19,10 @@ import org.springframework.stereotype.Component;
 @Component
 @SuppressWarnings("all")
 public class DynamicShiroAspect {
+
+    @Autowired
+    private ShiroService shiroService;
+
     /**
      * 权限更新切点
      */
@@ -26,6 +32,7 @@ public class DynamicShiroAspect {
 
     @After("dynamicShiroAspect()")
     public void after() {
-        System.out.println("切面操作");
+        shiroService.updatePermission();
+        log.info("DynamicShiroAspect: shiro 动态更新权限成功...");
     }
 }

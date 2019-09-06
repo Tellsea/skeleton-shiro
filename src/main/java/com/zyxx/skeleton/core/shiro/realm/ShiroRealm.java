@@ -46,6 +46,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        log.info("用户授权");
         UserInfo user = (UserInfo) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         List<RoleInfo> roleInfoList = roleInfoService.listRoleInfoByUserId(user.getId());
@@ -69,6 +70,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        log.info("用户认证");
         String userName = (String) token.getPrincipal();
         UserInfo user = new UserInfo();
         user.setUserName(userName);

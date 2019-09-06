@@ -30,7 +30,6 @@ public class DruidConfig {
 
     @Bean
     public ServletRegistrationBean druidServlet() {
-        log.info("DruidConfig：初始化 druid 配置成功 ");
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         // IP白名单
         servletRegistrationBean.addInitParameter("allow", "127.0.0.1");
@@ -103,7 +102,7 @@ public class DruidConfig {
             try {
                 datasource.setFilters(filters);
             } catch (SQLException e) {
-                System.err.println("druid 配置初始化filter: " + e);
+                log.error("druid 配置初始化filter: " + e);
             }
             datasource.setConnectionProperties(connectionProperties);
             return datasource;

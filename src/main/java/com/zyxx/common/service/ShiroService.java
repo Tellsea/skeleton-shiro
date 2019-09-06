@@ -13,8 +13,7 @@ import java.util.Map;
 public interface ShiroService {
 
     /**
-     * 加载过滤规则
-     *
+     * 加载初始 bean 设置
      * @return
      */
     ShiroFilterFactoryBean loadShiroFilterFactoryBean();

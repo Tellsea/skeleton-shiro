@@ -35,8 +35,6 @@ public class ShiroServiceImpl implements ShiroService {
     @Override
     public ShiroFilterFactoryBean loadShiroFilterFactoryBean() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        // 必须设置 SecurityManager
-        shiroFilterFactoryBean.setSecurityManager(SecurityUtils.getSecurityManager());
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
@@ -55,7 +53,6 @@ public class ShiroServiceImpl implements ShiroService {
                 }
             });
         }
-        // 静态资源，和默认不拦截
         filterChainDefinitionMap.put("/favicon.ico", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/login", "anon");
@@ -69,6 +66,8 @@ public class ShiroServiceImpl implements ShiroService {
     public void updatePermission() {
         synchronized (this) {
             ShiroFilterFactoryBean shiroFilterFactoryBean = loadShiroFilterFactoryBean();
+            shiroFilterFactoryBean.setSecurityManager(SecurityUtils.getSecurityManager());
+
             AbstractShiroFilter shiroFilter;
             try {
                 shiroFilter = (AbstractShiroFilter) shiroFilterFactoryBean.getObject();
