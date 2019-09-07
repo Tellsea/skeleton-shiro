@@ -22,6 +22,8 @@ import java.util.Date;
 @Setter
 public class UserInfo extends BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = -6743567631108323096L;
+
     /**
      * 用户ID
      */

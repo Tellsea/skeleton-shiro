@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.core.util;
+package com.zyxx.skeleton.core.shiro.util;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.shiro.SecurityUtils;

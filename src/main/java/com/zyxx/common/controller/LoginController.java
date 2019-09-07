@@ -4,7 +4,7 @@ import com.zyxx.skeleton.core.aop.annotation.LoginLog;
 import com.zyxx.skeleton.core.consts.SessionConst;
 import com.zyxx.skeleton.core.global.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
-import com.zyxx.skeleton.core.util.ShiroUtils;
+import com.zyxx.skeleton.core.shiro.util.ShiroUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

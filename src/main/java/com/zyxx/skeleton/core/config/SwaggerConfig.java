@@ -35,7 +35,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                 .apis(basePackage("com.zyxx.common.controller".concat(SPLITOR).concat("")))
+                 .apis(basePackage("com.zyxx.common.controller".concat(SPLITOR).concat("com.zyxx.customized.controller")))
                 .paths(PathSelectors.any())
                 .build();
     }

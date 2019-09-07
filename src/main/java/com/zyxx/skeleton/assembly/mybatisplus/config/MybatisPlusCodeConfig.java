@@ -228,7 +228,7 @@ public class MybatisPlusCodeConfig {
     public static String getApplicationYml(String key) {
         Yaml yaml = new Yaml();
         InputStream resourceAsStream = null;
-        Map map = null;
+        Map map;
         Map datasource = null;
         try {
             resourceAsStream = MybatisPlusCodeConfig.class.getClassLoader().getResourceAsStream("application.yml");

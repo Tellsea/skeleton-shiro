@@ -1,6 +1,6 @@
 package com.zyxx.skeleton.core.aop.aspect;
 
-import com.zyxx.common.service.ShiroService;
+import com.zyxx.customized.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
