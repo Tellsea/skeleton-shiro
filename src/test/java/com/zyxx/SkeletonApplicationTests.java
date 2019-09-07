@@ -5,8 +5,10 @@ import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.test.context.junit4.SpringRunner;
 
+@EnableAsync
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SkeletonApplicationTests {
