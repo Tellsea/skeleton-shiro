@@ -2,12 +2,9 @@
 
 https://blog.csdn.net/feinifi/article/details/85275280
 
-lombok.config
+- Lombok 工具中@Data注解生成hashCode()可能导致StackOverflowError情况
 
-```
-config.stopBubbling=true
-lombok.equalsAndHashCode.callSuper=call
-```
+https://blog.csdn.net/u013202238/article/details/80370868
 
 - spring boot 读取配置文件的五种方式
 

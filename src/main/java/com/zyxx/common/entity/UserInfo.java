@@ -1,9 +1,10 @@
 package com.zyxx.common.entity;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.zyxx.skeleton.core.base.entity.BaseEntity;
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
+import com.zyxx.skeleton.core.base.entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,8 @@ import java.util.Date;
  * @author Tellsea
  * @date 2019-08-10
  */
-@Data
+@Getter
+@Setter
 public class UserInfo extends BaseEntity implements Serializable {
 
     /**

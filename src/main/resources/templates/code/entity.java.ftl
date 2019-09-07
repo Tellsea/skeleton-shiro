@@ -1,9 +1,10 @@
 package ${package.Entity};
 
-import com.zyxx.skeleton.core.base.entity.BaseEntity;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.zyxx.skeleton.core.base.entity.BaseEntity;
 <#if entityLombokModel>
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 </#if>
 
 import javax.persistence.*;
@@ -15,7 +16,8 @@ import java.util.Date;
  * @author ${author}
  * @date ${date}
  */
-@Data
+@Getter
+@Setter
 public class ${entity} extends ${superEntityClass} {
 
 <#-- ----------  BEGIN 字段循环遍历  ---------->

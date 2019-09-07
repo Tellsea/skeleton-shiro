@@ -1,10 +1,13 @@
 package com.zyxx.common.entity;
 
-import com.zyxx.skeleton.core.base.entity.BaseEntity;
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
+import com.zyxx.skeleton.core.base.entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -13,7 +16,8 @@ import java.util.Date;
  * @author Tellsea
  * @date 2019-08-10
  */
-@Data
+@Getter
+@Setter
 public class SystemLog extends BaseEntity {
 
     /**

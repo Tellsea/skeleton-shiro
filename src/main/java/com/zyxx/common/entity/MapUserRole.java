@@ -1,7 +1,8 @@
 package com.zyxx.common.entity;
 
 import com.zyxx.skeleton.core.base.entity.BaseEntity;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,8 @@ import javax.persistence.Id;
  * @author Tellsea
  * @date 2019-08-10
  */
-@Data
+@Getter
+@Setter
 public class MapUserRole extends BaseEntity {
 
     /**
