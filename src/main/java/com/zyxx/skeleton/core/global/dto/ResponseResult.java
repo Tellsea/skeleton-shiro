@@ -54,7 +54,7 @@ public class ResponseResult implements Cloneable, Serializable {
             ObjectOutputStream oos = new ObjectOutputStream(baos);
             // 将待克隆对象序列化
             oos.writeObject(this);
-            try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()));) {
+            try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()))) {
                 // 反序列化待克隆对象并在内存中重建
                 result = (ResponseResult) ois.readObject();
             } catch (ClassNotFoundException e) {

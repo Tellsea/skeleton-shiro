@@ -13,6 +13,9 @@ import java.util.Map;
  */
 public interface QuartzService {
 
+    /**
+     * 启动quertz
+     */
     void startScheduler();
 
     /**

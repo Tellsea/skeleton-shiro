@@ -23,6 +23,6 @@ public class ApplicationQuartzListener implements ApplicationListener<ContextRef
      */
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        quartzService.startScheduler();
+         quartzService.startScheduler();
     }
 }
