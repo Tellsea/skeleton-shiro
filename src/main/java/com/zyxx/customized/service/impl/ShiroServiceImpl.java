@@ -72,19 +72,19 @@ public class ShiroServiceImpl implements ShiroService {
             try {
                 shiroFilter = (AbstractShiroFilter) shiroFilterFactoryBean.getObject();
             } catch (Exception e) {
-                log.error("从 ShirofilterFactoryBean 错误获取 Shirofilter !");
+                log.error("ShiroServiceImpl: 从 ShirofilterFactoryBean 错误获取 Shirofilter !");
                 throw new RuntimeException("从 ShirofilterFactoryBean 错误获取 Shirofilter !");
             }
 
             PathMatchingFilterChainResolver filterChainResolver = (PathMatchingFilterChainResolver) shiroFilter.getFilterChainResolver();
             DefaultFilterChainManager manager = (DefaultFilterChainManager) filterChainResolver.getFilterChainManager();
 
-            log.info("清空旧的权限控制...");
+            log.info("ShiroServiceImpl: 清空旧的权限控制...");
             manager.getFilterChains().clear();
             shiroFilterFactoryBean.getFilterChainDefinitionMap().clear();
             shiroFilterFactoryBean.setFilterChainDefinitionMap(loadFilterChainDefinitions());
 
-            log.info("重新构建权限控制的过滤链...");
+            log.info("ShiroServiceImpl: 重新构建权限控制的过滤链...");
             Map<String, String> chains = shiroFilterFactoryBean.getFilterChainDefinitionMap();
             for (Map.Entry<String, String> entry : chains.entrySet()) {
                 String url = entry.getKey();
