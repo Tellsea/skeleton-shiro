@@ -2,7 +2,7 @@ package com.zyxx.common.controller;
 
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.service.ResourceInfoService;
-import com.zyxx.skeleton.core.aop.annotation.DynamicShiro;
+import com.zyxx.skeleton.core.shiro.aop.annotation.DynamicShiro;
 import com.zyxx.skeleton.core.base.controller.BaseController;
 import com.zyxx.skeleton.core.global.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;

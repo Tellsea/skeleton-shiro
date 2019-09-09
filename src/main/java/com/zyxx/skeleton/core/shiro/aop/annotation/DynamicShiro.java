@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.core.aop.annotation;
+package com.zyxx.skeleton.core.shiro.aop.annotation;
 
 import java.lang.annotation.*;
 

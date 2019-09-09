@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.core.aop.aspect;
+package com.zyxx.skeleton.core.shiro.aop.aspect;
 
 import com.zyxx.customized.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class DynamicShiroAspect {
     /**
      * 权限更新切点
      */
-    @Pointcut("@annotation(com.zyxx.skeleton.core.aop.annotation.DynamicShiro)")
+    @Pointcut("@annotation(com.zyxx.skeleton.core.shiro.aop.annotation.DynamicShiro)")
     public void dynamicShiroAspect() {
     }
 
