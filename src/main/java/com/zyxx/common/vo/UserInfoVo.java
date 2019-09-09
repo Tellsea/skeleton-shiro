@@ -1,13 +1,15 @@
 package com.zyxx.common.vo;
 
 import com.zyxx.common.entity.UserInfo;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Tellsea
  * @date 2019/8/10
  */
-@Data
+@Getter
+@Setter
 public class UserInfoVo extends UserInfo {
 
     /**
