@@ -1,8 +1,8 @@
-package com.zyxx.customized.service.impl;
+package com.zyxx.necessary.service.impl;
 
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.mapper.ResourceInfoMapper;
-import com.zyxx.customized.service.ShiroService;
+import com.zyxx.necessary.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;

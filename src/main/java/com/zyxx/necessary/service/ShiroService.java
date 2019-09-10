@@ -1,4 +1,4 @@
-package com.zyxx.customized.service;
+package com.zyxx.necessary.service;
 
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 
