@@ -3,10 +3,12 @@ package com.zyxx.customized.controller;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
+import com.alibaba.fastjson.JSONObject;
 import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.service.UserInfoService;
 import com.zyxx.skeleton.assembly.easypoi.util.EasyPoiExcelUtils;
-import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author: Tellsea
  * @date: 2019/09/04
  */
+@Api(tags = "Excel 导入导出")
 @Slf4j
 @Controller
 @RequestMapping("excel")
@@ -34,12 +37,14 @@ public class EasyPoiExcelController {
     @Autowired
     private UserInfoService userInfoService;
 
+    @ApiOperation("导出")
     @GetMapping("export")
     public void export(HttpServletResponse response) {
         List<UserInfo> list = userInfoService.selectAll();
         EasyPoiExcelUtils.exportExcel(list, "easypoi导出功能", "导出sheet1", UserInfo.class, "系统用户表.xls", response);
     }
 
+    @ApiOperation("导入")
     @PostMapping("import")
     public String importTest(@RequestParam("file") MultipartFile file) {
         ImportParams importParams = new ImportParams();

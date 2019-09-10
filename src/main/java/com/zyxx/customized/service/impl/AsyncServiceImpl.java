@@ -1,26 +1,28 @@
-package com.zyxx.skeleton.assembly.async;
+package com.zyxx.customized.service.impl;
 
+import com.zyxx.customized.service.AsyncService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Future;
 
 /**
- * 异步调用方法
+ * 异步方法 实现类
  *
- * @author Tellsea
- * @date 2019/9/6
+ * @author: Tellsea
+ * @date: 2019/09/10
  */
-@Component
-public class ExampleAsync {
+@Service
+public class AsyncServiceImpl implements AsyncService {
 
     @Async
+    @Override
     public Future<String> exampleAsync() {
-        // 方法体，这里是异步执行的
-        System.out.println(111111);
         try {
             Thread.sleep(10000);
+            // 方法体，这里是异步执行的
+            System.out.println(111111);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
