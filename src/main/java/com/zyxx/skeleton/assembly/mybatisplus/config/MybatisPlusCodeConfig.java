@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
@@ -234,8 +235,19 @@ public class MybatisPlusCodeConfig {
             resourceAsStream = MybatisPlusCodeConfig.class.getClassLoader().getResourceAsStream("application.yml");
             map = yaml.load(resourceAsStream);
             Map spring = (Map) map.get("spring");
-            datasource = (Map) spring.get("datasource");
-        } catch (Exception e) {
+            Map profiles = (Map) spring.get("profiles");
+            String active = profiles.get("active").toString();
+            if (StringUtils.isEmpty(active)) {
+                // 没有设置当前启动环境
+                datasource = (Map) spring.get("datasource");
+            } else {
+                resourceAsStream = MybatisPlusCodeConfig.class.getClassLoader().getResourceAsStream("application-" + active + ".yml");
+                map = yaml.load(resourceAsStream);
+                spring = (Map) map.get("spring");
+                datasource = (Map) spring.get("datasource");
+            }
+            return (String) datasource.get(key);
+        } catch (NullPointerException e) {
             e.printStackTrace();
         } finally {
             if (resourceAsStream != null) {
@@ -246,6 +258,6 @@ public class MybatisPlusCodeConfig {
                 }
             }
         }
-        return (String) datasource.get(key);
+        return null;
     }
 }

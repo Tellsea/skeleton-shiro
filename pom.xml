@@ -140,6 +140,13 @@
             <version>1.7.2</version>
         </dependency>
 
+        <!-- java 读取 yml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.25</version>
+        </dependency>
+
         <!-- 代码生成器 -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -157,13 +164,6 @@
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.1.0</version>
-        </dependency>
-
-        <!-- java 读取 yml -->
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.25</version>
         </dependency>
 
         <!-- quartz -->

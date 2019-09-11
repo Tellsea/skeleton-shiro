@@ -21,8 +21,8 @@ public class GlobalExceptionHandle {
 
     @ExceptionHandler(value = Exception.class)
     public String exception(Exception e, Model model) {
-        model.addAttribute("class", e.getClass());
-        model.addAttribute("message", e.getMessage());
+        model.addAttribute("code", e.getClass());
+        model.addAttribute("info", e.getMessage());
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
@@ -31,8 +31,8 @@ public class GlobalExceptionHandle {
 
     @ExceptionHandler(value = GlobalException.class)
     public String globalExceptionHandle(GlobalException e, Model model) {
-        model.addAttribute("class", e.getClass());
-        model.addAttribute("message", e.getMessage());
+        model.addAttribute("code", e.getBaseEnums().getCode());
+        model.addAttribute("info", e.getBaseEnums().getInfo());
         log.error("【错误原因】{}", e.getClass());
         log.error("【错误描述】{}", e.getMessage());
         e.printStackTrace();
