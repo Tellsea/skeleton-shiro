@@ -3,7 +3,7 @@ package com.zyxx.common.controller;
 import com.zyxx.common.entity.MapRoleResource;
 import com.zyxx.common.service.MapRoleResourceService;
 import com.zyxx.skeleton.core.base.controller.BaseController;
-import com.zyxx.skeleton.core.global.dto.ResponseResult;
+import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

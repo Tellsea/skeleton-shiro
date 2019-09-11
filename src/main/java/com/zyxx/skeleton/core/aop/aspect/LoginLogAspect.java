@@ -3,7 +3,7 @@ package com.zyxx.skeleton.core.aop.aspect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zyxx.common.entity.LoginLog;
 import com.zyxx.common.service.LoginLogService;
-import com.zyxx.skeleton.core.global.dto.ResponseResult;
+import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import com.zyxx.skeleton.core.global.exception.GlobalException;
 import com.zyxx.skeleton.core.util.AddressUtils;

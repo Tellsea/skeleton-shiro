@@ -1,6 +1,6 @@
 package com.zyxx;
 
-import com.zyxx.skeleton.core.global.dto.ResponseResult;
+import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import org.junit.Test;
 import org.junit.runner.RunWith;

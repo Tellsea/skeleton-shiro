@@ -63,6 +63,15 @@ public class ShiroUtils {
     }
 
     /**
+     * 删除 session 数据
+     *
+     * @param sessionKey
+     */
+    public static void removeSessionAttribute(String sessionKey) {
+        getSession().removeAttribute(sessionKey);
+    }
+
+    /**
      * 获得当前用户
      *
      * @return

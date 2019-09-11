@@ -5,7 +5,7 @@ import ${package.Service}.${table.serviceName};
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
-import com.zyxx.skeleton.core.global.dto.ResponseResult;
+import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

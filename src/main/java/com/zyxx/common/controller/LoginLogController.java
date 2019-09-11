@@ -3,7 +3,7 @@ package com.zyxx.common.controller;
 import com.zyxx.common.entity.LoginLog;
 import com.zyxx.common.service.LoginLogService;
 import com.zyxx.skeleton.core.base.controller.BaseController;
-import com.zyxx.skeleton.core.global.dto.ResponseResult;
+import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import com.zyxx.skeleton.assembly.layui.LayuiTable;
 import org.springframework.stereotype.Controller;

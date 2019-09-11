@@ -6,6 +6,10 @@ import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.service.ResourceInfoService;
 import com.zyxx.common.service.RoleInfoService;
 import com.zyxx.common.service.UserInfoService;
+import com.zyxx.skeleton.core.consts.SessionConst;
+import com.zyxx.skeleton.core.consts.UserInfoStatus;
+import com.zyxx.skeleton.core.dto.UserRoleResource;
+import com.zyxx.skeleton.core.shiro.util.ShiroUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
@@ -46,10 +50,19 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        UserInfo user = (UserInfo) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        List<RoleInfo> roleInfoList = roleInfoService.listRoleInfoByUserId(user.getId());
-        List<ResourceInfo> resourceInfoList = resourceInfoService.listResourceInfoByUserId(user.getId());
+        UserRoleResource urr = (UserRoleResource) ShiroUtils.getSessionAttribute(SessionConst.USER_ROLE_RESOURCE);
+        List<RoleInfo> roleInfoList;
+        List<ResourceInfo> resourceInfoList;
+        if (null != urr) {
+            roleInfoList = urr.getRoleInfoList();
+            resourceInfoList = urr.getResourceInfoList();
+        } else {
+            // 如果当前操作为记住我之后，后台又重启了，则前端产生一个问题，当前用户已经登录，但是后台 session 被清空，所以这里需要判断重新加载权限信息
+            UserInfo user = (UserInfo) principalCollection.getPrimaryPrincipal();
+            roleInfoList = roleInfoService.listRoleInfoByUserId(user.getId());
+            resourceInfoList = resourceInfoService.listResourceInfoByUserId(user.getId());
+        }
         if (!CollectionUtils.isEmpty(roleInfoList)) {
             roleInfoList.forEach(roleInfo -> {
                 if (!StringUtils.isEmpty(roleInfo.getName())) {
@@ -73,15 +86,21 @@ public class ShiroRealm extends AuthorizingRealm {
         UserInfo user = new UserInfo();
         user.setUserName(userName);
         UserInfo userInfo = userInfoService.selectOne(user);
-        if (userInfo == null || 3 == userInfo.getStatus()) {
+        if (userInfo == null || UserInfoStatus.DELETE == userInfo.getStatus()) {
             throw new UnknownAccountException();
         }
-        if (2 == userInfo.getStatus()) {
+        if (UserInfoStatus.LOCKING == userInfo.getStatus()) {
             throw new LockedAccountException();
         }
         // 防止泄露，shiro将SimpleAuthenticationInfo的第一个参数存入标签中
         user.setPassword("");
         user.setSalt("");
         return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), ByteSource.Util.bytes(userInfo.getSalt()), getName());
+    }
+
+    @Override
+    public AuthorizationInfo getAuthorizationInfo(PrincipalCollection principals) {
+        // 获得当前用户的信息，底层会从先尝试从缓存中取，若不存在会执行 doGetAuthorizationInfo 方法，并写入缓存中
+        return super.getAuthorizationInfo(principals);
     }
 }

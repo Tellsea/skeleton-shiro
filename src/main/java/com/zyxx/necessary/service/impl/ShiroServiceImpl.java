@@ -3,6 +3,7 @@ package com.zyxx.necessary.service.impl;
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.mapper.ResourceInfoMapper;
 import com.zyxx.necessary.service.ShiroService;
+import com.zyxx.skeleton.core.shiro.filter.SessionCheckFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,10 @@ public class ShiroServiceImpl implements ShiroService {
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+        // 自定义拦截器
+        LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
+        filtersMap.put("sessionCheckFilter", new SessionCheckFilter());
+        shiroFilterFactoryBean.setFilters(filtersMap);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(loadFilterChainDefinitions());
         return shiroFilterFactoryBean;
     }
@@ -54,11 +60,11 @@ public class ShiroServiceImpl implements ShiroService {
             });
         }
         filterChainDefinitionMap.put("/favicon.ico", "anon");
-        filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/logout", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/Captcha.jpg", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
-        filterChainDefinitionMap.put("/**", "user");
+        filterChainDefinitionMap.put("/**", "user,sessionCheckFilter");
         return filterChainDefinitionMap;
     }
 

@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.core.global.dto;
+package com.zyxx.skeleton.core.dto;
 
 import com.zyxx.skeleton.core.base.enums.BaseEnums;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
