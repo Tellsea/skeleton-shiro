@@ -56,15 +56,16 @@ public class MybatisPlusCodeConfig {
      * 代码生成
      *
      * @param model     模块名称
+     * @param author    作者
      * @param tableName 表名
      */
-    public static void codeGenerator(String model, String tableName) {
+    public static void codeGenerator(String model, String author, String tableName) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("Tellsea");
+        gc.setAuthor(author);
         gc.setFileOverride(true);
         gc.setServiceName("%sService");
         gc.setFileOverride(false);
