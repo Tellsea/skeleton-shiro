@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.Future;
-
 /**
  * 异步方法示例 控制器
  *
@@ -29,8 +27,20 @@ public class AsyncController {
     @ApiOperation("测试异步")
     @GetMapping("example")
     public String example() {
-        Future<String> future = asyncService.exampleAsync();
-        System.out.println(future);
+        int i = 0;
+        int j = 10000;
+        while (i < j) {
+            asyncService.exampleAsync();
+            i++;
+        }
+        return "success";
+    }
+
+    @GetMapping("executeAsync")
+    public String executeAsync() {
+        log.info("start executeAsync");
+        asyncService.executeAsync();
+        log.info("end submit");
         return "success";
     }
 }

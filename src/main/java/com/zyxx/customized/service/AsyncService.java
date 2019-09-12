@@ -16,4 +16,9 @@ public interface AsyncService {
      * @return
      */
     Future<String> exampleAsync();
+
+    /**
+     * 异步加上线程池
+     */
+    void executeAsync();
 }
