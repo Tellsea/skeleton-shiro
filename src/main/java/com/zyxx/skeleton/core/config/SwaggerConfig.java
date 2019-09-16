@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -16,7 +15,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * 接口文档
+ * 接口文档配置
  *
  * @author Tellsea
  * @date 2019/7/13
@@ -32,10 +31,19 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
+        // 由于 swagger 还不支持通配符，只能这样拼接实现扫描多个包路径
+        StringBuffer buffer = new StringBuffer();
+        // 常用包
+        buffer.append("com.zyxx.common.controller").append(SPLITOR);
+        // 组件包
+        buffer.append("com.zyxx.skeleton.necessary.controller").append(SPLITOR);
+        // 定制包
+        buffer.append("com.zyxx.skeleton.customized.controller");
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                 .apis(basePackage("com.zyxx.common.controller".concat(SPLITOR).concat("com.zyxx.customized.controller")))
+                .apis(basePackage(buffer.toString()))
                 .paths(PathSelectors.any())
                 .build();
     }

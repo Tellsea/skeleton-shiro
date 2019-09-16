@@ -1,7 +1,9 @@
-package com.zyxx.necessary.service;
+package com.zyxx.skeleton.necessary.service;
 
+import com.zyxx.common.entity.UserInfo;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,4 +31,12 @@ public interface ShiroService {
      * 动态更新 shiro
      */
     void updatePermission();
+
+    /**
+     * 保存用户信息（测试事物回滚）
+     *
+     * @param userInfo
+     * @param userInfoList
+     */
+    void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList);
 }

@@ -8,7 +8,7 @@ import com.zyxx.common.service.RoleInfoService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import com.zyxx.skeleton.core.global.exception.GlobalException;
-import com.zyxx.skeleton.assembly.layui.LayuiTable;
+import com.zyxx.skeleton.component.layui.LayuiTable;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

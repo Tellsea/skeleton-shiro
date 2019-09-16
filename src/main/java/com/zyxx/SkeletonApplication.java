@@ -13,7 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @EnableAsync
 @SpringBootApplication
-@MapperScan("com.zyxx.*.mapper")
+@MapperScan("com.zyxx.business.*.mapper")
 public class SkeletonApplication {
 
     public static void main(String[] args) {

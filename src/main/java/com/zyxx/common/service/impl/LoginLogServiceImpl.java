@@ -4,7 +4,7 @@ import com.zyxx.common.dao.LoginLogDao;
 import com.zyxx.common.entity.LoginLog;
 import com.zyxx.common.service.LoginLogService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
-import com.zyxx.skeleton.assembly.layui.LayuiTable;
+import com.zyxx.skeleton.component.layui.LayuiTable;
 import com.zyxx.skeleton.core.util.SqlUtils;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;

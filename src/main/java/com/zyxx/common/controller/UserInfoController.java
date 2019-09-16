@@ -5,7 +5,7 @@ import com.zyxx.common.service.UserInfoService;
 import com.zyxx.skeleton.core.base.controller.BaseController;
 import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
-import com.zyxx.skeleton.assembly.layui.LayuiTable;
+import com.zyxx.skeleton.component.layui.LayuiTable;
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

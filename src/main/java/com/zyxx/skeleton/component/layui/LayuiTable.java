@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.assembly.layui;
+package com.zyxx.skeleton.component.layui;
 
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
 import lombok.Data;

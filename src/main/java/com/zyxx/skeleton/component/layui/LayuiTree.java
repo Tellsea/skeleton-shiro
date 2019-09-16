@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.assembly.layui;
+package com.zyxx.skeleton.component.layui;
 
 import lombok.Data;
 

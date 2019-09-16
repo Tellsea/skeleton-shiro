@@ -2,7 +2,7 @@ package com.zyxx.common.service;
 
 import com.zyxx.common.entity.LoginLog;
 import com.zyxx.skeleton.core.base.service.BaseService;
-import com.zyxx.skeleton.assembly.layui.LayuiTable;
+import com.zyxx.skeleton.component.layui.LayuiTable;
 
 /**
  * Service接口

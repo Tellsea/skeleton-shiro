@@ -159,24 +159,14 @@
             <version>2.3.28</version>
         </dependency>
 
+        <!-- ============================================== 组件依赖开始 ================================== -->
         <!-- easypoi -->
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.1.0</version>
         </dependency>
-
-        <!-- quartz -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
-
-        <!-- redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
+        <!-- ============================================== 组件依赖结束 ================================== -->
     </dependencies>
 
     <build>
