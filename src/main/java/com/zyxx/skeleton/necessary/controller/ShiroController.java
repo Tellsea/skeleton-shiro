@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.test;
+package com.zyxx.skeleton.necessary.controller;
 
 import com.zyxx.skeleton.core.shiro.realm.ShiroRealm;
 import com.zyxx.skeleton.core.shiro.util.ShiroUtils;

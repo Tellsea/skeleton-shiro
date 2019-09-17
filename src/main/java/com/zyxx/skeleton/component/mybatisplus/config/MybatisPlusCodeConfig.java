@@ -91,7 +91,7 @@ public class MybatisPlusCodeConfig {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>(16);
-                map.put("Dao", "com.zyxx".concat(".dao"));
+                map.put("Dao", "com.zyxx".concat(model).concat(".dao"));
                 map.put("tableName", tableName);
                 this.setMap(map);
             }
@@ -137,7 +137,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathEntity) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/entity/" + tableInfo.getEntityName() + StringPool.DOT_JAVA;
+                return javaLocation + model + "/entity/" + tableInfo.getEntityName() + StringPool.DOT_JAVA;
             }
         });
 
@@ -154,7 +154,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathService) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/service/" + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/service/" + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
             }
         });
 
@@ -162,7 +162,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathServiceImpl) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/service/impl/" + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/service/impl/" + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
             }
         });
 
@@ -170,7 +170,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathMapper) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
             }
         });
 
@@ -178,7 +178,7 @@ public class MybatisPlusCodeConfig {
         focList.add(new FileOutConfig(templatePathDao) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return javaLocation + "/dao/" + tableInfo.getEntityName() + "Dao" + StringPool.DOT_JAVA;
+                return javaLocation + model + "/dao/" + tableInfo.getEntityName() + "Dao" + StringPool.DOT_JAVA;
             }
         });
 

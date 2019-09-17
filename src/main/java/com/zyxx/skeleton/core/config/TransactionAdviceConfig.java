@@ -46,10 +46,10 @@ public class TransactionAdviceConfig {
      * 3.com.schcilin.goods.service表示切入点的包名
      * 4.第二个*号:表示实现包
      * 5.*(..)*号表示所有方法名,..表示所有类型的参数
-     * com.zyxx.common.service.impl.UserInfoServiceImpl
-     * com.zyxx.skeleton.necessary.service.impl.ShiroServiceImpl
+     * com.zyxx.common.service.impl
+     * com.zyxx.skeleton.necessary.service.impl
      */
-    private static final String POITCUT_EXPRESSION = "execution(* com.zyxx.*.*.service.*.*(..))";
+    private static final String POITCUT_EXPRESSION = "execution(* com.zyxx.*.service.*.*(..)) || execution(* com.zyxx.skeleton.*.service.*.*(..))";
 
     @Autowired
     private PlatformTransactionManager platformTransactionManager;

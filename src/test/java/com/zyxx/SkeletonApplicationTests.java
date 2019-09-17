@@ -47,7 +47,7 @@ public class SkeletonApplicationTests {
         userInfo.setUserName("测试事物");
         userInfo.setSalt("GJLDSFNOGLSNDLGNDFMGND");
         List<UserInfo> list = Arrays.asList(userInfo, userInfo, userInfo);
-        transactionService.saveUserInfo(userInfo, list);
+        userInfoService.saveUserInfo(userInfo, list);
         //userInfoService.saveUserInfo(userInfo, list);
     }
 }
