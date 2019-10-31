@@ -1,6 +1,6 @@
 package com.zyxx.common.service.impl;
 
-import com.zyxx.common.dao.ResourceInfoDao;
+import com.zyxx.common.dao.impl.ResourceInfoDaoImpl;
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.service.ResourceInfoService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019-08-10
  */
 @Service
-public class ResourceInfoServiceImpl extends BaseServiceImpl<ResourceInfo, ResourceInfoDao> implements ResourceInfoService {
+public class ResourceInfoServiceImpl extends BaseServiceImpl<ResourceInfo, ResourceInfoDaoImpl> implements ResourceInfoService {
 
     @Override
     public List<LayuiTree> listResourceInfoByTree() {

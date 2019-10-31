@@ -1,6 +1,6 @@
 package com.zyxx.common.service.impl;
 
-import com.zyxx.common.dao.UserInfoDao;
+import com.zyxx.common.dao.impl.UserInfoDaoImpl;
 import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.vo.UserInfoVo;
 import com.zyxx.common.service.UserInfoService;
@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019-08-10
  */
 @Service
-public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo, UserInfoDao> implements UserInfoService {
+public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo, UserInfoDaoImpl> implements UserInfoService {
 
     @Override
     public LayuiTable listUserInfo(UserInfo userInfo) {

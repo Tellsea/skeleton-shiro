@@ -1,17 +1,11 @@
 package com.zyxx.skeleton.core.base.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 /**
- * 基类 Dao 实现类
+ * 基类 Dao 接口
  *
  * @author Tellsea
  * @date 2019/8/5
  */
-public class BaseDao {
-
-    @Autowired
-    protected JdbcTemplate jdbcTemplate;
+public interface BaseDao<T> {
 
 }

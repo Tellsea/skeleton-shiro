@@ -1,15 +1,14 @@
 package com.zyxx.common.dao;
 
+import com.zyxx.common.entity.LoginLog;
 import com.zyxx.skeleton.core.base.dao.BaseDao;
-import org.springframework.stereotype.Repository;
 
 /**
- *  Dao 实现类
+ * Dao 实现类
  *
  * @author Tellsea
- * @date 2019-08-10
+ * @date 2019-10-31
  */
-@Repository
-public class LoginLogDao extends BaseDao {
+public interface LoginLogDao extends BaseDao<LoginLog> {
 
 }

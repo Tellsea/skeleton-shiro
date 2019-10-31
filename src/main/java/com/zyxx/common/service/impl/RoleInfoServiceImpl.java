@@ -1,6 +1,6 @@
 package com.zyxx.common.service.impl;
 
-import com.zyxx.common.dao.RoleInfoDao;
+import com.zyxx.common.dao.impl.RoleInfoDaoImpl;
 import com.zyxx.common.entity.MapRoleResource;
 import com.zyxx.common.entity.RoleInfo;
 import com.zyxx.common.mapper.MapRoleResourceMapper;
@@ -24,7 +24,7 @@ import java.util.List;
  * @date 2019-08-10
  */
 @Service
-public class RoleInfoServiceImpl extends BaseServiceImpl<RoleInfo, RoleInfoDao> implements RoleInfoService {
+public class RoleInfoServiceImpl extends BaseServiceImpl<RoleInfo, RoleInfoDaoImpl> implements RoleInfoService {
 
     @Autowired
     private MapRoleResourceMapper mapRoleResourceMapper;

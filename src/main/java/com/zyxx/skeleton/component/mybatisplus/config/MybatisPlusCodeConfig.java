@@ -36,11 +36,13 @@ public class MybatisPlusCodeConfig {
      * 模板存放位置
      */
     private static final String templatePathEntity = "/templates/code/entity.java.ftl";
+    private static final String templatePathVo = "/templates/code/vo.java.ftl";
     private static final String templatePathController = "/templates/code/controller.java.ftl";
     private static final String templatePathService = "/templates/code/service.java.ftl";
     private static final String templatePathServiceImpl = "/templates/code/serviceImpl.java.ftl";
     private static final String templatePathMapper = "/templates/code/mapper.java.ftl";
     private static final String templatePathDao = "/templates/code/dao.java.ftl";
+    private static final String templatePathDaoImpl = "/templates/code/daoImpl.java.ftl";
     private static final String templatePathJsp = "/templates/code/view.jsp.ftl";
     /**
      * 生成文件位置
@@ -91,7 +93,8 @@ public class MybatisPlusCodeConfig {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>(16);
-                map.put("Dao", "com.zyxx".concat(model).concat(".dao"));
+                map.put("Dao", "com.zyxx.".concat(model).concat(".dao"));
+                map.put("Vo", "com.zyxx.".concat(model).concat(".vo"));
                 map.put("tableName", tableName);
                 this.setMap(map);
             }
@@ -141,6 +144,14 @@ public class MybatisPlusCodeConfig {
             }
         });
 
+        // Vo
+        focList.add(new FileOutConfig(templatePathVo) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return javaLocation + model + "/vo/" + tableInfo.getEntityName() + "Vo" + StringPool.DOT_JAVA;
+            }
+        });
+
         // Controller
         focList.add(new FileOutConfig(templatePathController) {
             @Override
@@ -179,6 +190,14 @@ public class MybatisPlusCodeConfig {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 return javaLocation + model + "/dao/" + tableInfo.getEntityName() + "Dao" + StringPool.DOT_JAVA;
+            }
+        });
+
+        // DaoImpl.java
+        focList.add(new FileOutConfig(templatePathDaoImpl) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return javaLocation + model + "/dao/impl/" + tableInfo.getEntityName() + "DaoImpl" + StringPool.DOT_JAVA;
             }
         });
 

@@ -1,6 +1,6 @@
 package com.zyxx.common.service.impl;
 
-import com.zyxx.common.dao.MapUserRoleDao;
+import com.zyxx.common.dao.impl.MapUserRoleDaoImpl;
 import com.zyxx.common.entity.MapUserRole;
 import com.zyxx.common.service.MapUserRoleService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @date 2019-08-10
  */
 @Service
-public class MapUserRoleServiceImpl extends BaseServiceImpl<MapUserRole, MapUserRoleDao> implements MapUserRoleService {
+public class MapUserRoleServiceImpl extends BaseServiceImpl<MapUserRole, MapUserRoleDaoImpl> implements MapUserRoleService {
 
 }

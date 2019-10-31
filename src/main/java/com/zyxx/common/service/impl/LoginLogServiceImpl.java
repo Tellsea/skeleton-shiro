@@ -1,6 +1,6 @@
 package com.zyxx.common.service.impl;
 
-import com.zyxx.common.dao.LoginLogDao;
+import com.zyxx.common.dao.impl.LoginLogDaoImpl;
 import com.zyxx.common.entity.LoginLog;
 import com.zyxx.common.service.LoginLogService;
 import com.zyxx.skeleton.core.base.service.impl.BaseServiceImpl;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2019-08-10
  */
 @Service
-public class LoginLogServiceImpl extends BaseServiceImpl<LoginLog, LoginLogDao> implements LoginLogService {
+public class LoginLogServiceImpl extends BaseServiceImpl<LoginLog, LoginLogDaoImpl> implements LoginLogService {
 
     @Override
     public LayuiTable listLoginLog(LoginLog loginLog) {

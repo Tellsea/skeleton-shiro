@@ -1,7 +1,7 @@
 package ${cfg.Dao};
 
+import ${package.Entity}.${entity};
 import com.zyxx.skeleton.core.base.dao.BaseDao;
-import org.springframework.stereotype.Repository;
 
 /**
  * ${table.comment!} Dao 实现类
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author ${author}
  * @date ${date}
  */
-@Repository
-public class ${entity}Dao extends BaseDao {
+public interface ${entity}Dao extends BaseDao<${entity}> {
 
 }
