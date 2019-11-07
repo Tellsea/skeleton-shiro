@@ -4,7 +4,7 @@ import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.service.UserInfoService;
 import com.zyxx.skeleton.core.dto.ResponseResult;
 import com.zyxx.skeleton.core.global.enums.StatusEnums;
-import com.zyxx.skeleton.necessary.service.TransactionService;
+import com.zyxx.skeleton.service.TransactionService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;

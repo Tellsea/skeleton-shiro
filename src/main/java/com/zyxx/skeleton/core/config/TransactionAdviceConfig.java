@@ -47,7 +47,7 @@ public class TransactionAdviceConfig {
      * 4.第二个*号:表示实现包
      * 5.*(..)*号表示所有方法名,..表示所有类型的参数
      * com.zyxx.common.service.impl
-     * com.zyxx.skeleton.necessary.service.impl
+     * com.zyxx.skeleton.service.impl
      */
     private static final String POITCUT_EXPRESSION = "execution(* com.zyxx.*.service.*.*(..)) || execution(* com.zyxx.skeleton.*.service.*.*(..))";
 

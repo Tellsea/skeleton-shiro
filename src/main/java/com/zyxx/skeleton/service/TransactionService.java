@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.necessary.service;
+package com.zyxx.skeleton.service;
 
 import com.zyxx.common.entity.UserInfo;
 

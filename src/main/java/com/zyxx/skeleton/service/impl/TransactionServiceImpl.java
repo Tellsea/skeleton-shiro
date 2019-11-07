@@ -1,8 +1,8 @@
-package com.zyxx.skeleton.necessary.service.impl;
+package com.zyxx.skeleton.service.impl;
 
 import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.mapper.UserInfoMapper;
-import com.zyxx.skeleton.necessary.service.TransactionService;
+import com.zyxx.skeleton.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

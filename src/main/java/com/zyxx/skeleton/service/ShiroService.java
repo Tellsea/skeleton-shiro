@@ -1,4 +1,4 @@
-package com.zyxx.skeleton.necessary.service;
+package com.zyxx.skeleton.service;
 
 import com.zyxx.common.entity.UserInfo;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -32,11 +32,4 @@ public interface ShiroService {
      */
     void updatePermission();
 
-    /**
-     * 保存用户信息（测试事物回滚）
-     *
-     * @param userInfo
-     * @param userInfoList
-     */
-    void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList);
 }

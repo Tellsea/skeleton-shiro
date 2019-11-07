@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
- * 项目启动类
+ * Skeleton 骨架 启动类
  *
  * @author Tellsea
  * @date 2019/7/13

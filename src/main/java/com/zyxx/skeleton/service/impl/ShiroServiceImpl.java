@@ -1,11 +1,11 @@
-package com.zyxx.skeleton.necessary.service.impl;
+package com.zyxx.skeleton.service.impl;
 
 import com.zyxx.common.entity.ResourceInfo;
 import com.zyxx.common.entity.UserInfo;
 import com.zyxx.common.mapper.ResourceInfoMapper;
 import com.zyxx.common.mapper.UserInfoMapper;
 import com.zyxx.skeleton.core.shiro.filter.SessionCheckFilter;
-import com.zyxx.skeleton.necessary.service.ShiroService;
+import com.zyxx.skeleton.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -102,12 +102,5 @@ public class ShiroServiceImpl implements ShiroService {
                 manager.createChain(url, chainDefinition);
             }
         }
-    }
-
-    @Override
-    public void saveUserInfo(UserInfo userInfo, List<UserInfo> userInfoList) {
-        userInfoMapper.insertSelective(userInfo);
-        System.out.println(1 / 0);
-        userInfoMapper.insertList(userInfoList);
     }
 }

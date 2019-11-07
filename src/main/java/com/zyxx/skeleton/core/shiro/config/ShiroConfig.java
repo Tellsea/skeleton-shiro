@@ -1,7 +1,7 @@
 package com.zyxx.skeleton.core.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.zyxx.skeleton.necessary.service.ShiroService;
+import com.zyxx.skeleton.service.ShiroService;
 import com.zyxx.skeleton.core.shiro.realm.ShiroRealm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
