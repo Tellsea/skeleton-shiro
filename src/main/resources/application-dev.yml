@@ -34,11 +34,11 @@ spring:
     show-sql: true
 # mybatis
 mybatis:
-  type-aliases-package: com.zyxx.business.*.entity
+  type-aliases-package: cn.tellsea.business.*.entity
   configuration:
     map-underscore-to-camel-case: true
 # 日志
 logging:
-  file: ./logs/skeleton.log
+  file: ./logs/skeleton-shiro.log
   level:
     com.zyxx.business.common.mapper: debug
