@@ -1,7 +1,7 @@
 package ${cfg.Dao};
 
 import ${package.Entity}.${entity};
-import com.zyxx.skeleton.core.base.dao.BaseDao;
+import BaseDao;
 
 /**
  * ${table.comment!} Dao 实现类

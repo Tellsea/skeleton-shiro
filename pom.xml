@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zyxx</groupId>
-    <artifactId>skeleton</artifactId>
+    <artifactId>skeleton-shiro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>skeleton</name>
     <description>Framework for rapid modular development</description>
