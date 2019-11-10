@@ -1,7 +1,7 @@
 package ${package.Entity};
 
 import com.alibaba.fastjson.annotation.JSONField;
-import BaseEntity;
+import ${cfg.base}.entity.BaseEntity;
 <#if entityLombokModel>
 import lombok.Getter;
 import lombok.Setter;

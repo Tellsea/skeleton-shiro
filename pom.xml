@@ -11,7 +11,7 @@
     <groupId>cn.tellsea</groupId>
     <artifactId>skeleton-shiro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>skeleton</name>
+    <name>skeleton-shiro</name>
     <description>Framework for rapid modular development</description>
 
     <properties>

@@ -34,7 +34,7 @@ public class SwaggerConfig {
         // 由于 swagger 还不支持通配符，只能这样拼接实现扫描多个包路径
         StringBuffer buffer = new StringBuffer();
         // 常用包
-        buffer.append("cn.tellsea.common.controller").append(SPLITOR);
+        buffer.append("cn.tellsea.system.controller").append(SPLITOR);
         // 组件包
         buffer.append("cn.tellsea.skeleton.necessary.controller").append(SPLITOR);
         // 定制包

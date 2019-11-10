@@ -95,6 +95,7 @@ public class MybatisPlusCodeConfig {
                 Map<String, Object> map = new HashMap<>(16);
                 map.put("Dao", "cn.tellsea.".concat(model).concat(".dao"));
                 map.put("Vo", "cn.tellsea.".concat(model).concat(".vo"));
+                map.put("base", basePackage);
                 map.put("tableName", tableName);
                 this.setMap(map);
             }

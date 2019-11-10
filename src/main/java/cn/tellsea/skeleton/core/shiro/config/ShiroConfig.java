@@ -2,7 +2,7 @@ package cn.tellsea.skeleton.core.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import cn.tellsea.skeleton.core.shiro.realm.ShiroRealm;
-import cn.tellsea.skeleton.service.ShiroService;
+import cn.tellsea.system.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.codec.Base64;

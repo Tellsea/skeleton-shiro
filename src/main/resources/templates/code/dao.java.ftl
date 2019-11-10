@@ -1,7 +1,7 @@
 package ${cfg.Dao};
 
 import ${package.Entity}.${entity};
-import BaseDao;
+import ${cfg.base}.dao.BaseDao;
 
 /**
  * ${table.comment!} Dao 实现类

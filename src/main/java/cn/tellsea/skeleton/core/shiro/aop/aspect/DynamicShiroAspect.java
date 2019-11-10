@@ -1,6 +1,6 @@
 package cn.tellsea.skeleton.core.shiro.aop.aspect;
 
-import cn.tellsea.skeleton.service.ShiroService;
+import cn.tellsea.system.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;

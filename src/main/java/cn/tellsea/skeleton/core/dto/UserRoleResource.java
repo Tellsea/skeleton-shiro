@@ -1,7 +1,7 @@
 package cn.tellsea.skeleton.core.dto;
 
-import cn.tellsea.common.entity.ResourceInfo;
-import cn.tellsea.common.entity.RoleInfo;
+import cn.tellsea.system.entity.ResourceInfo;
+import cn.tellsea.system.entity.RoleInfo;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -2,8 +2,8 @@ package cn.tellsea.skeleton.core.aop.aspect;
 
 import cn.tellsea.skeleton.core.dto.ResponseResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import cn.tellsea.common.entity.LoginLog;
-import cn.tellsea.common.service.LoginLogService;
+import cn.tellsea.system.entity.LoginLog;
+import cn.tellsea.system.service.LoginLogService;
 import cn.tellsea.skeleton.core.global.enums.StatusEnums;
 import cn.tellsea.skeleton.core.global.exception.GlobalException;
 import cn.tellsea.skeleton.core.util.AddressUtils;

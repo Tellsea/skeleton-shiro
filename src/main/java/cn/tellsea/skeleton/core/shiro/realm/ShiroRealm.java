@@ -2,12 +2,12 @@ package cn.tellsea.skeleton.core.shiro.realm;
 
 import cn.tellsea.skeleton.core.dto.UserRoleResource;
 import cn.tellsea.skeleton.core.shiro.util.ShiroUtils;
-import cn.tellsea.common.entity.ResourceInfo;
-import cn.tellsea.common.entity.RoleInfo;
-import cn.tellsea.common.entity.UserInfo;
-import cn.tellsea.common.service.ResourceInfoService;
-import cn.tellsea.common.service.RoleInfoService;
-import cn.tellsea.common.service.UserInfoService;
+import cn.tellsea.system.entity.ResourceInfo;
+import cn.tellsea.system.entity.RoleInfo;
+import cn.tellsea.system.entity.UserInfo;
+import cn.tellsea.system.service.ResourceInfoService;
+import cn.tellsea.system.service.RoleInfoService;
+import cn.tellsea.system.service.UserInfoService;
 import cn.tellsea.skeleton.core.consts.SessionConst;
 import cn.tellsea.skeleton.core.consts.UserInfoStatus;
 import lombok.extern.slf4j.Slf4j;

@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8080
 spring:
   profiles:
     active:
@@ -34,11 +34,11 @@ spring:
     show-sql: true
 # mybatis
 mybatis:
-  type-aliases-package: cn.tellsea.business.*.entity
+  type-aliases-package: cn.tellsea.*.entity
   configuration:
     map-underscore-to-camel-case: true
 # 日志
 logging:
   file: ./logs/skeleton-shiro.log
   level:
-    com.zyxx.business.common.mapper: debug
+    cn.tellsea.skeleton.mapper: debug
